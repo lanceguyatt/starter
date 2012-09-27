@@ -1,0 +1,84 @@
+/* @group =panel */
+.panel {
+	@include border-radius(6px);
+	@include horizontal-borders(6px, 1);
+	@include margin-trailer(3);
+	background-color: $red;
+	border-color: $red;
+	clear: left;
+	overflow: hidden;
+	ul {
+		@include margin-trailer(1);
+		margin-left: 0;
+		list-style: none;
+	}
+	li {
+		@include margin-trailer(1);
+	}
+	.icon-button {
+		@include margin-trailer(2);
+		&:last-child {
+			@include margin-trailer(0);
+		}
+	}
+	.icon-text {
+		@include adjust-font-size-to(18px, 6);
+	}
+}
+
+/* @group =panel-dark */
+.panel-dark {
+	@include box-sizing(border-box);
+	@include padding-leader(2);
+	@include padding-trailer(2);
+	color: $white;
+	padding-left: 24px;
+	padding-right: 24px;
+	hr {
+		@include trailing-border(2px, 1);
+		@include margin-trailer(2);
+		border-color: $white;
+		margin-left: -24px;
+		margin-right: -24px;
+		&:last-child {
+			@include margin-trailer(2);
+		}
+	}
+	> h4 {
+		@include margin-trailer(2);
+	}
+	> h5 {
+		@include margin-trailer(2);
+	}
+	> p.lead {
+		font-size: 24px;
+		line-height: 24px;
+		@include margin-trailer(2);
+	}
+	> .body p:last-child {
+		@include margin-trailer(0);
+	}
+	> .headline {
+		@include margin-trailer(1);
+	}
+}
+/* @end */
+
+/* @group =panel-light */
+.panel-light {
+	@include box-sizing(border-box);
+	@include clearfix;
+	@include padding-leader(2);
+	@include padding-trailer(2);
+	background-color: $white;
+	margin-right: 6px;
+	margin-left: 6px;
+	padding-left: 18px;
+	padding-right: 18px;
+	hr {
+		@include trailing-border(1px, 1);
+		border-color: $black;
+	}
+}
+/* @end */
+/* @end */

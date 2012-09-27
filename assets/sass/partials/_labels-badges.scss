@@ -1,0 +1,58 @@
+/* @group =label */
+.badge {
+	@include ellipsis;
+	@include box-sizing(border-box);
+	@include border-radius(3px);
+	@include inline-block;
+	@include margin-trailer(3);
+	background-color: $red;
+	position: relative;
+	//height: 36px;
+	padding: 3px;
+	color: $white;
+	text-transform: uppercase;
+}
+.badge-logo {
+	&:before {
+		@include size(28px,25px);
+		background: inline-image('../img/autoexpress.png') no-repeat 0 0;
+		background-size: 25px 28px;
+		border: 1px solid $white;
+		content: '';
+		float: left;
+		margin-right: 2px;
+	}
+}
+.badge-small {
+	.badge-inner {
+		@include adjust-font-size-to(18px, 3);
+	}
+}
+.badge-inner {
+	@include box-sizing(border-box);
+	@include adjust-font-size-to(25px, 3);
+	border: 1px solid $white;
+	font-family: $glasgow-bold;
+	padding: 4px 5px 0px;
+	float: left;
+}
+
+/* @end */
+
+/* @group =badge */
+.label {
+	@include adjust-font-size-to(25px, 4);
+	@include border-radius(4px);
+	@include inline-block;
+	@include margin-trailer(3);
+	padding: {
+		left: 10px;
+		right: 10px;
+	}	
+	background-color: $red;
+	color: $white;
+	strong {
+		text-transform: uppercase;
+	}
+}
+/* @end */

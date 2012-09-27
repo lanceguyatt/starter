@@ -1,0 +1,180 @@
+/* @group =article types */
+[class*="article"] {
+	&:last-child {
+		@include margin-trailer(0);
+	}
+	p:last-child {
+		@include margin-trailer(0);
+	}
+}
+
+/* @group =dropcap placeholder */
+%dropcap {
+	> p:first-child:first-letter {
+		@include adjust-font-size-to(56px, 6); // 56px / 48px
+		float: left;
+		font-family: $meta-bold;
+		margin-right: 10px;
+	}
+}
+/* @end */
+
+%pull-quote {
+	@include margin-trailer(3);
+	@include trailing-border(6px, 1);
+	border-color: $red;
+	p {
+		//@include adjust-font-size-to(24px, 3);
+		//@include margin-trailer(0);
+		font-family: $meta-bold;
+		font-size: pem(24px);
+		line-height: 1em; // 24px
+	}
+}
+
+/* @group =article-full */
+.article-full {
+	@include margin-trailer(3);
+	.headline {
+		@extend %pull-item;
+	}
+	.badge, .label {
+		@include margin-leader(-6);
+	}
+	.body {
+		@extend %dropcap;
+		@include margin-trailer(3);
+		blockquote {
+			@extend %pull-item;
+			@extend %pull-quote;
+		}
+	}
+	.image-medium {
+		@include margin-trailer(2);
+	}
+}
+/* @end */
+
+/* @group =article-main-lead */
+.article-main-lead {
+	@include margin-trailer(2);
+	.headline {
+		@extend %fs3; // 48px/48px
+		@include margin-trailer(2);
+	}
+	h2 {
+		@extend %fs5; // 24px/24px
+		@include margin-trailer(1);
+	}
+	.image-medium {
+		@include margin-trailer(2);
+	}
+	.body {
+		@extend %dropcap;
+		blockquote {
+			@extend %pull-item;
+			@extend %pull-quote;
+		}
+	}
+	.badge {
+		margin-top: -31px;
+		margin-left: 24px;
+	}
+}
+/* @end */
+
+/* @group =article-main */
+.article-main {
+	@include margin-trailer(2);
+	.headline {
+		@extend %fs4; // 32px/32px
+		@include margin-trailer(2);
+	}
+	h2 {
+		@extend %fs6;
+		@include margin-trailer(0);
+	}
+	.image-medium {
+		@include margin-trailer(2);
+	}
+}
+/* @end */
+
+/* @group =article-float */
+.article-float {
+	@include pie-clearfix;
+	.headline {
+		@extend %fs4; // 32px/32px
+		@include margin-trailer(2);
+	}
+}
+
+.image-float {
+	@include margin-leader(1);
+	@include margin-trailer(2);
+}
+/* @end */
+
+/* @group =article-aside */
+.article-aside {
+	@include margin-trailer(1);
+	.headline {
+		@extend %fs5; // 24px/24px
+		@include margin-trailer(1);
+	}
+	.subhead {
+		@extend %fs5; // 24px/24px
+		@include margin-trailer(1);	
+	}
+	.image-aside {
+		@include margin-trailer(2);
+	}
+	ul {
+		list-style: none;
+		margin-left: 0;
+	}
+	h6, p, li {
+		@include margin-trailer(1);
+	}
+	.body {
+		p:last-child {
+			@include margin-trailer(0);
+		}
+	}
+}
+/* @end */
+
+/* @group =article-aside-lead */
+.article-aside-lead {
+	.headline {
+		@extend %fs4; // 32px/32px
+		@include margin-trailer(2);
+	}
+	.subhead {
+		@extend %fs5; // 24px/24px
+		@include margin-trailer(1);
+	}
+	.image-aside {
+		@include margin-trailer(2);
+	}
+}
+/* @end */
+
+.panel-dark {
+	[class*=article] {
+		.body {
+			font-family: $meta-bold;
+		}
+	}
+}
+
+/* @group =article-float */
+.article-float {
+	@include clearfix;
+	.body {
+		display: inline;
+	}
+}
+/* @end */
+
+/* @end */

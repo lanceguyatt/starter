@@ -1,0 +1,70 @@
+/* @group =blurb-box */
+.blurb-box {
+	@include rhythm(0, 2, 2, 3);
+	background-color: $red;
+	color: $white;
+	padding-left: 24px;
+	padding-right: 24px;
+	.headline {
+		@extend %fs4; // 32px/32px
+		@include margin-trailer(1);
+		color: $white;
+	}
+	.body {
+		@extend %bold;
+		p:last-child {
+			@include margin-trailer(0);
+		}
+	}
+}
+/* @end */
+
+/* @group =textutre */
+%texture {
+	background: $gray inline-image('../img/texture.png', image/png) repeat 0 0;
+}
+/* @end */
+
+/* @group =block */
+.block {
+	@extend %texture;
+	@include rhythm(0, 2, 2, 3);
+	padding-left: 24px;
+	padding-right: 24px;
+	.headline {
+		@extend %fs6;
+		@include margin-trailer(0);
+		display: inline;
+		text-transform: uppercase;
+		&:after {
+			content: ':';
+		}
+	}
+	blockquote, p {
+		display: inline;
+	}
+	cite {
+		@include adjust-font-size-to(16px, 2);
+		@include margin-leader(2);
+		display: block;
+	}
+	em {
+		font-family: $meta-normal;
+	}
+}
+/* @end */
+
+/* @group =columnist */
+.columnist {
+	@extend %container;
+	@extend %texture;
+	@include margin-trailer(3);
+	@include padding-leader(4);
+	.headline {
+		@extend %fs4;
+	}
+}
+.columnist-item {
+	@include clearfix;
+}
+/* @end */

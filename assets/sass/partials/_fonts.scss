@@ -1,0 +1,6 @@
+/* @group =fonts */
+@include font-face("Meta Normal Roman", font-files("meta-normal-roman.svg" , svg), false, normal, normal);
+@include font-face("Meta Bold Roman", font-files("meta-bold-roman.svg", svg), false, normal, normal);
+@include font-face("Glasgow Medium", font-files("glasgow-medium.svg", svg), false, normal, normal);
+@include font-face("Glasgow Bold", font-files("glasgow-bold.svg", svg), false, normal, normal);
+/* @end */

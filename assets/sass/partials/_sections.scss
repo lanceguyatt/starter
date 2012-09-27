@@ -1,0 +1,40 @@
+/* @grop =sections */
+
+/* @group =newcars */
+body.newcars {
+	@include theme($cerulean);
+}
+/* @end */
+
+/* @group =products */
+body.products {
+	@include theme($pacific-blue);
+}
+/* @end */
+
+/* @group =buyingcars */
+body.buyingcars {
+	@include theme(#1272A0);
+}
+/* @end */
+
+/* @group =roadtest */
+body.roadtest {
+	@include theme($yellow);
+	.blurb-box, .blurb-box .headline, .header-text, .panel-dark, .label, .badge {
+		color: $black;
+	}
+	.banner {
+		.icon-square {
+			background-image: inline-image('../img/icons/icons-square-dark.png');
+			border-color: $black;
+		}
+	}
+	
+	.icon-key {
+		background-image: inline-image('../img/icons/icon-key-dark.svg');
+	}
+}
+/* @end */
+
+/* @end */

@@ -1,0 +1,27 @@
+#theme-switcher {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+#font-size {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+%debug {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  display: block;
+  width: 100%;
+  color: green;
+  content: "." attr(class) attr(height);
+  text-align: center;
+  @extend .container;
+  @include margin-trailer(2);
+  font-weight: bold;
+}

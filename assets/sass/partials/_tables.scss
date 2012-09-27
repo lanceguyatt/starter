@@ -1,0 +1,140 @@
+.table-header {
+	background-color: $red;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, transparent), color-stop(50%, transparent), color-stop(50%, rgba(0,0,0,.1)), color-stop(100%, rgba(0,0,0,.1)));
+	height: 44px;
+	h1 {
+		@include adjust-font-size-to(16px, 3);
+		@include margin-trailer(0);
+		font-family: $helvetica;
+		float: left;
+		margin-left: 24px;
+		margin-top: 10px;
+	}
+	a.btn {
+		float: right;
+		margin-right: 24px;
+		margin-top: 7px;
+		vertical-align: middle;
+	}
+}
+.table-body {
+	
+}
+
+
+
+// Tables
+// -------------------------
+$table-background:							#EDEDED !default; // for striping
+$table-border:												#ccc !default; // table and cell border
+
+
+// TABLES
+// Tables for, you guessed it, tabular data
+// ----------------------------------------
+
+
+// BASE TABLES
+// -----------------
+
+table {
+	@include margin-trailer(3);
+	background-color: transparent;
+	border-collapse: collapse;
+	border-spacing: 0;
+	max-width: 100%;
+	width: 100%;
+}
+th {
+	@include adjust-font-size-to(18px, 3);
+	@include trailing-border(1px, 1);
+	border-color: $table-border;
+	font-family: $meta-bold;
+	padding-top: height(1);
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+td {
+	padding: 12px;
+	h6 {
+		margin-bottom: 2px;
+		text-transform: uppercase;
+	}
+	.icon-rating {
+		display: block;
+	}
+	img {
+		max-width: none;
+		
+	}
+	&.td-car {
+		padding: 12px 24px 24px;
+	}
+}
+
+th, td {
+	border-left: 1px solid $table-border;
+	text-align: left;
+	vertical-align: top;
+}
+th:first-child,
+td:first-child {
+	border-left: none;
+}
+
+/* @group =table-ratings */
+.table-ratings {
+	tbody {
+		tr:nth-child(odd) td,
+		tr:nth-child(odd) th {
+			background-color: $table-background;
+		}
+	}
+	th {
+		color: $gray-dark;
+	}
+}
+/* @end */
+
+/* @group =table-specs */
+table.table-specs {
+	tbody:nth-child(even) {
+		background-color: $table-background;
+	}
+	tbody {
+		tr:first-child td {
+			padding-top: height(3);
+		}
+		tr:last-child td {
+			padding-bottom: height(3);
+		}
+	}
+	th {
+		color: $black;
+		text-transform: uppercase;
+	}
+	td {
+		@include adjust-leading-to(2);
+	}
+	td:first-child {
+		font-family: $meta-bold;
+	}
+}
+/* @end */
+
+
+
+// TABLE CELL SIZING
+// -----------------
+
+//@mixin tableColumns($i) {
+//	width: $i * 2;
+//}
+
+// Change the columns
+//table {
+//	@for $i from 1 through 24 {
+//		.span#{$i} { @include tableColumns($i); }
+//	}
+//}
