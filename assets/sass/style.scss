@@ -27,6 +27,6 @@ $grid-padding: 0; // 24px
 
 @include grid(100%, $column-width, $gutter-width,  $grid-padding); 
 
-.container {
+header, .main, footer {
 	@extend %container;
 }

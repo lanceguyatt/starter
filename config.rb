@@ -28,7 +28,7 @@ fonts_dir       = "assets/fonts"
 # Require any additional compass plugins installed on your system.
 #require 'ninesixty'
 #require 'zen-grids'
-require "/Users/lance/.rvm/gems/ruby-1.8.7-p330/gems/susy-1.0.1/lib/susy.rb"
+#require "/Users/lance/.rvm/gems/ruby-1.8.7-p330/gems/susy-1.0.1/lib/susy.rb"
 
 
 # Assuming this theme is in sites/*/themes/THEMENAME, you can add the partials

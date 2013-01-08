@@ -124,13 +124,15 @@ $link-color-hover:       darken($link-color, 0) !default;
 //
 
 // Basic Settings
-$total-columns: 6; // The number of Columns in your default Grid Layout <number> Unitless number.
-$column-width: 84px; // The width of a single Column in your Grid. <length> Length in any unit of measurement (em, px, %, etc).
-$gutter-width: 24px; // The space between Columns. <length> Units must match $column-width.
-$grid-padding: 72px; // Padding on the left and right of a Grid Container. <length> Units must match $column-width.
+$total-columns: 12; // The number of Columns in your default Grid Layout <number> Unitless number.
+$column-width: 60; // The width of a single Column in your Grid. <length> Length in any unit of measurement (em, px, %, etc).
+$gutter-width: 20px; // The space between Columns. <length> Units must match $column-width.
+$grid-padding: 20px; // Padding on the left and right of a Grid Container. <length> Units must match $column-width.
 //$border-box-sizing: true;
 
-@import "susy";
+@import "modules/susy";
+
+@import "modules/stitch";
 
 // COMPONENT VARIABLES
 // --------------------------------------------------
