@@ -2082,17 +2082,6 @@
       "initialSize" : 348,
       "fileType" : 8192
     },
-    "\/src\/vendor\/modernizr\/feature-detects\/css-hyphens.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/src\/vendor\/modernizr\/feature-detects\/css-hyphens.js",
-      "outputStyle" : 0,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/src\/vendor\/modernizr\/feature-detects\/css-hyphens.min.js",
-      "fileType" : 64
-    },
     "\/src\/vendor\/modernizr\/feature-detects\/workers-dataworkers.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -2102,6 +2091,17 @@
       "outputStyle" : 0,
       "syntaxCheckerStyle" : 0,
       "outputAbbreviatedPath" : "\/src\/vendor\/modernizr\/feature-detects\/workers-dataworkers.min.js",
+      "fileType" : 64
+    },
+    "\/src\/vendor\/modernizr\/feature-detects\/css-hyphens.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/src\/vendor\/modernizr\/feature-detects\/css-hyphens.js",
+      "outputStyle" : 0,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/src\/vendor\/modernizr\/feature-detects\/css-hyphens.min.js",
       "fileType" : 64
     },
     "\/src\/stylesheets\/scss\/modules\/stitch\/patterns\/legacy\/_inline-block.scss" : {
@@ -2523,17 +2523,16 @@
       "outputAbbreviatedPath" : "\/src\/vendor\/modernizr\/feature-detects\/notification.min.js",
       "fileType" : 64
     },
-    "\/src\/stylesheets\/scss\/modules\/stitch\/patterns\/text\/_rem.scss" : {
+    "\/src\/vendor\/modernizr\/feature-detects\/dom-classlist.js" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/src\/stylesheets\/scss\/modules\/stitch\/patterns\/text\/_rem.scss",
+      "inputAbbreviatedPath" : "\/src\/vendor\/modernizr\/feature-detects\/dom-classlist.js",
       "outputStyle" : 0,
-      "shouldRunBless" : 1,
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 4,
-      "debugStyle" : 0
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/src\/vendor\/modernizr\/feature-detects\/dom-classlist.min.js",
+      "fileType" : 64
     },
     "\/src\/vendor\/modernizr\/feature-detects\/css-mediaqueries.js" : {
       "ignoreWasSetByUser" : 0,
@@ -2546,16 +2545,17 @@
       "outputAbbreviatedPath" : "\/src\/vendor\/modernizr\/feature-detects\/css-mediaqueries.min.js",
       "fileType" : 64
     },
-    "\/src\/vendor\/modernizr\/feature-detects\/dom-classlist.js" : {
+    "\/src\/stylesheets\/scss\/modules\/stitch\/patterns\/text\/_rem.scss" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
+      "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/src\/vendor\/modernizr\/feature-detects\/dom-classlist.js",
+      "inputAbbreviatedPath" : "\/src\/stylesheets\/scss\/modules\/stitch\/patterns\/text\/_rem.scss",
       "outputStyle" : 0,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/src\/vendor\/modernizr\/feature-detects\/dom-classlist.min.js",
-      "fileType" : 64
+      "shouldRunBless" : 1,
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 4,
+      "debugStyle" : 0
     },
     "\/src\/vendor\/modernizr\/feature-detects\/css-subpixelfont.js" : {
       "ignoreWasSetByUser" : 0,
