@@ -1,0 +1,27 @@
+include ../routes/index
+
+!!! 5
+html(dir='ltr', lang='#{site.lang}')
+  head
+    meta(charset='utf-8')
+
+    block head
+
+      title #{site.name}
+      meta(name='description', content='#{site.description}')
+      meta(name='viewport', content='width=device-width')
+      link(rel='stylesheet', href='#{paths.css}/application.css')
+      script(src='#{paths.js}/modernizr.min.js')
+
+  body
+    header(role='banner')
+      
+    div(class='main', role='main')
+
+      block main
+
+    footer(role='contentinfo')
+
+      block footer
+
+    block scripts
