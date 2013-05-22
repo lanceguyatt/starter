@@ -4,8 +4,7 @@
 .DS_Store
 *.sass-cache
 *.sublime-*
-dist/stylesheets/
-dist/javascripts/
-dist/index.html
+dist/stylesheets/css
+dist/javascripts/js
 node_modules
 tmp
