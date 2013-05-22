@@ -112,7 +112,6 @@ module.exports = (grunt) ->
     # Compile compass files
     compass:
       options:
-        banner: '<%= meta.banner %>'
         basePath: ''
         app: 'stand_alone'
         cssDir: '<%= paths.css %>'
