@@ -13,9 +13,6 @@
     "type": "git",
     "url": "git://github.com/lanceguyatt/starter.git"
   },
-  "bugs": {
-    "url": "https://github.com/lanceguyatt/starter/issues"
-  },
   "license": "MIT",
   "scripts": {
     "test": "grunt travis --verbose"

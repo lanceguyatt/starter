@@ -11,11 +11,11 @@
 
 %container {
   @include container($total-columns);
-  background: pink;
+  background: blue;
   position: relative;
 }
 
-@include grid(100%, $column-width, $gutter-width, $grid-padding); 
+@include grid(100%, $column-width, $gutter-width, $grid-padding);
 
 header, .main, footer {
   @extend %container;

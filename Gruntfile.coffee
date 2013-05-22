@@ -1,4 +1,3 @@
-#global module:false
 module.exports = (grunt) ->
 
   'use strict'
@@ -11,7 +10,7 @@ module.exports = (grunt) ->
 
     # Create banner meta
     meta:
-      banner: '/*! <%= pkg.name %> | <% pkg.description %> - v<%= pkg.version %> <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n'
+      banner: '/*! <%= pkg.name %> | <%= pkg.description %> - v<%= pkg.version %> <%= grunt.template.today(\"dd-mm-yyyy\") %> */\n'
 
     # Files paths
     paths:
@@ -36,23 +35,6 @@ module.exports = (grunt) ->
       fonts: '<%= paths.dist %>/fonts'
       images: '<%= paths.dist %>/images'
 
-    # require js
-    requirejs:
-      compile:
-        options:
-          baseUrl: '<%= paths.js %>'
-          mainConfigFile: '<%= paths.src %>/javascripts/js/config.js'
-          include: ['<%= paths.vendor %>/require']
-          out: '<%= paths.js %>/application.min.js'
-
-    # jshint
-    #jshint:
-    #  all: [
-    #    '<%= paths.js %>/**/*.js'
-    #  ]
-    #  options:
-    #    jshintrc: '.jshintrc'
-
     # Compress images
     smushit:
       dist:
@@ -60,46 +42,44 @@ module.exports = (grunt) ->
         dest:'<%= paths.images %>'
 
     # Concat files
-    #concat:
-    #  options:
-    #    stripBanners: true
-    #    banner: '<%= meta.banner %>'
-    #    separator: ';'
-
-    #  bootstrap:
-    #    files: '<%= paths.js %>/bootstrap.js': [
-    #      '<%= paths.js %>/modernizr.js'
-    #      '<%= paths.vendor %>/conditionizr/js/conditionizr.js'
-    #      '<%= paths.js %>/bootstrap.js'
-    #    ]
-    #  plugins:
-    #    files: '<%= paths.js %>/plugins.js': [
-    #      '<%= paths.vendor %>/hashgrid/hashgrid.js'
-    #    ]
+    concat:
+      options:
+        stripBanners: true
+        banner: '<%= meta.banner %>'
+        separator: ';'
+      vendor:
+        files: '<%= paths.js %>/vendor.js': [
+          '<%= paths.vendor %>/jquery/jquery.js'
+          '<%= paths.vendor %>/hashgrid/hashgrid.js'
+        ]
 
     # Minify files
-    #uglify:
-    #  options:
-    #    banner: '<%= meta.banner %>'
-    #    #beautify: false
-    #    #compress: false
-    #    mangle: false
-    #      #except: ['jQuery']
-    #  dist:
-    #    files: '<%= paths.js %>/bootstrap.min.js': '<%= paths.js %>/bootstrap.js'
+    uglify:
+      options:
+        banner: '<%= meta.banner %>'
+        #beautify: false
+        #compress: true
+        #mangle: true
+        #except: ['jQuery']
+
+      vendor:
+        files: '<%= paths.js %>/vendor.min.js': '<%= paths.js %>/vendor.js'
+
+      application:
+        files: '<%= paths.js %>/application.min.js': '<%= paths.js %>/application.js'
 
     # Clean directories
-    #clean:
-    #  #images: '<%= paths.images %>'
-    #  tmp: '<%= paths.tmp %>'
-    #  javascripts: '<%= paths.javascripts %>'
-    #  stylesheets: '<%= paths.stylesheets %>'
+    clean:
+      #images: '<%= paths.images %>'
+      tmp: '<%= paths.tmp %>'
+      javascripts: '<%= paths.javascripts %>'
+      stylesheets: '<%= paths.stylesheets %>'
 
     # Compile jade templates
     jade:
       files:
-        src: '<%= paths.views %>/*.jade'
-        dest: '<%= paths.dist %>/'
+        src: '<%= paths.views %>/index.jade'
+        dest: '<%= paths.dist %>'
 
       options:
         client: false
@@ -121,20 +101,23 @@ module.exports = (grunt) ->
       compile:
         options:
           bare: true
-          #separator: '<%= meta.banner %>'
+          banner: '<%= meta.banner %>'
         expand: true
         flatten: true
         cwd: '<%= paths.coffee %>'
-        src: ['*.coffee']
+        src: '*.coffee'
         dest: '<%= paths.js %>'
         ext: '.js'
-
 
     # Compile compass files
     compass:
       options:
+        banner: '<%= meta.banner %>'
+        basePath: ''
+        app: 'stand_alone'
         cssDir: '<%= paths.css %>'
         sassDir: '<%= paths.scss %>'
+        javascriptsDir: '<%= paths.js %>'
         imagesDir: '<%= paths.images %>'
         fontsDir: '<%= paths.fonts %>'
         noLineComments: false
@@ -157,22 +140,35 @@ module.exports = (grunt) ->
           debugInfo: false
           environment: 'production'
           force: true
-          noLineComments: false
+          noLineComments: true
           outputStyle: 'compressed'
+
+      clean:
+        options:
+          clean: true
 
     # Files to watch
     watch:
       jade:
         files: '<%= paths.views %>/**/*.jade'
-        tasks: ['jade:dev', 'notify:jade']
+        tasks: [
+          'jade:dev'
+          'notify:jade'
+        ]
 
       coffee:
-        files: ['<%= paths.coffee %>/**/*.coffee']
-        tasks: ['coffee', 'notify:coffee']
+        files: '<%= paths.coffee %>/**/*.coffee'
+        tasks: [
+          'coffee'
+          'notify:coffee'
+        ]
 
       compass:
-        files: ['<%= paths.scss %>/**/*.scss']
-        tasks: ['compass:dev', 'notify:compass']
+        files: '<%= paths.scss %>/**/*.scss'
+        tasks: [
+          'compass:dev'
+          'notify:compass'
+        ]
 
     # Compile modernizr file
     modernizr:
@@ -231,19 +227,19 @@ module.exports = (grunt) ->
 
   # Load modules
   #grunt.task.run 'notify_hooks'
-  #grunt.loadNpmTasks 'grunt-contrib-clean'
+  grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-compass'
-  #grunt.loadNpmTasks 'grunt-contrib-concat'
-  #grunt.loadNpmTasks 'grunt-contrib-uglify'
+  grunt.loadNpmTasks 'grunt-contrib-concat'
+  grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-watch'
-  grunt.loadNpmTasks 'grunt-contrib-requirejs'
-  #grunt.loadNpmTasks 'grunt-contrib-jshint'
-  #grunt.loadNpmTasks 'grunt-devtools'
   grunt.loadNpmTasks 'grunt-jade'
   grunt.loadNpmTasks 'grunt-modernizr'
   grunt.loadNpmTasks 'grunt-notify'
   grunt.loadNpmTasks 'grunt-smushit'
+  #grunt.loadNpmTasks 'grunt-contrib-requirejs'
+  #grunt.loadNpmTasks 'grunt-contrib-jshint'
+  #grunt.loadNpmTasks 'grunt-devtools'
 
   # Run in development mode
   grunt.registerTask 'default', ['Development mode'], ->
@@ -252,23 +248,20 @@ module.exports = (grunt) ->
 
   # Compile for distribution
   grunt.registerTask 'dist', ['Distribution build'], ->
-    #grunt.task.run 'clean'
-    #grunt.task.run 'notify:clean'
+    grunt.task.run 'clean'
+    grunt.task.run 'notify:clean'
     grunt.task.run 'compass:dist'
     grunt.task.run 'notify:compass'
     grunt.task.run 'coffee'
     grunt.task.run 'notify:coffee'
-    #grunt.task.run 'concat'
-    #grunt.task.run 'notify:concat'
+    grunt.task.run 'concat'
+    grunt.task.run 'notify:concat'
     #grunt.task.run 'uglify'
     #grunt.task.run 'notify:uglify'
     grunt.task.run 'modernizr'
     grunt.task.run 'notify:modernizr'
-    #grunt.task.run 'grunticon'
     grunt.task.run 'smushit:dist'
     grunt.task.run 'notify:smushit'
     grunt.task.run 'jade:dist'
     grunt.task.run 'notify:jade'
-    #grunt.task.run 'manifest'
-    #grunt.task.run 'notify:manifest'
     grunt.task.run 'notify:dist'

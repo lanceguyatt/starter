@@ -1,13 +1,6 @@
-# __init__, based on HTML5 Boilerplate [![Build Status](https://secure.travis-ci.org/drublic/init.png?branch=master)](http://travis-ci.org/drublic/init)
+# __starter__, based on HTML5 Boilerplate
 
 This project extends [HTML5 Boilerplate](https://github.com/h5bp/html5-boilerplate) with some more structure for SCSS files and JavaScripts.
-
-
-## TODO
-
-* Move all files currently not affected by Grunt into `dist`-dir (#11)
-* Tests (#7)
-
 
 ## Dependencies
 
@@ -41,12 +34,6 @@ If running the install does not work, please try running it as with admin-rights
 
   $ sudo npm install -g grunt-cli
 
-
-## Contribute
-
-Please help making this project better and [contribute](CONTRIBUTING.md) with your knowledge.
-
-
 ## CSS
 
 We are currently working with [SASS](http://sass-lang.com/) (in its dialect SCSS) and do not use CSS directly. Please do not edit the CSS-files in any case but search the correct `.scss` file and edit the according SCSS. If you are not familiar with SCSS you can write pure CSS which is actually valid SCSS.
@@ -72,7 +59,7 @@ Additional information on this project is stored in `package.json`.
 
 ## Development
 
-This package is developed and maintained by [Hans Christian Reinl](http://drublic.de/).
+This package is developed and maintained by [Lance Guyatt](http://lanceguyatt.com/).
 
 
 ## License
@@ -88,7 +75,7 @@ This package is developed and maintained by [Hans Christian Reinl](http://drubli
 ### Everything that has been developed by the contributors to this project:
 
 The MIT License (MIT)
-Copyright 2013 Hans Christian Reinl, http://drublic.de
+Copyright 2013 Lance Guyatt, http://lanceguyatt.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

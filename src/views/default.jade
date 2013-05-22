@@ -5,7 +5,7 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
   head
     meta(charset='utf-8')
     //
-      | Copyright (c) 2002-#{site.copyrightYear} by Lance Guyatt 
+      | Copyright (c) 2000-#{site.copyrightYear} by #{author.name} 
 
     block head
       title #{site.name} | #{site.title}
@@ -18,7 +18,7 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
       meta(itemprop='name', content='#{site.name}')
       meta(itemprop='description', content='#{site.description}')
       meta(itemprop='url', content='#{site.url}')
-      meta(itemprop='image', content='#{site.url}/#{paths.images}/#{site.image}')
+      meta(itemprop='image', content='#{site.url}/screenshot.png')
 
       //- opengraph meta
       meta(property='og:title', content='#{site.title}')
@@ -31,7 +31,7 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
       //- mobile meta
       meta(name='apple-mobile-web-app-capable', content='yes')
       meta(name='HandheldFriendly', content='true')
-      meta(name='viewport', content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no') 
+      meta(name='viewport', content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no')
 
       //- iOS meta
       meta(name='application-name', content='#{site.name}')
@@ -47,8 +47,9 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
       //- stylesheets
       link(rel='stylesheet', href='#{paths.css}/style.css', media='all')
       //-link(rel='stylesheet', href='#{paths.css}/layout.css', media='all and (min-width: 36.236em)')
+
       // if (lt IE 9) & (!IEMobile)
-        //- link(rel='stylesheet', href='#{paths.css}/layout.css', media='all')
+        //- link(rel='stylesheet', href='#{paths.css}/tablet.css', media='all')
 
       link(rel='shortcut icon', href='#{site.url}/favicon.ico')
       link(rel='apple-touch-icon-precomposed', href='#{site.url}/apple-touch-icon-precomposed.png')
@@ -59,14 +60,18 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
       script(src='#{paths.js}/modernizr.min.js')
 
   body
-    header(role='banner')
+    header(class='header', role='banner')
+
+      block header
 
     div(class='main', role='main', itemprop='mainContentofPage')
 
       block main
 
-    footer(role='contentinfo')
+    footer(class='footer', role='contentinfo')
 
       block footer
 
     block scripts
+      script(src='#{paths.js}/vendor.min.js')
+      script(src='#{paths.js}/application.js')
