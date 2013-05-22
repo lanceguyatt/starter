@@ -1,0 +1,40 @@
+// Helpers
+@import "helpers/_base";
+@import "helpers/_mixins";
+@import "helpers/_reset";
+@import "helpers/_hashgrid";
+@import "helpers/_placeholders";
+
+// Typography and Elements
+@import "elements/_scaffolding";
+@import "elements/_typography";
+
+%container {
+  @include container($total-columns);
+  background: pink;
+  position: relative;
+}
+
+@include grid(100%, $column-width, $gutter-width, $grid-padding); 
+
+header, .main, footer {
+  @extend %container;
+}
+
+@include at-breakpoint(6) {
+  %container {
+    @include container(6);
+  }
+}
+
+@include at-breakpoint(8) {
+  %container {
+    @include container(8);
+  }
+}
+
+@include at-breakpoint(12) {
+  %container {
+    @include container(12);
+  }
+}

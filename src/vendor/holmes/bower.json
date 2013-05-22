@@ -1,0 +1,9 @@
+{
+  "name": "holmes",
+  "version": "0.0.0",
+  "commit": "f3f1392d7b5031d183eb09780ad318b04b4d2efb",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/redroot/holmes.git"
+  }
+}

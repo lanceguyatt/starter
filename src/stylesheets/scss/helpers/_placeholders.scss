@@ -1,0 +1,99 @@
+%remove-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+%add-padding {
+  padding: {
+    left: rhythm(2.5); // 20px
+    right: rhythm(2.5); // 20px
+  }
+}
+
+%line-break {
+  @include trailing-border(1px, 5);
+  border-color: $gray-light;
+}
+
+%unstyled {
+  list-style: none;
+  margin-left: 0;
+}
+
+%box-sizing-border-box {
+  @include box-sizing(border-box);
+}
+
+%clearfix {
+  @include clearfix;
+}
+
+%hide-text {
+  @include hide-text();
+}
+
+%inline-block {
+  @include inline-block();
+}
+
+//
+//  Sharpen an image if it has become blurry due to upscaling or downscaling
+//  @see https://developer.mozilla.org/en/CSS/image-rendering
+//
+%sharpen-image {
+  @include sharpen-image;
+}
+
+//
+//  When photos are upscaled or downscaled, they often get blurry. Don't use
+//  this on flat color images, they will still appear blurry.
+//  @see https://developer.mozilla.org/en/CSS/image-rendering
+//
+%high-quality-image {
+  @include high-quality-image;
+}
+
+//
+//  Optimizes the rendering on images so they
+//  appear faster, but at a lower quality. Useful for <video>
+//
+%low-quality-image {
+  @include low-quality-image;
+}
+
+%improve-text-rendering {
+  @include improve-text-rendering;
+}
+
+/* @group =transition */
+$default-transition-property: all;
+$default-transition-duration: .25s;
+$default-transition-function: linear;
+$default-transition-delay: .25s;
+
+%transition-all {
+  @include single-transition(all, $default-transition-duration, $default-transition-function);
+}
+
+%transition-background-color {
+  @include single-transition(background-color, $default-transition-duration, $default-transition-function);
+}
+
+%transition-background-color-color {
+  @include transition-property(background-color, color);
+  @include transition-duration($default-transition-duration);
+  @include transition-timing-function($default-transition-function);
+}
+
+%transition-border-color {
+  @include single-transition(border-color, $default-transition-duration, $default-transition-function);
+}
+
+%transition-color {
+  @include single-transition(color, $default-transition-duration, $default-transition-function);
+}
+
+%transition-opacity {
+  @include single-transition(opacity, $default-transition-duration, $default-transition-function);
+}
+/* @end */

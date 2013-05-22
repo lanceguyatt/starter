@@ -1,0 +1,8 @@
+{
+  "name": "susy",
+  "version": "1.0.8",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ericam/susy.git"
+  }
+}

@@ -1,0 +1,24 @@
+$base-line-height: 8px !default;
+
+#grid {
+  left: 50%;
+  position: absolute;
+}
+
+.vert {
+  @include box-sizing(border-box);
+  .grid-1 & {
+    background-color: rgba(#3cfeff, 0.25);
+  }
+  .grid-2 & {
+    border: solid rgba(#3cfeff, 1);
+    border-width: 0 1px;
+  }
+}
+
+.horiz {
+  height: $base-line-height;
+  &:nth-child(odd) {
+    background-color: rgba(#609, 0.25);
+  }
+}

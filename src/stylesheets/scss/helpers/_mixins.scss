@@ -1,0 +1,53 @@
+// Functions
+// -----------------------------------------------------------------
+// Convert PX units to EMs.
+// Ex: margin-right: pem(16);
+// ------------------
+@function pem($pxval, $base: $base-font-size) {
+  @return #{$pxval / $base}em;
+}
+
+// Mixins
+// -----------------------------------------------------------------
+@mixin grid($container-width, $column-width, $gutter-width, $grid-padding) {
+  #grid {
+    width: $container-width;
+    margin-left: - $container-width / 2;
+    .vert {
+      margin-right: $gutter-width;
+      width: $column-width;
+      &.first-line {
+        margin-left: $grid-padding;
+      }
+    }
+  }
+}
+
+@mixin breakpoint($point) {
+  @if $point == portrait {
+    @media (min-width: 600px) { @content; }
+  }
+  @else if $point == landscape {
+    @media (min-width: 900px) { @content; }
+  }
+}
+
+// Webkit-style focus
+// ------------------
+@mixin tab-focus() {
+  // Default
+  outline: thin dotted #333;
+  // Webkit
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+// Sizing shortcuts
+// -------------------------
+@mixin size($height, $width) {
+  width: $width;
+  height: $height;
+}
+@mixin square($size) {
+  @include size($size, $size);
+}

@@ -1,0 +1,27 @@
+/* @group =scaffolding */
+body {
+  @extend %improve-text-rendering;
+  background-color: $body-background;
+  color: rgba($text-color, 1);
+  font-family: $base-font-family;
+  font-size: pem($base-font-size);
+  line-height: pem($base-line-height * 3);
+  margin: 0;
+  text-rendering: optimizelegibility;
+  //-webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  #{$hover} {
+    color: $link-color-hover;
+  }
+  &:focus {
+    outline: 0 none;
+  }
+}
+/* @end */

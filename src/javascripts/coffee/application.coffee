@@ -1,3 +1,5 @@
-/* Author:
+(($) ->
 
-*/
+  alert 'Hello world'
+
+) jQuery

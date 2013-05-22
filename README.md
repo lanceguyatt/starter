@@ -1,159 +1,97 @@
-GitHub Flavored Markdown
-================================
+# __init__, based on HTML5 Boilerplate [![Build Status](https://secure.travis-ci.org/drublic/init.png?branch=master)](http://travis-ci.org/drublic/init)
 
-*View the [source of this content](http://github.github.com/github-flavored-markdown/sample_content.html).*
+This project extends [HTML5 Boilerplate](https://github.com/h5bp/html5-boilerplate) with some more structure for SCSS files and JavaScripts.
 
-Let's get the whole "linebreak" thing out of the way. The next paragraph contains two phrases separated by a single newline character:
 
-Roses are red
-Violets are blue
+## TODO
 
-The next paragraph has the same phrases, but now they are separated by two spaces and a newline character:
+* Move all files currently not affected by Grunt into `dist`-dir (#11)
+* Tests (#7)
 
-Roses are red  
-Violets are blue
 
-Oh, and one thing I cannot stand is the mangling of words with multiple underscores in them like perform_complicated_task or do_this_and_do_that_and_another_thing.
+## Dependencies
 
-A bit of the GitHub spice
--------------------------
+You will need to install some stuff, if you haven't already:
 
-In addition to the changes in the previous section, certain references are auto-linked:
+Majors:
 
-* SHA: be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2
-* User@SHA ref: mojombo@be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2
-* User/Project@SHA: mojombo/god@be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2
-* \#Num: #1
-* User/#Num: mojombo#1
-* User/Project#Num: mojombo/god#1
+* Node.js
+* Ruby
 
-These are dangerous goodies though, and we need to make sure email addresses don't get mangled:
+Secondaries:
 
-My email addy is tom@github.com.
+* Node: npm
+* Ruby: SASS
 
-Math is hard, let's go shopping
--------------------------------
+After you've set this stuff up please run
 
-In first grade I learned that 5 > 3 and 2 < 7. Maybe some arrows. 1 -> 2 -> 3. 9 <- 8 <- 7.
+  $ npm install -g grunt-cli
 
-Triangles man! a^2 + b^2 = c^2
+This installs the Grunt command line tools.
+Afterwards please run
 
-We all like making lists
-------------------------
+  $ npm install
 
-The above header should be an H2 tag. Now, for a list of fruits:
+in your project's directory.
+This will install all the things you need for running the grunt-tasks automatically.
 
-* Red Apples
-* Purple Grapes
-* Green Kiwifruits
+### Troubleshooting
 
-Let's get crazy:
+If running the install does not work, please try running it as with admin-rights:
 
-1.  This is a list item with two paragraphs. Lorem ipsum dolor
-    sit amet, consectetuer adipiscing elit. Aliquam hendrerit
-    mi posuere lectus.
+  $ sudo npm install -g grunt-cli
 
-    Vestibulum enim wisi, viverra nec, fringilla in, laoreet
-    vitae, risus. Donec sit amet nisl. Aliquam semper ipsum
-    sit amet velit.
 
-2.  Suspendisse id sem consectetuer libero luctus adipiscing.
+## Contribute
 
-What about some code **in** a list? That's insane, right?
+Please help making this project better and [contribute](CONTRIBUTING.md) with your knowledge.
 
-1. In Ruby you can map like this:
 
-        ['a', 'b'].map { |x| x.uppercase }
+## CSS
 
-2. In Rails, you can do a shortcut:
+We are currently working with [SASS](http://sass-lang.com/) (in its dialect SCSS) and do not use CSS directly. Please do not edit the CSS-files in any case but search the correct `.scss` file and edit the according SCSS. If you are not familiar with SCSS you can write pure CSS which is actually valid SCSS.
 
-        ['a', 'b'].map(&:uppercase)
+However all `.scss`-files are compiled into one file called `main.css` in the `css`-folder. There is a productive-version too.
 
-Some people seem to like definition lists
+You can find more information about the installation process of SASS and the usage of SCSS in the [SASS Tutorial](http://sass-lang.com/tutorial.html).
 
-<dl>
-  <dt>Lower cost</dt>
-  <dd>The new version of this product costs significantly less than the previous one!</dd>
-  <dt>Easier to use</dt>
-  <dd>We've changed the product so that it's much easier to use!</dd>
-</dl>
 
-I am a robot
-------------
+## JS
 
-Maybe you want to print `robot` to the console 1000 times. Why not?
+We use jQuery and Modernizr (custom build via Grunt).
 
-    def robot_invasion
-      puts("robot " * 1000)
-    end
+Please use JSHint for your JavaScript before you commit. You can use the Grunt-task `jshint` for this. It is also integrated in `grunt watch`.
 
-You see, that was formatted as code because it's been indented by four spaces.
 
-How about we throw some angle braces and ampersands in there?
+## Deployment
 
-    <div class="footer">
-        &copy; 2004 Foo Corporation
-    </div>
+Please use [Grunt.js](https://github.com/cowboy/grunt) for building a production-state of a website. The `Gruntfile.js` has tasks for concatenating and minifing CSS and JavaScript.
 
-Set in stone
-------------
+Additional information on this project is stored in `package.json`.
 
-Preformatted blocks are useful for ASCII art:
 
-<pre>
-             ,-. 
-    ,     ,-.   ,-. 
-   / \   (   )-(   ) 
-   \ |  ,.>-(   )-< 
-    \|,' (   )-(   ) 
-     Y ___`-'   `-' 
-     |/__/   `-' 
-     | 
-     | 
-     |    -hrr- 
-  ___|_____________ 
-</pre>
+## Development
 
-Playing the blame game
-----------------------
+This package is developed and maintained by [Hans Christian Reinl](http://drublic.de/).
 
-If you need to blame someone, the best way to do so is by quoting them:
 
-> I, at any rate, am convinced that He does not throw dice.
+## License
 
-Or perhaps someone a little less eloquent:
+### Major components:
 
-> I wish you'd have given me this written question ahead of time so I
-> could plan for it... I'm sure something will pop into my head here in
-> the midst of this press conference, with all the pressure of trying to
-> come up with answer, but it hadn't yet...
->
-> I don't want to sound like
-> I have made no mistakes. I'm confident I have. I just haven't - you
-> just put me under the spot here, and maybe I'm not as quick on my feet
-> as I should be in coming up with one.
+* Grunt: MIT license
+* HTML5 Boilerplate: MIT license
+* jQuery: MIT/GPL license
+* Modernizr: MIT/BSD license
+* Normalize.css: MIT license
 
-Table for two
--------------
+### Everything that has been developed by the contributors to this project:
 
-<table>
-  <tr>
-    <th>ID</th><th>Name</th><th>Rank</th>
-  </tr>
-  <tr>
-    <td>1</td><td>Tom Preston-Werner</td><td>Awesome</td>
-  </tr>
-  <tr>
-    <td>2</td><td>Albert Einstein</td><td>Nearly as awesome</td>
-  </tr>
-</table>
+The MIT License (MIT)
+Copyright 2013 Hans Christian Reinl, http://drublic.de
 
-Crazy linking action
---------------------
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-I get 10 times more traffic from [Google] [1] than from
-[Yahoo] [2] or [MSN] [3].
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-  [1]: http://google.com/        "Google"
-  [2]: http://search.yahoo.com/  "Yahoo Search"
-  [3]: http://search.msn.com/    "MSN Search"
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
