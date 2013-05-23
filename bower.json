@@ -6,8 +6,6 @@
     "modernizr": "~2.6.2",
     "sass-mediaqueries": "https://github.com/paranoida/sass-mediaqueries.git",
     "stitch-css": "~0.1.6",
-    "susy": "~1.0.8",
-    "require": "latest",
-    "requirejs": "~2.1.6"
+    "susy": "~1.0.8"
   }
 }
