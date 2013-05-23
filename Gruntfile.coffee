@@ -10,7 +10,12 @@ module.exports = (grunt) ->
 
     # Create banner meta
     meta:
-      banner: '/*! <%= pkg.name %> | <%= pkg.description %> - v<%= pkg.version %> <%= grunt.template.today(\"dd-mm-yyyy\") %> */\n'
+      banner: '/*!\n' +
+              ' * <%= pkg.name %> v<%= pkg.version %>\n' +
+              ' * Copyright <%= grunt.template.today("yyyy") %>\n' +
+              ' * \n' +
+              ' * Designed and built by <%= pkg.author.name %>\n' +
+              ' */'
 
     # Files paths
     paths:
@@ -35,6 +40,18 @@ module.exports = (grunt) ->
       fonts: '<%= paths.dist %>/fonts'
       images: '<%= paths.dist %>/images'
 
+    # Add banners
+    usebanner:
+      dist:
+        options:
+          position: 'top'
+          banner: '<%= meta.banner %>'
+        files:
+          src: [
+            '<%= paths.css %>/*.css'
+            '<%= paths.js %>/*.js'
+          ]
+
     # Compress images
     smushit:
       dist:
@@ -45,7 +62,7 @@ module.exports = (grunt) ->
     concat:
       options:
         stripBanners: true
-        banner: '<%= meta.banner %>'
+        #banner: '<%= meta.banner %>'
         separator: ';'
       vendor:
         files: '<%= paths.js %>/vendor.js': [
@@ -55,8 +72,8 @@ module.exports = (grunt) ->
 
     # Minify files
     uglify:
-      options:
-        banner: '<%= meta.banner %>'
+      #options:
+        #banner: '<%= meta.banner %>'
         #beautify: false
         #compress: true
         #mangle: true
@@ -77,12 +94,41 @@ module.exports = (grunt) ->
 
     # Compile jade templates
     jade:
-      files:
-        src: '<%= paths.views %>/index.jade'
-        dest: '<%= paths.dist %>'
 
       options:
+        basePath: null
         client: false
+        compileDebug: false
+        extension: null
+        runtime: false
+        locals:
+
+          site:
+            name: 'Lance'
+            title: 'Starter'
+            description: 'Jade/Compass/Sass/Coffeescript/HTML starter kit'
+            keywords: 'html5,sass,jade,boilerplate'
+            email: '<%= jade.options.locals.author.email %>'
+            url: 'http://lanceguyatt.com'
+            image: '<%= jade.options.locals.site.url %>/screenshot.png'
+            lang: 'en'
+            dir: 'ltr'
+            type: 'website'
+            copyrightYear: '2013'
+
+          author:
+            name: 'Lance Guyatt'
+            email: 'lance@lanceguyatt.com'
+            url: 'http://lanceguyatt.com'
+
+          paths:
+            images: 'images/'
+            css: 'stylesheets/css'
+            js: 'javascripts/js'
+
+      files:
+        src: ['<%= paths.views %>/index.jade']
+        dest: '<%= paths.dist %>'
 
       dev:
         src: '<%= jade.files.src %>'
@@ -101,7 +147,7 @@ module.exports = (grunt) ->
       compile:
         options:
           bare: true
-          banner: '<%= meta.banner %>'
+          #banner: '<%= meta.banner %>'
         expand: true
         flatten: true
         cwd: '<%= paths.coffee %>'
@@ -193,6 +239,9 @@ module.exports = (grunt) ->
 
     # Task complete messages
     notify:
+      dev:
+        options:
+          message: 'Development running'
       clean:
         options:
           message: 'Distribution cleaned'
@@ -217,28 +266,25 @@ module.exports = (grunt) ->
       modernizr:
         options:
           message: 'Modernizr compiled'
-      dev:
+      usebanner:
         options:
-          message: 'Development running'
+          message: 'Banners added'
       dist:
         options:
           message: 'Distribution complete'
 
   # Load modules
-  #grunt.task.run 'notify_hooks'
+  grunt.loadNpmTasks 'grunt-banner'
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-compass'
   grunt.loadNpmTasks 'grunt-contrib-concat'
+  grunt.loadNpmTasks 'grunt-jade'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-watch'
-  grunt.loadNpmTasks 'grunt-jade'
   grunt.loadNpmTasks 'grunt-modernizr'
   grunt.loadNpmTasks 'grunt-notify'
   grunt.loadNpmTasks 'grunt-smushit'
-  #grunt.loadNpmTasks 'grunt-contrib-requirejs'
-  #grunt.loadNpmTasks 'grunt-contrib-jshint'
-  #grunt.loadNpmTasks 'grunt-devtools'
 
   # Run in development mode
   grunt.registerTask 'default', ['Development mode'], ->
@@ -255,10 +301,12 @@ module.exports = (grunt) ->
     grunt.task.run 'notify:coffee'
     grunt.task.run 'concat'
     grunt.task.run 'notify:concat'
-    #grunt.task.run 'uglify'
-    #grunt.task.run 'notify:uglify'
+    grunt.task.run 'uglify'
+    grunt.task.run 'notify:uglify'
     grunt.task.run 'modernizr'
     grunt.task.run 'notify:modernizr'
+    grunt.task.run 'usebanner:dist'
+    grunt.task.run 'notify:usebanner'
     grunt.task.run 'smushit:dist'
     grunt.task.run 'notify:smushit'
     grunt.task.run 'jade:dist'

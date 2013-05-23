@@ -9,3 +9,4 @@ dist/javascripts
 dist/index.html
 node_modules
 tmp
+src/vendor/*

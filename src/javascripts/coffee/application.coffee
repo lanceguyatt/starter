@@ -1,5 +1,2 @@
 (($) ->
-
-  alert 'Hello world'
-
 ) jQuery

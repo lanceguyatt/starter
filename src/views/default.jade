@@ -1,11 +1,9 @@
-include ../routes/index
-
 !!! 5
 html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype='http://schema.org/WebPage')
   head
     meta(charset='utf-8')
     //
-      | Copyright (c) 2000-#{site.copyrightYear} by #{author.name} 
+      | Copyright (c) #{site.copyrightYear} by #{author.name} 
 
     block head
       title #{site.name} | #{site.title}
@@ -18,15 +16,15 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
       meta(itemprop='name', content='#{site.name}')
       meta(itemprop='description', content='#{site.description}')
       meta(itemprop='url', content='#{site.url}')
-      meta(itemprop='image', content='#{site.url}/screenshot.png')
+      meta(itemprop='image', content='#{site.image}')
 
       //- opengraph meta
       meta(property='og:title', content='#{site.title}')
       meta(property='og:site_name', content='#{site.name}')
       meta(property='og:description', content='#{site.description}')
       meta(property='og:url', content='#{site.url}')
-      meta(property='og:image', content='#{site.url}/#{paths.images}/#{site.image}')
-      meta(property='og:type', content='website')
+      meta(property='og:image', content='#{site.image}')
+      meta(property='og:type', content='#{site.type}')
 
       //- mobile meta
       meta(name='apple-mobile-web-app-capable', content='yes')
@@ -52,7 +50,7 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
         //- link(rel='stylesheet', href='#{paths.css}/tablet.css', media='all')
 
       link(rel='shortcut icon', href='#{site.url}/favicon.ico')
-      link(rel='apple-touch-icon-precomposed', href='#{site.url}/apple-touch-icon-precomposed.png')
+      //-link(rel='apple-touch-icon-precomposed', href='#{site.url}/apple-touch-icon-precomposed.png')
 
       //- author
       link(rel='author', href='#{site.url}/humans.txt', type='text/plain')

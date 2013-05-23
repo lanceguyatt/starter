@@ -2,7 +2,7 @@
   "name": "starter",
   "title": "starter",
   "description": "This is an initial boilerplate for front-end projects",
-  "version": "1.1",
+  "version": "1.0.0",
   "homepage": "https://github.com/lanceguyatt/starter",
   "author": {
     "name": "Lance Guyatt",
@@ -14,33 +14,24 @@
     "url": "git://github.com/lanceguyatt/starter.git"
   },
   "license": "MIT",
-  "scripts": {
-    "test": "grunt travis --verbose"
-  },
   "engines": {
     "node": ">=0.6"
   },
   "dependencies": {},
   "devDependencies": {
     "grunt": "0.4.x",
-    "grunt-contrib-jshint": "~0.5.3",
     "grunt-contrib-clean": "~0.4.1",
-    "grunt-contrib-copy": "0.4.1",
     "grunt-contrib-watch": "~0.4.3",
-    "grunt-contrib-sass": "0.3.0",
-    "grunt-contrib-requirejs": "~0.4.1",
     "grunt-modernizr": "~0.3.0",
-    "grunt-contrib-connect": "~0.3.0",
     "grunt-contrib-compass": "~0.2.0",
     "grunt-contrib-coffee": "~0.7.0",
     "grunt-jade": "~0.4.0",
     "grunt-smushit": "~0.4.1",
-    "grunt-reloadr": "~0.1.2",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-uglify": "~0.2.0",
-    "grunt-grunticon": "~0.3.2",
     "grunt-notify": "~0.2.3",
-    "grunt-devtools": "~0.1.0-7"
+    "grunt-banner": "~0.1.4",
+    "grunt-contrib-jade": "~0.6.0"
   },
   "keywords": []
 }
