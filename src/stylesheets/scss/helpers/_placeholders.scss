@@ -10,11 +10,6 @@
   }
 }
 
-%line-break {
-  @include trailing-border(1px, 5);
-  border-color: $gray-light;
-}
-
 %unstyled {
   list-style: none;
   margin-left: 0;

@@ -1,3 +1,4 @@
+# Pull gems from RubyGems
 source 'https://rubygems.org'
 
 # Gems used only for assets and not required
@@ -6,4 +7,7 @@ group :assets do
   gem 'modular-scale'
   gem 'susy'
   gem 'stitch'
+  gem 'compass-normalize'
+  gem 'toolkit'
+  gem 'breakpoint'
 end

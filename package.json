@@ -1,7 +1,7 @@
 {
   "name": "starter",
   "title": "starter",
-  "description": "This is an initial boilerplate for front-end projects",
+  "description": "Jade, Compass, Coffeescript, Grunt.js, HTML5 starter kit",
   "version": "1.0.0",
   "homepage": "https://github.com/lanceguyatt/starter",
   "author": {
@@ -31,7 +31,8 @@
     "grunt-contrib-uglify": "~0.2.0",
     "grunt-notify": "~0.2.3",
     "grunt-banner": "~0.1.4",
-    "grunt-contrib-jade": "~0.6.0"
+    "grunt-contrib-jade": "~0.6.0",
+    "grunt-contrib-cssmin": "~0.6.0"
   },
   "keywords": []
 }

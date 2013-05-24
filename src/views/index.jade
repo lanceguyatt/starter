@@ -1,8 +1,15 @@
-extends default
+extends layouts/_default
 
 block main
-  h1 #{site.name}
-  h2 Heading 2
-  h3 Heading 3
-  p Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-  p Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+
+  div(class='main', role='main', itemprop='mainContentofPage')
+    h1 #{site.name}
+    h2 Heading 2
+    h3 Heading 3
+    p Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+    p Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+
+prepend scripts
+
+    script(src='#{paths.js}/vendor.min.js')
+    script(src='#{paths.js}/application.js')

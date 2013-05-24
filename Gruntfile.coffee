@@ -10,12 +10,7 @@ module.exports = (grunt) ->
 
     # Create banner meta
     meta:
-      banner: '/*!\n' +
-              ' * <%= pkg.name %> v<%= pkg.version %>\n' +
-              ' * Copyright <%= grunt.template.today("yyyy") %>\n' +
-              ' * \n' +
-              ' * Designed and built by <%= pkg.author.name %>\n' +
-              ' */'
+      banner: '/* <%= pkg.name %> v<%= pkg.version %> Copyright <%= grunt.template.today("yyyy") %> Designed and built by <%= pkg.author.name %> */'
 
     # Files paths
     paths:
@@ -72,18 +67,19 @@ module.exports = (grunt) ->
 
     # Minify files
     uglify:
-      #options:
-        #banner: '<%= meta.banner %>'
-        #beautify: false
-        #compress: true
-        #mangle: true
-        #except: ['jQuery']
+      options:
+        banner: '<%= meta.banner %>'
+        beautify: false
+        compress: true
+        mangle: true
+        except: ['jQuery']
 
-      vendor:
-        files: '<%= paths.js %>/vendor.min.js': '<%= paths.js %>/vendor.js'
-
-      application:
-        files: '<%= paths.js %>/application.min.js': '<%= paths.js %>/application.js'
+      dist:
+        files: [
+          '<%= paths.js %>/application.min.js': '<%= paths.js %>/application.js'
+          '<%= paths.js %>/vendor.min.js': '<%= paths.js %>/vendor.js'
+          '<%= paths.js %>/modernizr.min.js': '<%= paths.js %>/modernizr.js'
+        ]
 
     # Clean directories
     clean:
@@ -94,7 +90,6 @@ module.exports = (grunt) ->
 
     # Compile jade templates
     jade:
-
       options:
         basePath: null
         client: false
@@ -167,12 +162,14 @@ module.exports = (grunt) ->
         fontsDir: '<%= paths.fonts %>'
         noLineComments: false
         relativeAssets: true
-        # require: [
-        #  'susy'
-        #  'stitch'
-        #  'modular-scale'
-        #  'animation'
-        # ]
+        require: [
+         'susy'
+         'stitch'
+         'modular-scale'
+         'compass-normalize'
+         'toolkit'
+         'breakpoint'
+        ]
 
       dev:
         options:
@@ -191,6 +188,17 @@ module.exports = (grunt) ->
       clean:
         options:
           clean: true
+
+    # css min
+    cssmin:
+      options:
+        banner: '<%= meta.banner %>'
+      minify:
+        expand: true
+        cwd: '<%= paths.css %>'
+        src: ['*.css', '!*.min.css']
+        dest: '<%= paths.css %>'
+        ext: '.min.css'
 
     # Files to watch
     watch:
@@ -218,7 +226,7 @@ module.exports = (grunt) ->
     # Compile modernizr file
     modernizr:
       devFile: '<%= paths.vendor %>/modernizr/modernizr.js'
-      outputFile: '<%= paths.js %>/modernizr.min.js'
+      outputFile: '<%= paths.js %>/modernizr.js'
       extra:
         shiv: true
         printshiv: false
@@ -234,8 +242,8 @@ module.exports = (grunt) ->
         hasevents: false
         prefixes: false
         domprefixes: false
-      uglify: true
-      parseFiles: true
+      uglify: false
+      parseFiles: false
 
     # Task complete messages
     notify:
@@ -279,6 +287,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-compass'
   grunt.loadNpmTasks 'grunt-contrib-concat'
+  grunt.loadNpmTasks 'grunt-contrib-cssmin'
   grunt.loadNpmTasks 'grunt-jade'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-watch'
@@ -296,19 +305,20 @@ module.exports = (grunt) ->
     grunt.task.run 'clean'
     grunt.task.run 'notify:clean'
     grunt.task.run 'compass:dist'
+    grunt.task.run 'cssmin'
     grunt.task.run 'notify:compass'
     grunt.task.run 'coffee'
     grunt.task.run 'notify:coffee'
     grunt.task.run 'concat'
     grunt.task.run 'notify:concat'
-    grunt.task.run 'uglify'
-    grunt.task.run 'notify:uglify'
     grunt.task.run 'modernizr'
     grunt.task.run 'notify:modernizr'
-    grunt.task.run 'usebanner:dist'
-    grunt.task.run 'notify:usebanner'
-    grunt.task.run 'smushit:dist'
-    grunt.task.run 'notify:smushit'
+    #grunt.task.run 'usebanner:dist'
+    #grunt.task.run 'notify:usebanner'
     grunt.task.run 'jade:dist'
     grunt.task.run 'notify:jade'
+    grunt.task.run 'smushit:dist'
+    grunt.task.run 'notify:smushit'
+    grunt.task.run 'uglify:dist'
+    grunt.task.run 'notify:uglify'
     grunt.task.run 'notify:dist'

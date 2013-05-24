@@ -3,7 +3,7 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
   head
     meta(charset='utf-8')
     //
-      | Copyright (c) #{site.copyrightYear} by #{author.name} 
+      | Copyright (c) #{site.copyrightYear} by #{author.name}
 
     block head
       title #{site.name} | #{site.title}
@@ -58,18 +58,11 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
       script(src='#{paths.js}/modernizr.min.js')
 
   body
-    header(class='header', role='banner')
 
-      block header
+    include ../partials/_header
 
-    div(class='main', role='main', itemprop='mainContentofPage')
+    block main
 
-      block main
-
-    footer(class='footer', role='contentinfo')
-
-      block footer
+    include ../partials/_footer
 
     block scripts
-      script(src='#{paths.js}/vendor.min.js')
-      script(src='#{paths.js}/application.js')

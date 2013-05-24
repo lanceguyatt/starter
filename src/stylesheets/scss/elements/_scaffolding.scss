@@ -1,14 +1,12 @@
-/* @group =scaffolding */
+/*! @group =scaffolding */
 body {
   @extend %improve-text-rendering;
   background-color: $body-background;
-  color: rgba($text-color, 1);
+  color: $text-color;
   font-family: $base-font-family;
   font-size: pem($base-font-size);
   line-height: pem($base-line-height * 3);
   margin: 0;
-  text-rendering: optimizelegibility;
-  //-webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }

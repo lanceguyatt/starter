@@ -1,11 +1,6 @@
 {
   "dependencies": {
     "hashgrid": "https://github.com/dotjay/hashgrid.git",
-    "holmes": "https://github.com/redroot/holmes.git",
-    "jquery": "~1.9.1",
-    "modernizr": "~2.6.2",
-    "sass-mediaqueries": "https://github.com/paranoida/sass-mediaqueries.git",
-    "stitch-css": "~0.1.6",
-    "susy": "~1.0.8"
+    "jquery": "~1.9.1"
   }
 }

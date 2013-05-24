@@ -1,5 +1,19 @@
 $base-line-height: 8px !default;
 
+@mixin hash-grid($container-width, $column-width, $gutter-width, $grid-padding) {
+  #grid {
+    width: $container-width;
+    margin-left: - $container-width / 2;
+    .vert {
+      margin-right: $gutter-width;
+      width: $column-width;
+      &.first-line {
+        margin-left: $grid-padding;
+      }
+    }
+  }
+}
+
 #grid {
   left: 50%;
   position: absolute;

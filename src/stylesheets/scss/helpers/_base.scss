@@ -5,11 +5,6 @@
 // theme, each .scss file has a @import "base" declaration. And this _base.scss
 // file is in charge of importing all the other partials needed for the theme.
 //
-// This base partial is organized in this way:
-// - First we set any shared Sass variables.
-// - Next we import Compass plug-ins (Sass mixin libraries).
-// - Last we import a _custom.scss partial that includes our custom mixins.
-//
 
 //
 // Legacy IE support
@@ -45,15 +40,9 @@ $support-for-original-webkit-gradients: true; // Support for webkit's original (
 
 $base-font-size: 16px; // The font size set on the root html element.
 $base-line-height: 8px; // This line-height determines the basic unit of vertical rhythm.
-
-// Compass' vertical_rhythm extension is a powerful tool to set up a vertical
-// rhythm for your entire page. You can see some of its mixins and functions in
-// use in the normalize.scss file.
-// @see http://compass-style.org/reference/compass/typography/vertical_rhythm/
 $base-rhythm-unit: 8px;
+
 $relative-font-sizing: false;
-//$relative-font-sizing: false;
-//$base-rhythm-unit: $base-line-height;
 
 // Typography
 // -------------------------
@@ -89,66 +78,51 @@ $base-font-family:      $sans-font-family; // The font family set on the html el
 
 // Primary
 // -------------------------
-$red:                   rgba(237, 28, 36, 1) !default; // #ED1C24
-$black:                 rgba(#231F20, 1) !default;
-$white:                 rgba(#FFFFFF, 1) !default;
+$red:                   #ff0 !default;
+$black:                 #000 !default;
+$white:                 #fff !default;
 
 // Secondary
 // -------------------------
-$horizon:								rgba(90, 136, 160, 1) !default; // #5A88A0
-$mystic:								rgba(#E3EAED, 1) !default;
-$cerulean:          		rgba(#00AEEF, 1) !default;
-$yellow:                rgba(#FFCB05, 1) !default;
-$pacific-blue:					rgba(#00B6BD, 1) !default;
-$deep-cerulean: 				rgba(#008DA1, 1) !default;
-$gray-light:          	rgba(#CFD6DA, 1) !default;
-$gray:          				rgba(#CCCCCC, 1) !default;
-
-// Custom colors
-// -------------------------
+$gray:                  #ccc !default;
 
 // Scaffolding
 // -------------------------
-
 $body-background:       $white !default;
 $text-color:            $black !default;
 
 // Links
 // -------------------------
-$link-color:             $black !default;
+$link-color:             blue !default;
 $link-color-hover:       darken($link-color, 0) !default;
 
 $hover: '&:focus, &:hover, &:active';
 
-
 // paths
-$src:                    '../../../src';
-$vendor:                 'vendor';
-$images:                 '../images';
+$images:                 '../../images';
 
-
-//
-// http://susy.oddbird.net/guides/reference/
-//
-
-// Basic Settings
+// https://github.com/ericam/susy
 //$total-columns: 4; // The number of Columns in your default Grid Layout <number> Unitless number.
 //$column-width: 4em; // 64px The width of a single Column in your Grid. <length> Length in any unit of measurement (em, px, %, etc).
 //$gutter-width: 1.25em; // 20px The space between Columns. <length> Units must match $column-width.
 //$grid-padding: 0; // 24px
 //$border-box-sizing: true;
+@import "susy";
 
-//@import "susy";
-@import "../../../vendor/susy/sass/_susy";
-//@import "stitch";
-@import "../../../vendor/stitch-css/stylesheets/_stitch";
+// https://github.com/anthonyshort/stitch-css
+@import "stitch";
 
-// COMPONENT VARIABLES
-// --------------------------------------------------
+// https://github.com/Team-Sass/modular-scale
+@import "modular-scale";
 
-//
-// Partials to be shared with all .scss files.
-//
+// https://github.com/ksmandersen/compass-normalize
+@import 'normalize';
+
+// https://github.com/Team-Sass/toolkit
+@import 'toolkit';
+
+// http://compass-style.org/
+$border-color: $gray;
 @import "compass/css3"; // Use one CSS3 mixin instead of multiple vendor prefixes.
 @import "compass/css3/images"; //Provides mixins that work across many modern browsers with the latest CSS3 image rendering primitives.
 @import "compass/css3/user-interface";
@@ -159,8 +133,4 @@ $images:                 '../images';
 @import "compass/typography/text/ellipsis";
 @import "compass/typography/text/force-wrap";
 @import "compass/typography/text/replacement";
-$border-color: $gray;
 @import "compass/typography/vertical_rhythm"; // Helps set up a vertical rhythm.
-
-
-//@import "../../../vendor/sass-/stylesheets/_stitch";
