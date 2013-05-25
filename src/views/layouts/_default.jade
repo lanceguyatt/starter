@@ -6,6 +6,7 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
       | Copyright (c) #{site.copyrightYear} by #{author.name}
 
     block head
+
       title #{site.name} | #{site.title}
 
       //- default meta
@@ -36,7 +37,7 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
 
       //- MS meta
       meta(name='msapplication-window', content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0')
-      meta(name='msapplication-TileColor', content='#d4d31b')
+      meta(name='msapplication-TileColor', content='#cccccc')
       meta(name='msapplication-TileImage', content='#{site.url}/apple-touch-icon-144x144-precomposed.png')
 
       //- verification meta
@@ -44,7 +45,7 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
 
       //- stylesheets
       link(rel='stylesheet', href='#{paths.css}/style.css', media='all')
-      //-link(rel='stylesheet', href='#{paths.css}/layout.css', media='all and (min-width: 36.236em)')
+      //-link(rel='stylesheet', href='#{paths.css}/layout.css', media='all and (min-width: 36.25em)')
 
       // if (lt IE 9) & (!IEMobile)
         //- link(rel='stylesheet', href='#{paths.css}/tablet.css', media='all')

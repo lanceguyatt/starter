@@ -24,28 +24,39 @@ module.exports = (grunt) ->
       views: '<%= paths.src %>/views'
       vendor: '<%= paths.src %>/vendor'
 
+      javascripts: '<%= paths.dist %>/javascripts'
       coffee: '<%= paths.src %>/javascripts/coffee'
-      scss: '<%= paths.src %>/stylesheets/scss'
+      js: '<%= paths.javascripts %>/js'
 
       stylesheets: '<%= paths.dist %>/stylesheets'
-      javascripts: '<%= paths.dist %>/javascripts'
+      scss: '<%= paths.src %>/stylesheets/scss'
       css: '<%= paths.stylesheets %>/css'
-      js: '<%= paths.javascripts %>/js'
+
+      jade: '<%= paths.views %>/*.jade'
 
       fonts: '<%= paths.dist %>/fonts'
       images: '<%= paths.dist %>/images'
 
     # Add banners
     usebanner:
-      dist:
+      humans:
         options:
-          position: 'top'
-          banner: '<%= meta.banner %>'
+          position: 'bottom'
+          banner: '<%= grunt.template.today("dd/mm/yyyy") %>'
         files:
           src: [
-            '<%= paths.css %>/*.css'
-            '<%= paths.js %>/*.js'
+            '<%= paths.dist %>/humans.txt'
           ]
+
+      #dist:
+      #  options:
+      #    position: 'top'
+      #    banner: '<%= meta.banner %>'
+      #  files:
+      #    src: [
+      #      '<%= paths.css %>/*.css'
+      #      '<%= paths.js %>/*.js'
+      #    ]
 
     # Compress images
     smushit:
@@ -54,16 +65,16 @@ module.exports = (grunt) ->
         dest:'<%= paths.images %>'
 
     # Concat files
-    concat:
-      options:
-        stripBanners: true
-        #banner: '<%= meta.banner %>'
-        separator: ';'
-      vendor:
-        files: '<%= paths.js %>/vendor.js': [
-          '<%= paths.vendor %>/jquery/jquery.js'
-          '<%= paths.vendor %>/hashgrid/hashgrid.js'
-        ]
+    #concat:
+    #  options:
+    #    stripBanners: true
+    #    #banner: '<%= meta.banner %>'
+    #    separator: ';'
+    #  vendor:
+    #    files: '<%= paths.js %>/vendor.js': [
+    #      '<%= paths.vendor %>/jquery/jquery.js'
+    #      '<%= paths.vendor %>/hashgrid/hashgrid.js'
+    #    ]
 
     # Minify files
     uglify:
@@ -76,15 +87,18 @@ module.exports = (grunt) ->
 
       dist:
         files: [
-          '<%= paths.js %>/application.min.js': '<%= paths.js %>/application.js'
-          '<%= paths.js %>/vendor.min.js': '<%= paths.js %>/vendor.js'
           '<%= paths.js %>/modernizr.min.js': '<%= paths.js %>/modernizr.js'
+          '<%= paths.js %>/vendor.min.js': [
+            '<%= paths.vendor %>/jquery/jquery.js'
+            '<%= paths.vendor %>/hashgrid/hashgrid.js'
+          ]
+          '<%= paths.js %>/application.min.js': '<%= paths.js %>/application.js'
         ]
 
     # Clean directories
     clean:
       #images: '<%= paths.images %>'
-      tmp: '<%= paths.tmp %>'
+      #tmp: '<%= paths.tmp %>'
       javascripts: '<%= paths.javascripts %>'
       stylesheets: '<%= paths.stylesheets %>'
 
@@ -99,9 +113,9 @@ module.exports = (grunt) ->
         locals:
 
           site:
-            name: 'Lance'
+            name: 'Starter'
             title: 'Starter'
-            description: 'Jade/Compass/Sass/Coffeescript/HTML starter kit'
+            description: 'A Sass/Compass/Jade/Coffeescript powered, Grunt and Bower based HTML5 starter kit'
             keywords: 'html5,sass,jade,boilerplate'
             email: '<%= jade.options.locals.author.email %>'
             url: 'http://lanceguyatt.com'
@@ -121,40 +135,42 @@ module.exports = (grunt) ->
             css: 'stylesheets/css'
             js: 'javascripts/js'
 
-      files:
-        src: ['<%= paths.views %>/index.jade']
-        dest: '<%= paths.dist %>'
+      #files:
+      #  src: ['<%= paths.views %>/{,**/}*.jade']
+      #  dest: '<%= paths.dist %>'
 
       dev:
-        src: '<%= jade.files.src %>'
-        dest: '<%= jade.files.dest %>'
+        src: '<%= paths.jade %>'
+        dest: '<%= paths.dist %>'
         options:
           pretty: true
 
       dist:
-        src: '<%= jade.files.src %>'
-        dest: '<%= jade.files.dest %>'
+        src: '<%= paths.jade %>'
+        dest: '<%= paths.dist %>'
         options:
           pretty: false
 
     # Compile coffee scripts
     coffee:
-      compile:
+      dist:
         options:
           bare: true
-          #banner: '<%= meta.banner %>'
-        expand: true
-        flatten: true
-        cwd: '<%= paths.coffee %>'
-        src: '*.coffee'
-        dest: '<%= paths.js %>'
-        ext: '.js'
+          banner: '<%= meta.banner %>'
+        files: [
+          expand: true
+          flatten: true
+          cwd: '<%= paths.coffee %>'
+          src: '*.coffee'
+          dest: '<%= paths.js %>'
+          ext: '.js'
+        ]
 
     # Compile compass files
     compass:
       options:
-        basePath: ''
-        app: 'stand_alone'
+        #basePath: ''
+        #app: 'stand_alone'
         cssDir: '<%= paths.css %>'
         sassDir: '<%= paths.scss %>'
         javascriptsDir: '<%= paths.js %>'
@@ -162,18 +178,19 @@ module.exports = (grunt) ->
         fontsDir: '<%= paths.fonts %>'
         noLineComments: false
         relativeAssets: true
+        bundleExec: true
+        importPath: '<%= paths.vendor %>'
         require: [
-         'susy'
-         'stitch'
-         'modular-scale'
-         'compass-normalize'
-         'toolkit'
          'breakpoint'
+         'compass-normalize'
+         'modular-scale'
+         'stitch'
+         'susy'
         ]
 
       dev:
         options:
-          debugInfo: true
+          debugInfo: false
           environment: 'development'
           outputStyle: 'expanded'
 
@@ -185,9 +202,9 @@ module.exports = (grunt) ->
           noLineComments: true
           outputStyle: 'compressed'
 
-      clean:
-        options:
-          clean: true
+      #clean:
+      #  options:
+      #    clean: true
 
     # css min
     cssmin:
@@ -203,21 +220,21 @@ module.exports = (grunt) ->
     # Files to watch
     watch:
       jade:
-        files: '<%= paths.views %>/**/*.jade'
+        files: '<%= paths.views %>{,**/}*.jade'
         tasks: [
           'jade:dev'
           'notify:jade'
         ]
 
       coffee:
-        files: '<%= paths.coffee %>/**/*.coffee'
+        files: '<%= paths.coffee %>/{,**/}*.coffee'
         tasks: [
           'coffee'
           'notify:coffee'
         ]
 
       compass:
-        files: '<%= paths.scss %>/**/*.scss'
+        files: '<%= paths.scss %>/{,**/}*.{scss,sass}'
         tasks: [
           'compass:dev'
           'notify:compass'
@@ -309,8 +326,8 @@ module.exports = (grunt) ->
     grunt.task.run 'notify:compass'
     grunt.task.run 'coffee'
     grunt.task.run 'notify:coffee'
-    grunt.task.run 'concat'
-    grunt.task.run 'notify:concat'
+    #grunt.task.run 'concat'
+    #grunt.task.run 'notify:concat'
     grunt.task.run 'modernizr'
     grunt.task.run 'notify:modernizr'
     #grunt.task.run 'usebanner:dist'

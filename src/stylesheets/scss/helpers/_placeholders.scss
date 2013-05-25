@@ -1,15 +1,3 @@
-%remove-padding {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-%add-padding {
-  padding: {
-    left: rhythm(2.5); // 20px
-    right: rhythm(2.5); // 20px
-  }
-}
-
 %unstyled {
   list-style: none;
   margin-left: 0;
@@ -60,7 +48,6 @@
   @include improve-text-rendering;
 }
 
-/* @group =transition */
 $default-transition-property: all;
 $default-transition-duration: .25s;
 $default-transition-function: linear;
@@ -91,4 +78,3 @@ $default-transition-delay: .25s;
 %transition-opacity {
   @include single-transition(opacity, $default-transition-duration, $default-transition-function);
 }
-/* @end */

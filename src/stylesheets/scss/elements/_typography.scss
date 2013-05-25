@@ -1,101 +1,97 @@
 // Typography
 // Headings, body text, lists, code, and more for a versatile and durable typography system
 // ----------------------------------------------------------------------------------------
-/*! @group =type */
+/* @group =type */
 p {
-  margin: 0;
-  @include margin-trailer(3);
-}
-
-.lead {
-  @include adjust-font-size-to($base-font-size * 1.6875, 4); // 27px/32px 
-  @include margin-trailer(3);
+  margin: 0 0 rhythm(3) 0;
 }
 
 // HEADINGS
 // --------
 %fs1 {
-  @include adjust-font-size-to(60px, 7); // 60px/56px 
+  $font-size: 60px;
+  @include adjust-font-size-to($font-size, 7); // 32px / 56px
+  @include margin-trailer(2, $font-size); // 16px
 }
 
 %fs2 {
-  @include adjust-font-size-to(48px, 6); // 48px/48px 
+  @include adjust-font-size-to(48px, 6); // 48px/48px
 }
 
 %fs3 {
-  @include adjust-font-size-to(40px, 5); // 40px/40px 
+  @include adjust-font-size-to(40px, 5); // 40px/40px
 }
 
 %fs4 {
-  @include adjust-font-size-to(32px, 4); // 32px/32px 
+  @include adjust-font-size-to(32px, 4); // 32px/32px
 }
 
 %fs5 {
-  @include adjust-font-size-to(24px, 3); // 24px/24px 
+  @include adjust-font-size-to(24px, 3); // 24px/24px
 }
 
 %fs6 {
-  @include adjust-font-size-to(18px, 3); // 18px/24px 
-}
-
-%fs7 {
-  @include adjust-font-size-to($base-font-size, 2); // 16px/16px 
+  @include adjust-font-size-to(18px, 3); // 18px/24px
 }
 
 h1, h2, h3, h4, h5, h6 {
+  @extend %improve-text-rendering;
   color: $headings-color;
-  margin: 0;
-  text-rendering: optimizelegibility; // Fix the character spacing for headings
 }
+
 h1 {
-  @extend %fs1; // 60px/56px 
-  @include margin-trailer(3);
+  @extend %fs1;
 }
+
 h2 {
-  @extend %fs2; // 48px/48px 
-  @include margin-trailer(2);
+  @extend %fs2;
 }
+
 h3 {
-  @extend %fs3; // 40px/40px 
-  @include margin-trailer(1);
+  @extend %fs3;
 }
+
 h4 {
-  @extend %fs4; // 32px/32px 
+  @extend %fs4;
 }
+
 h5 {
-  @extend %fs5; // 24px/24px
+  @extend %fs5;
 }
+
 h6 {
-  @extend %fs6; // 18px/24px
+  @extend %fs6;
 }
 
 // LISTS
 // -----
 // Unordered and Ordered lists
 ul, ol {
+  margin: 0 0 rhythm(3) rhythm(3);
   padding: 0;
-  @include margin-trailer(3);
-  margin-top: 0;
-  margin-left: 25px;
 }
+
 ul ul,
 ul ol,
 ol ol,
 ol ul {
   margin-bottom: 0;
 }
+
 ul {
   list-style: disc;
 }
+
 ol {
   list-style: decimal;
 }
-li {
-}
+
+li {}
+
 ul.unstyled,
 ol.unstyled {
-  margin-left: 0;
   list-style: none;
+  margin-left: 0;
 }
 
 // MISC
@@ -110,11 +106,12 @@ hr {
 }
 
 // Emphasis
-strong {
-}
+strong {}
+
 em {
   font-style: italic;
 }
+
 // Abbreviations and acronyms
 abbr[title] {
   cursor: help;
@@ -149,8 +146,9 @@ address {
 small {
   font-size: 100%;
 }
-cite {
-}
+
+cite {}
+
 figure {
   margin: 0;
 }

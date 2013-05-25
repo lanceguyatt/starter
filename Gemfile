@@ -8,6 +8,5 @@ group :assets do
   gem 'susy'
   gem 'stitch'
   gem 'compass-normalize'
-  gem 'toolkit'
   gem 'breakpoint'
 end
