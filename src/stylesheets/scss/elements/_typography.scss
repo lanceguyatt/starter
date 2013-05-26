@@ -15,11 +15,15 @@ p {
 }
 
 %fs2 {
-  @include adjust-font-size-to(48px, 6); // 48px/48px
+  $font-size: 48px;
+  @include adjust-font-size-to($font-size, 6); // 48px / 48px
+  @include margin-trailer(2, $font-size); // 16px
 }
 
 %fs3 {
-  @include adjust-font-size-to(40px, 5); // 40px/40px
+  $font-size: 40px;
+  @include adjust-font-size-to($font-size, 5); // 40px / 40px
+  @include margin-trailer(2, $font-size); // 16px
 }
 
 %fs4 {

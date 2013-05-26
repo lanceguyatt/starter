@@ -1,18 +1,16 @@
-// Functions
-// -----------------------------------------------------------------
 // Convert PX units to EMs.
-// Ex: margin-right: pem(16);
-// ------------------
+
 @function pem($pxval, $base: $base-font-size) {
   @return #{$pxval / $base}em;
 }
 
 // Sizing shortcuts
-// -------------------------
+
 @mixin size($height, $width) {
   width: $width;
   height: $height;
 }
+
 @mixin square($size) {
   @include size($size, $size);
 }

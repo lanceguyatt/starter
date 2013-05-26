@@ -19,27 +19,24 @@
   @include inline-block();
 }
 
-//
 //  Sharpen an image if it has become blurry due to upscaling or downscaling
 //  @see https://developer.mozilla.org/en/CSS/image-rendering
-//
+
 %sharpen-image {
   @include sharpen-image;
 }
 
-//
 //  When photos are upscaled or downscaled, they often get blurry. Don't use
 //  this on flat color images, they will still appear blurry.
 //  @see https://developer.mozilla.org/en/CSS/image-rendering
-//
+
 %high-quality-image {
   @include high-quality-image;
 }
 
-//
 //  Optimizes the rendering on images so they
 //  appear faster, but at a lower quality. Useful for <video>
-//
+
 %low-quality-image {
   @include low-quality-image;
 }

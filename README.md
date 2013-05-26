@@ -1,6 +1,6 @@
-# __starter__, based on HTML5 Boilerplate
+# Starter - A Sass/Compass/Jade/Coffeescript powered, Grunt and Bower based HTML5 starter kit
 
-This project extends [HTML5 Boilerplate](https://github.com/h5bp/html5-boilerplate) with some more structure for SCSS files and JavaScripts.
+* Clone the repo: `git clone git://github.com/lanceguyatt/starter.git`.
 
 ## Dependencies
 
@@ -18,12 +18,12 @@ Secondaries:
 
 After you've set this stuff up please run
 
-  $ npm install -g grunt-cli
+    $ npm install -g grunt-cli
 
 This installs the Grunt command line tools.
 Afterwards please run
 
-  $ npm install
+    $ npm install
 
 in your project's directory.
 This will install all the things you need for running the grunt-tasks automatically.

@@ -1,24 +1,24 @@
-@import "helpers/_base";
-@import "helpers/_mixins";
-@import "helpers/_placeholders";
-//@import 'helpers/_reset';
-//@import "helpers/_hashgrid";
+@charset 'UTF-8';
 
-//@import "elements/_scaffolding";
-//@import "elements/_typography";
-
+@import
+  'helpers/_base',
+  'helpers/_mixins',
+  'helpers/_placeholders',
+  'helpers/_reset',
+  'helpers/_hashgrid',
+  'elements/_scaffolding',
+  'elements/_typography';
 
 $total-columns: 4; // The number of Columns in your default Grid Layout <number> Unitless number.
 $column-width: 4em; // 64px The width of a single Column in your Grid. <length> Length in any unit of measurement (em, px, %, etc).
 $gutter-width: 1.25em; // 20px The space between Columns. <length> Units must match $column-width.
 $grid-padding: 0; // 24px
 
-h1, p {
-  background: purple;
-}
-
+h1,
+h2,
+h3,
 p {
-  @include adjust-font-size-to(16px, 3);
+  background: purple;
 }
 
 %container {
