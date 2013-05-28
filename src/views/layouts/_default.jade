@@ -20,25 +20,27 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
       meta(itemprop='image', content='#{site.image}')
 
       //- opengraph meta
-      meta(property='og:title', content='#{site.title}')
       meta(property='og:site_name', content='#{site.name}')
+      meta(property='og:locale', content='#{site.locale}')
+      meta(property='og:type', content='#{site.type}')
+      meta(property='og:title', content='#{site.title}')
       meta(property='og:description', content='#{site.description}')
       meta(property='og:url', content='#{site.url}')
       meta(property='og:image', content='#{site.image}')
-      meta(property='og:type', content='#{site.type}')
 
       //- mobile meta
       meta(name='apple-mobile-web-app-capable', content='yes')
       meta(name='HandheldFriendly', content='true')
-      meta(name='viewport', content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no')
+      meta(name='viewport', content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1')
 
       //- iOS meta
       meta(name='application-name', content='#{site.name}')
 
       //- MS meta
       meta(name='msapplication-window', content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0')
-      meta(name='msapplication-TileColor', content='#cccccc')
-      meta(name='msapplication-TileImage', content='#{site.url}/apple-touch-icon-144x144-precomposed.png')
+      //-
+        meta(name='msapplication-TileColor', content='#cccccc')
+        meta(name='msapplication-TileImage', content='#{site.url}/apple-touch-icon-144x144-precomposed.png')
 
       //- verification meta
       meta(name='google-site-verification', content='PzUp6ZCjfPJmtaHUGPbg-efsiiVmvi0lb3s5SGXJua4')

@@ -94,8 +94,7 @@ li {}
 
 ul.unstyled,
 ol.unstyled {
-  list-style: none;
-  margin-left: 0;
+  @extend %unstyled;
 }
 
 // MISC
@@ -116,10 +115,8 @@ em {
   font-style: italic;
 }
 
-// Abbreviations and acronyms
 abbr[title] {
   cursor: help;
-  border-bottom: 1px dotted $gray;
 }
 
 // Blockquotes
@@ -153,7 +150,4 @@ small {
 
 cite {}
 
-figure {
-  margin: 0;
-}
 /* @end */

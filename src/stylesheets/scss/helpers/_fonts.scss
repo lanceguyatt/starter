@@ -1,0 +1,16 @@
+// Compass Font Face
+
+// Provides a mixin to support @font-face
+// http://compass-style.org/reference/compass/css3/font_face/
+// http://compass-style.org/reference/compass/helpers/font-files/
+
+@include font-face (
+  'Fontello',
+  font-files(
+    'fontello.woff', woff,
+    'fontello.ttf', truetype
+  ),
+  'fontello.eot',
+  normal,
+  normal
+);

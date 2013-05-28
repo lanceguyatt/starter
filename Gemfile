@@ -7,6 +7,4 @@ group :assets do
   gem 'modular-scale'
   gem 'susy'
   gem 'stitch'
-  gem 'compass-normalize'
-  gem 'breakpoint'
 end

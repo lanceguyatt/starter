@@ -1,7 +1,9 @@
 // Compass Cross-Browser Support Configuration
+
 // You can configure the compass default browser support matrix by setting these variables as needed.
 // http://compass-style.org/reference/compass/support/
-$legacy-support-for-ie: true; // Usually compass hacks apply to both ie6 & 7 -- set this to false to disable support for both.
+
+$legacy-support-for-ie: false; // Usually compass hacks apply to both ie6 & 7 -- set this to false to disable support for both.
 $legacy-support-for-ie6: $legacy-support-for-ie; // Setting this to false will result in smaller output, but no support for ie6 hacks
 $legacy-support-for-ie7: $legacy-support-for-ie; // Setting this to false will result in smaller output, but no support for ie7 hacks
 $legacy-support-for-ie8: $legacy-support-for-ie; // Setting this to false will result in smaller output, but no support for legacy ie8 hacks
@@ -25,6 +27,7 @@ $legacy-support-for-mozilla: true; // Whether to output legacy support for mozil
 
 // Create a vertical rhythm for your site by setting the $base-font-size and $base-line-height variables and then including the establish-baseline mixin at the root of your document.
 // http://compass-style.org/reference/compass/typography/vertical_rhythm/
+
 $base-font-size: 16px; // The base font size.
 $base-line-height: 8px; // The base line height determines the basic unit of vertical rhythm.
 $default-rhythm-border-style: solid; // Set the default border style for rhythm borders.
@@ -76,7 +79,7 @@ $white:                 #fff;
 // Accent colors
 
 $blue:                  #049cdb;
-$blueDark:              #0064cd;
+$blue-dark:             #0064cd;
 $green:                 #46a546;
 $red:                   #9d261d;
 $yellow:                #ffc40d;
@@ -127,6 +130,7 @@ $hover: '&:focus, &:hover, &:active';
 
 // Responsive grids for Compass.
 // susy.oddbird.net/guides/reference/
+
 //$total-columns: 4; // The number of Columns in your default Grid Layout <number> Unitless number.
 //$column-width: 4em; // 64px The width of a single Column in your Grid. <length> Length in any unit of measurement (em, px, %, etc).
 //$gutter-width: 1.25em; // 20px The space between Columns. <length> Units must match $column-width.
@@ -141,11 +145,14 @@ $breakpoint-raw-output: false; // Pass through raw output without media-queries 
 // Stitch CSS
 
 // https://github.com/anthonyshort/stitch-css
+
 @import "stitch";
 
+// Modular Scale
+
+// Modular Scale is a Sass based mixin that calculates the incremental values of the modular scale in proportion to a set size and ratio. It was inspired by and adapted from Tim Brown's modularscale.com.
 // https://github.com/Team-Sass/modular-scale
 
-// Sassy Modular Scale is a Sass based mixin that calculates the incremental values of the modular scale in proportion to a set size and ratio. It was inspired by and adapted from Tim Brown's modularscale.com.
 // $ratio: $my-variable;
 @import "modular-scale";
 
@@ -153,21 +160,19 @@ $border-color: $gray;
 
 $inline-block-alignment: middle;
 
-@import "compass/css3"; // Use one CSS3 mixin instead of multiple vendor prefixes.
-@import "compass/css3/images"; //Provides mixins that work across many modern browsers with the latest CSS3 image rendering primitives.
-@import "compass/css3/user-interface";
-@import "compass/utilities/general/clearfix"; // Better than Drupal's clearfix.
-//@import "compass/utilities/sprites"; // See http://compass-style.org/help/tutorials/spriting/
-//@import "compass/utilities/sprites/sprite-img";
-//@import "compass/helpers";
-@import "compass/typography/text/ellipsis";
-@import "compass/typography/text/force-wrap";
-@import "compass/typography/text/replacement";
+@import 'compass/css3'; // Use one CSS3 mixin instead of multiple vendor prefixes.
+@import 'compass/css3/images'; //Provides mixins that work across many modern browsers with the latest CSS3 image rendering primitives.
+@import 'compass/css3/user-interface';
+@import 'compass/utilities/general/clearfix'; // Better than Drupal's clearfix.
+//@import 'compass/utilities/sprites'; // See http://compass-style.org/help/tutorials/spriting/
+//@import 'compass/utilities/sprites/sprite-img';
+//@import 'compass/helpers';
+@import 'compass/typography/text/ellipsis';
+@import 'compass/typography/text/force-wrap';
+@import 'compass/typography/text/replacement';
 
-//@import "compass/reset";
+// Custom helpers
 
-// Breakpoint
-
-// Really Simple Media Queries with Sass
-// https://github.com/Team-Sass/breakpoint
-@import 'breakpoint';
+//@import 'fonts';
+@import 'mixins';
+@import 'placeholders';

@@ -82,7 +82,7 @@ module.exports = (grunt) ->
         banner: '<%= meta.banner %>'
         beautify: false
         compress: true
-        mangle: true
+        mangle: false
         except: ['jQuery']
 
       dist:
@@ -98,7 +98,7 @@ module.exports = (grunt) ->
     # Clean directories
     clean:
       #images: '<%= paths.images %>'
-      #tmp: '<%= paths.tmp %>'
+      tmp: '<%= paths.tmp %>'
       javascripts: '<%= paths.javascripts %>'
       stylesheets: '<%= paths.stylesheets %>'
 
@@ -111,19 +111,19 @@ module.exports = (grunt) ->
         extension: null
         runtime: false
         locals:
-
           site:
             name: 'Starter'
             title: 'Starter'
             description: 'A Sass/Compass/Jade/Coffeescript powered, Grunt and Bower based HTML5 starter kit'
             keywords: 'html5,sass,jade,boilerplate'
             email: '<%= jade.options.locals.author.email %>'
-            url: 'http://lanceguyatt.com'
-            image: '<%= jade.options.locals.site.url %>/screenshot.png'
+            url: '<%= jade.options.locals.author.url %>'
+            image: '<%= jade.options.locals.site.url %>/logo.png'
             lang: 'en'
+            locale: 'en_GB'
             dir: 'ltr'
             type: 'website'
-            copyrightYear: '2013'
+            copyrightYear: '<%= grunt.template.today("yyyy") %>'
 
           author:
             name: 'Lance Guyatt'
@@ -134,10 +134,6 @@ module.exports = (grunt) ->
             images: 'images/'
             css: 'stylesheets/css'
             js: 'javascripts/js'
-
-      #files:
-      #  src: ['<%= paths.views %>/{,**/}*.jade']
-      #  dest: '<%= paths.dist %>'
 
       dev:
         src: '<%= paths.jade %>'
@@ -161,7 +157,7 @@ module.exports = (grunt) ->
           expand: true
           flatten: true
           cwd: '<%= paths.coffee %>'
-          src: '*.coffee'
+          src: ['**/*.coffee']
           dest: '<%= paths.js %>'
           ext: '.js'
         ]
@@ -181,8 +177,6 @@ module.exports = (grunt) ->
         bundleExec: true
         importPath: '<%= paths.vendor %>'
         require: [
-         'breakpoint'
-         'compass-normalize'
          'modular-scale'
          'stitch'
          'susy'
@@ -262,6 +256,21 @@ module.exports = (grunt) ->
       uglify: false
       parseFiles: false
 
+    # HTML lint
+    htmllint:
+      dist: [
+        '<%= paths.dist %>/**/*.html'
+      ]
+
+    # CSS lint
+    csslint:
+      options:
+        csslintrc: '.csslintrc'
+      strict:
+        options:
+          import: 2
+        src: ['<%= paths.css %>/**/*.css']
+
     # Task complete messages
     notify:
       dev:
@@ -298,16 +307,17 @@ module.exports = (grunt) ->
         options:
           message: 'Distribution complete'
 
-  # Load modules
-  grunt.loadNpmTasks 'grunt-banner'
+  # Dependencies
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-compass'
   grunt.loadNpmTasks 'grunt-contrib-concat'
+  grunt.loadNpmTasks 'grunt-contrib-csslint'
   grunt.loadNpmTasks 'grunt-contrib-cssmin'
-  grunt.loadNpmTasks 'grunt-jade'
-  grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-contrib-uglify'
+  grunt.loadNpmTasks 'grunt-html'
+  grunt.loadNpmTasks 'grunt-jade'
   grunt.loadNpmTasks 'grunt-modernizr'
   grunt.loadNpmTasks 'grunt-notify'
   grunt.loadNpmTasks 'grunt-smushit'
@@ -316,6 +326,10 @@ module.exports = (grunt) ->
   grunt.registerTask 'default', ['Development mode'], ->
     grunt.task.run 'notify:dev'
     grunt.task.run 'watch'
+
+  grunt.registerTask 'test', ['Testing mode'], ->
+    #grunt.task.run 'csslint:dist'
+    grunt.task.run 'htmllint:dist'
 
   # Compile for distribution
   grunt.registerTask 'dist', ['Distribution build'], ->

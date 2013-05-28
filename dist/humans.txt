@@ -1,42 +1,35 @@
-# humanstxt.org/
-# The humans responsible & technology colophon
+/* TEAM */
 
-# TEAM
-
-  Interaction Developer: Lance Guyatt
-  Site: lanceguyatt.com
-  Contact: lance [at] lanceguyatt.com
+  Role: Interaction Developer
+  Name: Lance Guyatt
+  Site: http://lanceguyatt.com
   Twitter: @lanceguyatt
   Location: London, United Kingdom
 
-# TECHNOLOGY COLOPHON
+/* THANKS */
 
-  Site source files
-    Coffeescript: http://coffeescript.org
-    Jade: http://jade-lang.com
-    Sass: http://sass-lang.com
+  Bower: http://bower.io
+  Coffeescript: http://coffeescript.org
+  Compass: compass-style.org
+  Grunt: http://gruntjs.com
+  Hashgrid: http://hashgrid.com
+  HTML5 Boilerplate: http://html5boilerplate.com
+  Jade: http://jade-lang.com
+  jQuery: http://jquery.com
+  Modernizr: http://modernizr.com
+  Modular Scale: https://github.com/Team-Sass/modular-scale
+  Sass: http://sass-lang.com
+  Stitch CSS: https://github.com/anthonyshort/stitch-css
+  Susy: susy.oddbird.net/guides/reference
+  Humans Txt: http://humanstxt.org
 
-  Compiled down to
-    CSS3
-    HTML5
-    JS
+/* SITE */
 
-  Sanity
-    Breakpoint: https://github.com/Team-Sass/breakpoint
-    Bower: http://bower.io
-    Compass: compass-style.org
-    Compass Normalize: https://github.com/ksmandersen/compass-normalize
-    Grunt: http://gruntjs.com
-    Hashgrid: http://hashgrid.com
-    HTML5 Boilerplate: http://html5boilerplate.com
-    jQuery: http://jquery.com
-    Modernizr: http://modernizr.com
-    Modular Scale: https://github.com/Team-Sass/modular-scale
-    Stitch CSS: https://github.com/anthonyshort/stitch-css
-    Susy: susy.oddbird.net/guides/reference
-
-  IDE
-    Sublime Text 2
+  Last updated: 2013/05/28
+  Language: English
+  Doctype: HTML5
+  Standards: HTML5, CSS3
+  Software: Sublime Text 2, Fireworks, Transmit
 
   :::::::::::::::::::::::::::::::::::tfffffffffttttttttft:::::::::::::::::::::::::::::::::::
   :::::::::::::::::::::::::::::::::::tttttttttttttttttttt:::::::::::::::::::::::::::::::::::
