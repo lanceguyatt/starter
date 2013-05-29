@@ -3,7 +3,7 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
   head
     meta(charset='utf-8')
     //
-      | Copyright (c) #{site.copyrightYear} by #{author.name}
+      | Copyright (c) #{site.copyrightYear.default} #{author.name} 
 
     block head
 
@@ -37,7 +37,7 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
       meta(name='application-name', content='#{site.name}')
 
       //- MS meta
-      meta(name='msapplication-window', content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0')
+      meta(name='msapplication-window', content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1')
       //-
         meta(name='msapplication-TileColor', content='#cccccc')
         meta(name='msapplication-TileImage', content='#{site.url}/apple-touch-icon-144x144-precomposed.png')
@@ -47,13 +47,15 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
 
       //- stylesheets
       link(rel='stylesheet', href='#{paths.css}/style.css', media='all')
-      //-link(rel='stylesheet', href='#{paths.css}/layout.css', media='all and (min-width: 36.25em)')
-
-      // if (lt IE 9) & (!IEMobile)
-        //- link(rel='stylesheet', href='#{paths.css}/tablet.css', media='all')
+      //-
+        link(rel='stylesheet', href='#{paths.css}/layout.css', media='all and (min-width: 36.25em)')
+      //-
+        // if (lt IE 9) & (!IEMobile)
+          link(rel='stylesheet', href='#{paths.css}/tablet.css', media='all')
 
       link(rel='shortcut icon', href='#{site.url}/favicon.ico')
-      //-link(rel='apple-touch-icon-precomposed', href='#{site.url}/apple-touch-icon-precomposed.png')
+      //-
+        link(rel='apple-touch-icon-precomposed', href='#{site.url}/apple-touch-icon-precomposed.png')
 
       //- author
       link(rel='author', href='#{site.url}/humans.txt', type='text/plain')
@@ -62,10 +64,12 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
 
   body
 
-    include ../partials/_header
+    div(class='container')
 
-    block main
+      include ../partials/_header
 
-    include ../partials/_footer
+      block main
+
+      include ../partials/_footer
 
     block scripts

@@ -20,8 +20,8 @@
     "url": "https://github.com/lanceguyatt/starter.git"
   },
   "licenses": {
-    "type": "Apache-2.0",
-    "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    "type": "Creative Commons licensed",
+    "url": "http://creativecommons.org/licenses/by-nc-sa/2.0/uk"
   },
   "bin": {},
   "main": {},
@@ -45,6 +45,7 @@
     "grunt-contrib-jade": "~0.6.0",
     "grunt-contrib-cssmin": "~0.6.0",
     "grunt-html": "~0.3.3",
-    "grunt-contrib-csslint": "~0.1.2"
+    "grunt-contrib-csslint": "~0.1.2",
+    "grunt-contrib-jshint": "~0.5.4"
   }
 }

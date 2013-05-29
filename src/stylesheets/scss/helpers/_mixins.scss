@@ -7,8 +7,8 @@
 // Sizing shortcuts
 
 @mixin size($height, $width) {
-  width: $width;
   height: $height;
+  width: $width;
 }
 
 @mixin square($size) {

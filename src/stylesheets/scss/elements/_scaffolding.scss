@@ -12,6 +12,7 @@ body {
 }
 
 a {
+  @extend %transition-all;
   color: $link-color;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;

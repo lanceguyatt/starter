@@ -123,7 +123,9 @@ module.exports = (grunt) ->
             locale: 'en_GB'
             dir: 'ltr'
             type: 'website'
-            copyrightYear: '<%= grunt.template.today("yyyy") %>'
+            copyrightYear:
+              default: '<%= grunt.template.today("yyyy") %>'
+              roman: 'MMXIII'
 
           author:
             name: 'Lance Guyatt'
@@ -256,6 +258,14 @@ module.exports = (grunt) ->
       uglify: false
       parseFiles: false
 
+    # JS lint
+    jshint:
+      options:
+        jshintrc: '.jshintrc'
+      dist: [
+        '<%= paths.js %>/application.js'
+      ]
+
     # HTML lint
     htmllint:
       dist: [
@@ -263,13 +273,13 @@ module.exports = (grunt) ->
       ]
 
     # CSS lint
-    csslint:
-      options:
-        csslintrc: '.csslintrc'
-      strict:
-        options:
-          import: 2
-        src: ['<%= paths.css %>/**/*.css']
+    #csslint:
+    #  options:
+    #    csslintrc: '.csslintrc'
+    #  strict:
+    #    options:
+    #      import: 2
+    #    src: ['<%= paths.css %>/**/*.css']
 
     # Task complete messages
     notify:
@@ -312,8 +322,9 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-compass'
   grunt.loadNpmTasks 'grunt-contrib-concat'
-  grunt.loadNpmTasks 'grunt-contrib-csslint'
+  #grunt.loadNpmTasks 'grunt-contrib-csslint'
   grunt.loadNpmTasks 'grunt-contrib-cssmin'
+  grunt.loadNpmTasks 'grunt-contrib-jshint'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-html'
@@ -330,6 +341,8 @@ module.exports = (grunt) ->
   grunt.registerTask 'test', ['Testing mode'], ->
     #grunt.task.run 'csslint:dist'
     grunt.task.run 'htmllint:dist'
+    grunt.task.run 'jshint:dist'
+
 
   # Compile for distribution
   grunt.registerTask 'dist', ['Distribution build'], ->

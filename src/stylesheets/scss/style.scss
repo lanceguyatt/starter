@@ -1,48 +1,50 @@
 @charset 'UTF-8';
 
-@import
-  'helpers/_base',
-  'helpers/_normalize',
-  'helpers/_display',
-  'helpers/_hashgrid',
-  'elements/_scaffolding',
-  'elements/_typography';
+@import 'globals/_base';
+@import 'helpers/_normalize';
+//@import 'helpers/_display';
+@import 'helpers/_hashgrid';
+@import 'elements/_scaffolding';
+@import 'elements/_typography';
+@import 'modules/_misc';
 
 $total-columns: 4; // The number of Columns in your default Grid Layout <number> Unitless number.
 $column-width: 4em; // 64px The width of a single Column in your Grid. <length> Length in any unit of measurement (em, px, %, etc).
 $gutter-width: 1.25em; // 20px The space between Columns. <length> Units must match $column-width.
-$grid-padding: 0; // 24px
+$grid-padding: $gutter-width; // 20px
 
 %container {
-  @include container(3);
-  background-color: blue;
+  //$container-style: fluid;
+  @include container;
+  background: orange;
+  overflow: hidden;
 }
 
-//@include hash-grid(320px, $column-width, $gutter-width, $grid-padding);
+@include hashgrid($total-columns, $column-width, $gutter-width, $grid-padding);
 
-.header {
-  //background: image-url('logo.png') no-repeat 0 0 !important;
-}
-
-
-.header,
-.main,
-footer {
+.container {
   @extend %container;
 }
 
-$media-layout: 20em 12 40em;
+@include at-breakpoint(8) {
 
-@include at-breakpoint($media-layout) {
   %container {
+    //$container-style: magic;
     @include set-container-width;
-    background-color: yellow;
   }
+
+  @include hashgrid($total-columns, $column-width, $gutter-width, $grid-padding);
 }
 
-@include at-breakpoint(20em 12) {
+$total-columns: 12; // 1028px
+
+@include at-breakpoint($total-columns) {
+
   %container {
+    //$container-style: magic;
     @include set-container-width;
-    background-color: green;
   }
+
+  @include hashgrid($total-columns, $column-width, $gutter-width, $grid-padding);
+
 }

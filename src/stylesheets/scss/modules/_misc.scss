@@ -1,0 +1,22 @@
+.example {
+  @extend %box-sizing-border-box;
+  border: 1px solid #ddd;
+  background-color: $white;
+  border-color: #ddd;
+  margin: 0 0 rhythm(3);
+  padding: rhythm(5) rhythm(3) rhythm(3); // 39px / 23px
+  position: relative;
+  &:after {
+    $font-size: 12px;
+    @include adjust-font-size-to($font-size);
+    @include rhythm-borders(1px, 1, $font-size);
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    color: #9da0a4;
+    content: 'Example';
+    font-weight: bold;
+    left: -1px;
+    position: absolute;
+    top: -1px;
+  }
+}

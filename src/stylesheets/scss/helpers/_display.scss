@@ -5,8 +5,10 @@
 
 // address, article, aside, blockquote, center, dd, details, dir, div, dl, dt, fieldset, figcaption, figure, footer, form, frameset, h1, h2, h3, h4, h5, h6, header, hgroup, hr, isindex, menu, nav, noframes, noscript, ol, p, pre, section, summary, ul
 
-#{elements-of-type(block)} {
-  background-color: purple;
+.prose {
+  #{elements-of-type(block)} {
+    background-color: purple;
+  }
 }
 
 // a, abbr, acronym, audio, b, basefont, bdo, big, br, canvas, cite, code, command, datalist, dfn, em, embed, font, i, img, input, kbd, keygen, label, mark, meter, output, progress, q, rp, rt, ruby, s, samp, select, small, span, strike, strong, sub, sup, textarea, time, tt, u, var, video, wbr
@@ -77,4 +79,3 @@
 
 #{elements-of-type(html5)} {
 }
-

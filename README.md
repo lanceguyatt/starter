@@ -2,6 +2,11 @@
 
 # Starter - A Sass/Compass/Jade/Coffeescript powered, Grunt and Bower based HTML5 starter kit
 
+# TODO
+
+Font feature settings
+https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings#Browser_compatibility
+
 # Install
 
 * Clone the repo:
@@ -114,8 +119,8 @@ Ninja will also stealthily do browser sniffing and feature detection using [Cond
 
 To get started using Ninja, either:
 - [Download the latest release](https://github.com/kasperisager/Ninja/archive/master.zip)
-- Clone the repository directly into your Vanilla `themes` directory:  
-`$ cd /path/to/vanilla/themes/`  
+- Clone the repository directly into your Vanilla `themes` directory:
+`$ cd /path/to/vanilla/themes/`
 `$ git clone git://github.com/kasperisager/Ninja.git`
 
 Now that you've downloaded Ninja, it's time to get it installed. Ninja uses [npm](https://npmjs.org/) for managing [development dependencies](package.json) and Bower for managing [component dependencies](component.json):
@@ -141,7 +146,7 @@ For component management, you'll need to install Bower. Just like Grunt CLI, Bow
 $ npm install -g bower
 ```
 
-Lastly, if you want to use compilers and frameworks that aren't written in Node.js and therefore not available through npm, you'll need to install these. This is the case for the Compass Framework, which is used in the Ninja example theme:  
+Lastly, if you want to use compilers and frameworks that aren't written in Node.js and therefore not available through npm, you'll need to install these. This is the case for the Compass Framework, which is used in the Ninja example theme:
 ```sh
 $ gem update --system
 $ gem install compass

@@ -47,31 +47,32 @@
 
 $default-transition-property: all;
 $default-transition-duration: .25s;
-$default-transition-function: linear;
+$default-transition-function: ease;
 $default-transition-delay: .25s;
 
 %transition-all {
-  @include single-transition(all, $default-transition-duration, $default-transition-function);
+  @include single-transition(all, $default-transition-duration, $default-transition-function, 0);
 }
 
 %transition-background-color {
-  @include single-transition(background-color, $default-transition-duration, $default-transition-function);
+  @include single-transition(background-color, $default-transition-duration, $default-transition-function, 0);
 }
 
 %transition-background-color-color {
-  @include transition-property(background-color, color);
+  @include transition-delay(0);
   @include transition-duration($default-transition-duration);
+  @include transition-property(background-color, color);
   @include transition-timing-function($default-transition-function);
 }
 
 %transition-border-color {
-  @include single-transition(border-color, $default-transition-duration, $default-transition-function);
+  @include single-transition(border-color, $default-transition-duration, $default-transition-function, 0);
 }
 
 %transition-color {
-  @include single-transition(color, $default-transition-duration, $default-transition-function);
+  @include single-transition(color, $default-transition-duration, $default-transition-function, 0);
 }
 
 %transition-opacity {
-  @include single-transition(opacity, $default-transition-duration, $default-transition-function);
+  @include single-transition(opacity, $default-transition-duration, $default-transition-function, 0);
 }

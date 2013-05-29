@@ -1,75 +1,68 @@
 // Typography
-// Headings, body text, lists, code, and more for a versatile and durable typography system
-// ----------------------------------------------------------------------------------------
+
+#{elements-of-type(block)} {
+
+}
+
 /* @group =type */
 p {
-  margin: 0 0 rhythm(3) 0;
+  @include margin-trailer(3);
+}
+
+$headings: 'h1, h2, h3, h4, h5, h6';
+$type: 'h1, h2, h3, h4, h5, h6, p, ul, ol, table, form';
+
+#{$type} {
+  margin-top: 0;
+  background: blue;
 }
 
 // HEADINGS
-// --------
-%fs1 {
-  $font-size: 60px;
-  @include adjust-font-size-to($font-size, 7); // 32px / 56px
-  @include margin-trailer(2, $font-size); // 16px
-}
-
-%fs2 {
-  $font-size: 48px;
-  @include adjust-font-size-to($font-size, 6); // 48px / 48px
-  @include margin-trailer(2, $font-size); // 16px
-}
-
-%fs3 {
-  $font-size: 40px;
-  @include adjust-font-size-to($font-size, 5); // 40px / 40px
-  @include margin-trailer(2, $font-size); // 16px
-}
-
-%fs4 {
-  @include adjust-font-size-to(32px, 4); // 32px/32px
-}
-
-%fs5 {
-  @include adjust-font-size-to(24px, 3); // 24px/24px
-}
-
-%fs6 {
-  @include adjust-font-size-to(18px, 3); // 18px/24px
-}
-
-h1, h2, h3, h4, h5, h6 {
-  @extend %improve-text-rendering;
-  color: $headings-color;
-}
 
 h1 {
-  @extend %fs1;
+  $font-size: 56px;
+  @include adjust-font-size-to($font-size, 7);
+  @include margin-trailer(3, $font-size);
 }
 
 h2 {
-  @extend %fs2;
+  $font-size: 40px;
+  @include adjust-font-size-to($font-size, 5);
+  @include margin-trailer(3, $font-size);
 }
 
 h3 {
-  @extend %fs3;
+  $font-size: 32px;
+  @include adjust-font-size-to($font-size, 4);
+  @include margin-trailer(3, $font-size);
 }
 
 h4 {
-  @extend %fs4;
+  $font-size: 16px;
+  @include adjust-font-size-to($font-size, 3);
+  @include margin-trailer(3, $font-size);
 }
 
 h5 {
-  @extend %fs5;
+  $font-size: 14px;
+  @include adjust-font-size-to($font-size, 2);
+  @include margin-trailer(3, $font-size);
 }
 
 h6 {
-  @extend %fs6;
+  $font-size: 12px;
+  @include adjust-font-size-to($font-size, 2);
+  @include margin-trailer(3, $font-size);
+}
+
+#{$headings} {
+  @extend %improve-text-rendering;
+  //color: $headings-color;
+  color: red;
 }
 
 // LISTS
-// -----
-// Unordered and Ordered lists
+
 ul, ol {
   margin: 0 0 rhythm(3) rhythm(3);
   padding: 0;
@@ -82,13 +75,13 @@ ol ul {
   margin-bottom: 0;
 }
 
-ul {
-  list-style: disc;
-}
+// ul {
+//   list-style: disc;
+// }
 
-ol {
-  list-style: decimal;
-}
+// ol {
+//   list-style: decimal;
+// }
 
 li {}
 
@@ -98,8 +91,7 @@ ol.unstyled {
 }
 
 // MISC
-// ----
-// Horizontal rules
+
 hr {
   border: 0;
   @include margin-trailer(3);
@@ -108,27 +100,17 @@ hr {
   clear: both;
 }
 
-// Emphasis
-strong {}
-
-em {
-  font-style: italic;
-}
-
-abbr[title] {
-  cursor: help;
-}
-
 // Blockquotes
+
 blockquote {
-  margin: 0;
-  @include margin-trailer(3);
+  margin: 0 0 rhythm(3) 0;
   p {
     @include margin-trailer(0);
   }
 }
 
 // Quotes
+
 //q:before,
 //q:after,
 //blockquote:before,
@@ -137,6 +119,7 @@ blockquote {
 //}
 
 // Addresses
+
 address {
   @include margin-trailer(1);
   display: block;
@@ -144,10 +127,11 @@ address {
 }
 
 // Misc
-small {
-  font-size: 100%;
-}
 
 cite {}
+
+img {
+  max-width: 100%;
+}
 
 /* @end */
