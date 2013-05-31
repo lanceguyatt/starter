@@ -12,13 +12,15 @@ module.exports = (grunt) ->
     meta:
       banner: '/* <%= pkg.name %> v<%= pkg.version %> Copyright <%= grunt.template.today("yyyy") %> Designed and built by <%= pkg.author.name %> */'
 
-    # Files paths
+    # Directory paths
     paths:
-      base: ''
+      base: './'
 
       dist: '<%= paths.base %>dist'
       src: '<%= paths.base %>src'
       tmp: '<%= paths.base %>tmp'
+      tests: '<%= paths.base %>tests'
+
 
       routes: '<%= paths.src %>/routes'
       views: '<%= paths.src %>/views'
@@ -38,31 +40,30 @@ module.exports = (grunt) ->
       images: '<%= paths.dist %>/images'
 
     # Add banners
-    usebanner:
-      humans:
-        options:
-          position: 'bottom'
-          banner: '<%= grunt.template.today("dd/mm/yyyy") %>'
-        files:
-          src: [
-            '<%= paths.dist %>/humans.txt'
-          ]
-
-      #dist:
-      #  options:
-      #    position: 'top'
-      #    banner: '<%= meta.banner %>'
-      #  files:
-      #    src: [
-      #      '<%= paths.css %>/*.css'
-      #      '<%= paths.js %>/*.js'
-      #    ]
+    #usebanner:
+    #  humans:
+    #    options:
+    #      position: 'bottom'
+    #      banner: '<%= grunt.template.today("dd/mm/yyyy") %>'
+    #    files:
+    #      src: [
+    #        '<%= paths.dist %>/humans.txt'
+    #      ]
+    #dist:
+    #  options:
+    #    position: 'top'
+    #    banner: '<%= meta.banner %>'
+    #  files:
+    #    src: [
+    #      '<%= paths.css %>/*.css'
+    #      '<%= paths.js %>/*.js'
+    #    ]
 
     # Compress images
     smushit:
       dist:
         src: '<%= paths.images %>'
-        dest:'<%= paths.images %>'
+        dest: '<%= paths.images %>'
 
     # Concat files
     #concat:
@@ -87,17 +88,27 @@ module.exports = (grunt) ->
 
       dist:
         files: [
-          '<%= paths.js %>/modernizr.min.js': '<%= paths.js %>/modernizr.js'
+          '<%= paths.js %>/modernizr.min.js': [
+            '<%= paths.js %>/modernizr.js'
+          ]
+        ,
           '<%= paths.js %>/vendor.min.js': [
+            '<%= paths.js %>/vendor.js'
             '<%= paths.vendor %>/jquery/jquery.js'
             '<%= paths.vendor %>/hashgrid/hashgrid.js'
           ]
-          '<%= paths.js %>/application.min.js': '<%= paths.js %>/application.js'
+        ,
+          '<%= paths.js %>/application.min.js': [
+            '<%= paths.js %>/application.js'
+          ]
+        ,
+          '<%= paths.js %>/livereload.min.js': [
+            '<%= paths.vendor %>/livereload/dist/livereload.js'
+          ]
         ]
 
     # Clean directories
     clean:
-      #images: '<%= paths.images %>'
       tmp: '<%= paths.tmp %>'
       javascripts: '<%= paths.javascripts %>'
       stylesheets: '<%= paths.stylesheets %>'
@@ -110,52 +121,36 @@ module.exports = (grunt) ->
         compileDebug: false
         extension: null
         runtime: false
-        locals: grunt.file.readJSON 'src/routes/index.json'
-        #locals:
-        #  site:
-        #    name: 'Starter'
-        #    title: 'Starter'
-        #    description: 'A Sass/Compass/Jade/Coffeescript powered, Grunt and Bower based HTML5 starter kit'
-        #    keywords: 'html5,sass,jade,boilerplate'
-        #    email: '<%= jade.options.locals.author.email %>'
-        #    url: '<%= jade.options.locals.author.url %>'
-        #    image: '<%= jade.options.locals.site.url %>/logo.png'
-        #    lang: 'en'
-        #    locale: 'en_GB'
-        #    dir: 'ltr'
-        #    type: 'website'
-        #    copyrightYear:
-        #      default: '<%= grunt.template.today("yyyy") %>'
-        #      roman: 'MMXIII'
-
-        #  author:
-        #    name: 'Lance Guyatt'
-        #    email: 'lance@lanceguyatt.com'
-        #    url: 'http://lanceguyatt.com'
-
-        #  paths:
-        #    images: 'images/'
-        #    css: 'stylesheets/css'
-        #    js: 'javascripts/js'
+        locals: grunt.file.readJSON './src/routes/index.json'
 
       dev:
-        src: '<%= paths.jade %>'
-        dest: '<%= paths.dist %>'
         options:
           pretty: true
-
-      dist:
         src: '<%= paths.jade %>'
         dest: '<%= paths.dist %>'
+
+      dist:
         options:
           pretty: false
+        src: '<%= paths.jade %>'
+        dest: '<%= paths.dist %>'
+
+    #htmlmin:
+    #  dist:
+    #    options:
+    #      removeComments: true
+    #      collapseWhitespace: true
+    #    files:
+    #      src: '<%= paths.dist %>index.html'
+    #      dest: '<%= paths.dist %>new.html'
 
     # Compile coffee scripts
     coffee:
+      options:
+        bare: true
+        banner: '<%= meta.banner %>'
+
       dist:
-        options:
-          bare: true
-          banner: '<%= meta.banner %>'
         files: [
           expand: true
           flatten: true
@@ -168,17 +163,15 @@ module.exports = (grunt) ->
     # Compile compass files
     compass:
       options:
-        #basePath: ''
-        #app: 'stand_alone'
+        basePath: '<%= paths.base %>'
         cssDir: '<%= paths.css %>'
         sassDir: '<%= paths.scss %>'
         javascriptsDir: '<%= paths.js %>'
         imagesDir: '<%= paths.images %>'
         fontsDir: '<%= paths.fonts %>'
-        noLineComments: false
-        relativeAssets: true
-        bundleExec: true
-        importPath: '<%= paths.vendor %>'
+        #relativeAssets: true
+        #bundleExec: true
+        #importPath: '<%= paths.vendor %>'
         require: [
          'modular-scale'
          'susy'
@@ -186,8 +179,9 @@ module.exports = (grunt) ->
 
       dev:
         options:
-          debugInfo: false
+          debugInfo: true
           environment: 'development'
+          noLineComments: false
           outputStyle: 'expanded'
 
       dist:
@@ -198,11 +192,7 @@ module.exports = (grunt) ->
           noLineComments: true
           outputStyle: 'compressed'
 
-      #clean:
-      #  options:
-      #    clean: true
-
-    # css min
+    # Minify CSS
     cssmin:
       options:
         banner: '<%= meta.banner %>'
@@ -215,6 +205,9 @@ module.exports = (grunt) ->
 
     # Files to watch
     watch:
+      options:
+        livereload: 35729
+
       jade:
         files: '<%= paths.views %>{,**/}*.jade'
         tasks: [
@@ -257,29 +250,54 @@ module.exports = (grunt) ->
         domprefixes: false
       uglify: false
       parseFiles: false
+      matchCommunityTests: false
+      customTests: []
 
-    # JS lint
+    # Lint JS file
     jshint:
       options:
-        jshintrc: '.jshintrc'
-      dist: [
+        jshintrc: '<%= paths.base %>.jshintrc'
+      dev: [
         '<%= paths.js %>/application.js'
       ]
 
-    # HTML lint
+    # Lint HTML files
     htmllint:
-      dist: [
+      dev: [
         '<%= paths.dist %>/**/*.html'
       ]
 
-    # CSS lint
-    #csslint:
-    #  options:
-    #    csslintrc: '.csslintrc'
-    #  strict:
-    #    options:
-    #      import: 2
-    #    src: ['<%= paths.css %>/**/*.css']
+    # Lint CSS files
+    csslint:
+      options:
+        csslintrc: '<%= paths.base %>.csslintrc'
+        absoluteFilePathsForFormatters: true
+        formatters: [
+          id: 'junit-xml'
+          dest: '<%= paths.tests %>/csslint_junit.xml'
+        ,
+          id: 'csslint-xml'
+          dest: '<%= paths.tests %>/csslint.xml'
+        ]
+      dev:
+        options:
+          import: 2
+        src: ['<%= paths.css %>/**/*.css']
+
+    # Start web server
+    connect:
+      default:
+        options:
+          hostname: '*'
+          port: 3001
+          base: '<%= paths.dist %>'
+
+      tests:
+        options:
+          hostname: '*'
+          port: 3002
+          base: '<%= paths.tests %>'
+
 
     # Task complete messages
     notify:
@@ -322,8 +340,10 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-compass'
   grunt.loadNpmTasks 'grunt-contrib-concat'
-  #grunt.loadNpmTasks 'grunt-contrib-csslint'
+  grunt.loadNpmTasks 'grunt-contrib-connect'
+  grunt.loadNpmTasks 'grunt-contrib-csslint'
   grunt.loadNpmTasks 'grunt-contrib-cssmin'
+  #grunt.loadNpmTasks 'grunt-contrib-htmlmin'
   grunt.loadNpmTasks 'grunt-contrib-jshint'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
@@ -336,13 +356,16 @@ module.exports = (grunt) ->
   # Run in development mode
   grunt.registerTask 'default', ['Development mode'], ->
     grunt.task.run 'notify:dev'
+    grunt.task.run 'connect'
     grunt.task.run 'watch'
 
+  # Run tests
   grunt.registerTask 'test', ['Testing mode'], ->
-    #grunt.task.run 'csslint:dist'
-    grunt.task.run 'htmllint:dist'
+    grunt.task.run 'jade:dev'
+    grunt.task.run 'htmllint:dev'
+    grunt.task.run 'compass:dev'
+    grunt.task.run 'csslint:dev'
     grunt.task.run 'jshint:dist'
-
 
   # Compile for distribution
   grunt.registerTask 'dist', ['Distribution build'], ->
@@ -361,8 +384,8 @@ module.exports = (grunt) ->
     #grunt.task.run 'notify:usebanner'
     grunt.task.run 'jade:dist'
     grunt.task.run 'notify:jade'
-    grunt.task.run 'smushit:dist'
-    grunt.task.run 'notify:smushit'
+    #grunt.task.run 'smushit:dist'
+    #grunt.task.run 'notify:smushit'
     grunt.task.run 'uglify:dist'
     grunt.task.run 'notify:uglify'
     grunt.task.run 'notify:dist'

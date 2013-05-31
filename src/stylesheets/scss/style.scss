@@ -16,37 +16,41 @@ $grid-padding: $gutter-width; // 20px
 %container {
   $container-style: fluid;
   @include container;
-  @include susy-grid-background;
+  background: yellow;
+  //@include susy-grid-background;
   //@include grid-background($total-columns, $column-width, $gutter-width, $base-line-height, $grid-padding, $force-fluid: true);
-  //background: orange;
   overflow: hidden;
 }
-
-//@include hashgrid(0, 0, 0, 0);
 
 .container {
   @extend %container;
 }
 
+@include hashgrid($total-columns, $column-width, $gutter-width, $grid-padding);
+
 $total-columns: 8; // 692px
+
 @include at-breakpoint($total-columns) {
 
   %container {
     $container-style: magic;
     @include set-container-width;
-    @include susy-grid-background;
+    //@include susy-grid-background;
     //@include grid-background($total-columns, $column-width, $gutter-width, $base-line-height, $grid-padding, $force-fluid: true);
   }
 
   @include hashgrid($total-columns, $column-width, $gutter-width, $grid-padding);
 }
 
+
+
 $total-columns: 12; // 1028px
+
 @include at-breakpoint($total-columns) {
 
   %container {
     @include set-container-width;
-    @include susy-grid-background;
+    //@include susy-grid-background;
     //@include grid-background($total-columns, $column-width, $gutter-width, $base-line-height, $grid-padding, $force-fluid: true);
   }
 

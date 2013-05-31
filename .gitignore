@@ -37,5 +37,6 @@ node_modules
 dist/stylesheets
 dist/javascripts
 dist/index.html
+tests/*
 tmp
 src/vendor/*

@@ -423,7 +423,8 @@ button,
 html input[type="button"], // 1
 input[type="reset"],
 input[type="submit"] {
-  -webkit-appearance: button; // 2
+  @include appearance(button); // 2
+  //-webkit-appearance: button; // 2
   cursor: pointer; // 3
   @if $legacy_support_for_ie {
     *overflow: visible;  // 4
@@ -457,7 +458,7 @@ input[type="radio"] {
 
 input[type="search"] {
   @include box-sizing(content-box); // 2
-  -webkit-appearance: textfield; // 1
+  @include appearance(field); // 1
 }
 
 // Remove inner padding and search cancel button in Safari 5 and Chrome
@@ -465,13 +466,15 @@ input[type="search"] {
 
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
+  @include appearance(none);
+  //-webkit-appearance: none;
 }
 
 // Removes inner padding and border in FF3+
 // www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/
 
-button, input {
+button,
+input {
   &::-moz-focus-inner {
     border: 0;
     padding: 0;

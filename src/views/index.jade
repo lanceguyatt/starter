@@ -2,13 +2,11 @@ extends layouts/_default
 
 append header
 
-  h1 #{site.name}
-
 block main
 
   div(class='main', role='main', itemprop='mainContentofPage')
     article
-      h1 Styleguide
+      h1 #{site.name} Styleguide
 
       div(class='prose')
         p This document is a guide to the mark-up styles used throughout the site. Parts of this markup guide are attributable to 
@@ -326,7 +324,7 @@ block main
         h3 Definition
         p The 
           code dfn
-          |  element is used to highlight the first use of a term. The
+          |  element is used to highlight the first use of a term. The 
           code title
           |  attribute can be used to describe the term. Example:
         div(class='example')
@@ -349,7 +347,7 @@ block main
             abbr(title='British Broadcasting Corportation') BBC
             |  , 
             abbr(title='HyperText Markup Language') HTML
-            |  , and 
+            |, and 
             abbr(title='Staffordshire') Staffs.
 
         h3 Time
@@ -702,7 +700,7 @@ block main
 append footer
 
 prepend scripts
-
+  script(src='#{paths.js}/livereload.min.js')
   script
     Modernizr.load([{ load: ['#{paths.js}/vendor.min.js', '#{paths.js}/application.min.js'] }]);
     var _gaq = _gaq || [];
