@@ -39,25 +39,11 @@ module.exports = (grunt) ->
       fonts: '<%= paths.dist %>/fonts'
       images: '<%= paths.dist %>/images'
 
-    # Add banners
-    #usebanner:
-    #  humans:
-    #    options:
-    #      position: 'bottom'
-    #      banner: '<%= grunt.template.today("dd/mm/yyyy") %>'
-    #    files:
-    #      src: [
-    #        '<%= paths.dist %>/humans.txt'
-    #      ]
-    #dist:
-    #  options:
-    #    position: 'top'
-    #    banner: '<%= meta.banner %>'
-    #  files:
-    #    src: [
-    #      '<%= paths.css %>/*.css'
-    #      '<%= paths.js %>/*.js'
-    #    ]
+    vendor: [
+      '<%= paths.js %>/vendor.js',
+      '<%= paths.vendor %>/jquery/jquery.js',
+      '<%= paths.vendor %>/hashgrid/hashgrid.js'
+    ]
 
     # Compress images
     smushit:
@@ -66,45 +52,31 @@ module.exports = (grunt) ->
         dest: '<%= paths.images %>'
 
     # Concat files
-    #concat:
-    #  options:
-    #    stripBanners: true
-    #    #banner: '<%= meta.banner %>'
-    #    separator: ';'
-    #  vendor:
-    #    files: '<%= paths.js %>/vendor.js': [
-    #      '<%= paths.vendor %>/jquery/jquery.js'
-    #      '<%= paths.vendor %>/hashgrid/hashgrid.js'
-    #    ]
+    concat:
+      options:
+        stripBanners: true
+        banner: '<%= meta.banner %>'
+        separator: ';'
+      vendor:
+        files: '<%= paths.js %>/vendor.js': '<%= vendor %>'
 
     # Minify files
     uglify:
       options:
-        banner: '<%= meta.banner %>'
+        #banner: '<%= meta.banner %>'
         beautify: false
         compress: true
         mangle: false
         except: ['jQuery']
 
-      dist:
+      all:
         files: [
-          '<%= paths.js %>/modernizr.min.js': [
-            '<%= paths.js %>/modernizr.js'
-          ]
-        ,
-          '<%= paths.js %>/vendor.min.js': [
-            '<%= paths.js %>/vendor.js'
-            '<%= paths.vendor %>/jquery/jquery.js'
-            '<%= paths.vendor %>/hashgrid/hashgrid.js'
-          ]
-        ,
-          '<%= paths.js %>/application.min.js': [
-            '<%= paths.js %>/application.js'
-          ]
-        ,
-          '<%= paths.js %>/livereload.min.js': [
-            '<%= paths.vendor %>/livereload/dist/livereload.js'
-          ]
+          expand: true
+          flatten: true
+          cwd: '<%= paths.js %>'
+          src: ['**/*.js', '!*.min.js']
+          dest: '<%= paths.js %>'
+          ext: '.min.js'
         ]
 
     # Clean directories
@@ -135,14 +107,26 @@ module.exports = (grunt) ->
         src: '<%= paths.jade %>'
         dest: '<%= paths.dist %>'
 
-    #htmlmin:
-    #  dist:
-    #    options:
-    #      removeComments: true
-    #      collapseWhitespace: true
-    #    files:
-    #      src: '<%= paths.dist %>index.html'
-    #      dest: '<%= paths.dist %>new.html'
+    htmlmin:
+      options:
+        removeComments: false
+        removeCommentsFromCDATA: true
+        collapseWhitespace: true
+        collapseBooleanAttributes: true
+        removeAttributeQuotes: false
+        removeRedundantAttributes: false
+        useShortDoctype: true
+        removeEmptyAttributes: false
+
+      all:
+        files: [
+          expand: true
+          flatten: true
+          cwd: '<%= paths.dist %>'
+          src: ['**/*.html']
+          dest: '<%= paths.dist %>'
+          ext: '.html'
+        ]
 
     # Compile coffee scripts
     coffee:
@@ -150,7 +134,7 @@ module.exports = (grunt) ->
         bare: true
         banner: '<%= meta.banner %>'
 
-      dist:
+      all:
         files: [
           expand: true
           flatten: true
@@ -196,12 +180,14 @@ module.exports = (grunt) ->
     cssmin:
       options:
         banner: '<%= meta.banner %>'
-      minify:
-        expand: true
-        cwd: '<%= paths.css %>'
-        src: ['*.css', '!*.min.css']
-        dest: '<%= paths.css %>'
-        ext: '.min.css'
+      all:
+        files: [
+          expand: true
+          cwd: '<%= paths.css %>'
+          src: ['**/*.css', '!*.min.css']
+          dest: '<%= paths.css %>'
+          ext: '.min.css'
+        ]
 
     # Files to watch
     watch:
@@ -331,6 +317,9 @@ module.exports = (grunt) ->
       usebanner:
         options:
           message: 'Banners added'
+      htmlmin:
+        options:
+          message: 'HTML minified'
       dist:
         options:
           message: 'Distribution complete'
@@ -343,7 +332,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-connect'
   grunt.loadNpmTasks 'grunt-contrib-csslint'
   grunt.loadNpmTasks 'grunt-contrib-cssmin'
-  #grunt.loadNpmTasks 'grunt-contrib-htmlmin'
+  grunt.loadNpmTasks 'grunt-contrib-htmlmin'
   grunt.loadNpmTasks 'grunt-contrib-jshint'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
@@ -376,16 +365,18 @@ module.exports = (grunt) ->
     grunt.task.run 'notify:compass'
     grunt.task.run 'coffee'
     grunt.task.run 'notify:coffee'
-    #grunt.task.run 'concat'
-    #grunt.task.run 'notify:concat'
+    grunt.task.run 'concat'
+    grunt.task.run 'notify:concat'
     grunt.task.run 'modernizr'
     grunt.task.run 'notify:modernizr'
     #grunt.task.run 'usebanner:dist'
     #grunt.task.run 'notify:usebanner'
     grunt.task.run 'jade:dist'
     grunt.task.run 'notify:jade'
+    grunt.task.run 'htmlmin'
+    grunt.task.run 'notify:htmlmin'
     #grunt.task.run 'smushit:dist'
     #grunt.task.run 'notify:smushit'
-    grunt.task.run 'uglify:dist'
+    grunt.task.run 'uglify'
     grunt.task.run 'notify:uglify'
     grunt.task.run 'notify:dist'

@@ -104,8 +104,9 @@ block main
           abbr ASCII
           | :
 
-        div(class='example')
-          pre
+        //-
+          div(class='example')
+            pre
 
         h3 Blockquotes
         p The 
@@ -113,7 +114,8 @@ block main
           |  element represents a section that is being quoted from another source.
 
         div(class='example')
-          blockquote(cite='http://hansard.millbanksystems.com/commons/1947/nov/11/parliament-bill#column_206')
+          //- blockquote(cite='http://hansard.millbanksystems.com/commons/1947/nov/11/parliament-bill#column_206')
+          blockquote
             p Many forms of Government have been tried, and will be tried in this world of sin and woe. No one pretends that democracy is perfect or all-wise. Indeed, it has been said that democracy is the worst form of government except all those other forms that have been tried from time to time.
             p Winston Churchill, in 
               cite
@@ -131,9 +133,9 @@ block main
         p The 
           code ol
           |  element denotes an ordered list, and various numbering schemes are available through the CSS (including 1,2,3… a,b,c… i,ii,iii… and so on). Each item requires a surrounding
-          code <li>
+          code li
           |  and
-          code </li>
+          code li
           |  tag, to denote individual items within the list (as you may have guessed,
           code li
           |  stands for list item).
@@ -151,9 +153,9 @@ block main
         p The
           code ul
           |  element denotes an unordered list (ie. a list of loose items that don’t require numbering, or a bulleted list). Again, each item requires a surrounding
-          code <li>
+          code li
           |  and
-          code </li>
+          code li
           |  tag, to denote individual items. Here is an example list showing the constituent parts of the British Isles:
 
         div(class='example')
@@ -173,8 +175,10 @@ block main
         p Sometimes we may want each list item to contain block elements, typically a paragraph or two.
         div(class='example')
           ul
-            li: p The British Isles is an archipelago consisting of the two large islands of Great Britain and Ireland, and many smaller surrounding islands.
-            li: p Great Britain is the largest island of the archipelago. Ireland is the second largest island of the archipelago and lies directly to the west of Great Britain.
+            li
+              p The British Isles is an archipelago consisting of the two large islands of Great Britain and Ireland, and many smaller surrounding islands.
+            li
+              p Great Britain is the largest island of the archipelago. Ireland is the second largest island of the archipelago and lies directly to the west of Great Britain.
             li
               p The full list of islands in the British Isles includes over 1,000 islands, of which 51 have an area larger than 20 km 
                 sup 2
@@ -219,32 +223,32 @@ block main
               |  without a parent 
               code dt
               | .
+        //-
+          h3 Figures
+          p Figures are usually used to refer to images:
+          div(class='example')
+            figure
+              img(src='http://lorempixum.com/680/400/abstract/?r', alt='Example image')
+              figcaption
+                h4 Figure Heading
+                p This is a placeholder image, with supporting caption.
 
-        h3 Figures
-        p Figures are usually used to refer to images:
-        div(class='example')
-          figure
-            img(src='http://lorempixum.com/680/400/abstract/?r', alt='Example image')
-            figcaption
-              h4 Figure Heading
-              p This is a placeholder image, with supporting caption.
+          p Here, a part of a poem is marked up using figure:
+          div(class='example')
+            figure
+              p ‘Twas brillig, and the slithy toves
+                br
+                | Did gyre and gimble in the wabe;
+                br
+                | All mimsy were the borogoves,
+                br
+                | And the mome raths outgrabe.
+              figcaption
+                p
+                  cite Jabberwocky
+                  | (first verse). Lewis Carroll, 1832-98
 
-        p Here, a part of a poem is marked up using figure:
-        div(class='example')
-          figure
-            p ‘Twas brillig, and the slithy toves
-              br
-              | Did gyre and gimble in the wabe;
-              br
-              | All mimsy were the borogoves,
-              br
-              | And the mome raths outgrabe.
-            figcaption
-              p
-                cite Jabberwocky
-                | (first verse). Lewis Carroll, 1832-98
-
-        h2(id='text') Text-level Semantics
+        h2(id='text-level') Text-level Semantics
         p There are a number of inline 
           abbr(title='HyperText Markup Language') HTML
           |  elements you may use anywhere within other elements.
@@ -356,11 +360,10 @@ block main
           |  element is used to represent either a time on a 24 hour clock, or a precise date in the proleptic Gregorian calendar, optionally with a time and a time-zone offset. Example:
         div(class='example')
           p Queen Elizabeth II was proclaimed sovereign of each of the Commonwealth realms on
-            time(datetime='1952-02-6') 6
+            time(datetime='1952-02-06') 6
             | and
-            time(datetime='1952-02-7') 7 February 1952
+            time(datetime='1952-02-07') 7 February 1952
             | , after the death of her father, King George VI.
-
         //-
           h3 Code
           p The 
@@ -375,7 +378,7 @@ block main
           p Used in conjunction with the 
             code
               pre
-            |  element:
+              |  element:
           div(class='example'. hidden)
             pre .
 
@@ -389,39 +392,39 @@ block main
               li
                 code ?>
 
-          h3 Variable
-          p The 
-            code var
-            |  element is used to denote a variable in a mathematical expression or programming context, but can also be used to indicate a placeholder where the contents should be replaced with your own value. Example:
-          div(class='example')
-            p If there are 
-              var n
-              |  pipes leading to the ice cream factory then I expect at 
-              em least
-              var n
-              |  flavours of ice cream to be available for purchase!
+        h3 Variable
+        p The 
+          code var
+          |  element is used to denote a variable in a mathematical expression or programming context, but can also be used to indicate a placeholder where the contents should be replaced with your own value. Example:
+        div(class='example')
+          p If there are 
+            var n
+            |  pipes leading to the ice cream factory then I expect at 
+            em least
+            var n
+            |  flavours of ice cream to be available for purchase!
 
-          h3 Sample output
-          p The 
-            code samp
-            |  element is used to represent (sample) output from a program or computing system. Useful for technology-oriented sites, not so useful otherwise. Example:
-          div(class='example')
-            p The computer said 
-              samp Too much cheese in tray two
-              |  but I didn’t know what that meant.
+        h3 Sample output
+        p The 
+          code samp
+          |  element is used to represent (sample) output from a program or computing system. Useful for technology-oriented sites, not so useful otherwise. Example:
+        div(class='example')
+          p The computer said 
+            samp Too much cheese in tray two
+            |  but I didn’t know what that meant.
 
-          h3 Keyboard entry
-          p The 
-            code kbd
-            |  element is used to denote user input (typically via a keyboard, although it may also be used to represent other input methods, such as voice commands). Example:
-          div(class='example')
-            p To take a screenshot on your Mac, press 
-              kbd ⌘ Cmd
-              |  +
-              kbd ⇧ Shift
-              |  +
-              kbd 3
-              | .
+        h3 Keyboard entry
+        p The 
+          code kbd
+          |  element is used to denote user input (typically via a keyboard, although it may also be used to represent other input methods, such as voice commands). Example:
+        div(class='example')
+          p To take a screenshot on your Mac, press 
+            kbd ⌘ Cmd
+            |  +
+            kbd ⇧ Shift
+            |  +
+            kbd 3
+            | .
 
         h3 Superscript and subscript text
         p The 
@@ -507,9 +510,9 @@ block main
         div(class='example')
           p
             | She bought 
-            del(datetime='2005-05-30T13:00:00') two
+            del(datetime='2009-11-13T20:00+00:00') two
             | 
-            ins(datetime='2005-05-30T13:00:00') five
+            ins(datetime='2009-11-13T20:00Z') five
             |  pairs of shoes.
 
         h2(id='tables') Tabular data
@@ -603,14 +606,14 @@ block main
             fieldset
               legend Legend
               div
-                label(for='text')
+                label(for='text1')
                   | Text Input
                   abbr(title='Required') *
-                input(class='text', type='text')
+                input(class='text', type='text', id='text1')
                 em Note about this field
               div
                 label(for='password') Password
-                input(clas='text', type='password')
+                input(class='text', type='password', id='password')
                 em Note about this field
               div
                 label(for='url') Web Address
@@ -623,7 +626,7 @@ block main
               div
                 label(for='search') Search
                 input#search.text(type='search')
-                input#password.search.button(type='submit')
+                input.search.button(type='submit')
                 em Note about this field
               div
                 label(for='textarea') Textarea
@@ -648,15 +651,15 @@ block main
                   abbr(title='Required') *
                 ul
                   li
-                    label(for='checkbox1')
+                    label
                       input#checkbox1(name='checkbox', type='checkbox', checked='checked')
                       | Choice A
                   li
-                    label(for='checkbox2')
+                    label
                       input#checkbox2(name='checkbox', type='checkbox')
                       | Choice B
                   li
-                    label(for='checkbox3')
+                    label
                       input#checkbox3(name='checkbox', type='checkbox')
                       | Choice C
 
@@ -664,12 +667,12 @@ block main
                 legend Radio
                 ul
                   li
-                    label(for='radio1')
-                      input#radio1.radio(name='radio', type='radio', checked='checked')
+                    label
+                      input.radio(name='radio', type='radio', checked='checked')
                       | Option 1
                   li
-                    label(for='radio2')
-                      input#radio2.radio(name='radio', type='radio')
+                    label
+                      input.radio(name='radio', type='radio')
                       | Option 2
 
               div(class='submit')
@@ -677,7 +680,7 @@ block main
                 input.button(type='button', value='Preview')
                 a(href='#') Cancel
 
-        h2(id='forms') Patterns
+        h2(id='patterns') Patterns
         p Design and mark-up patterns unique to this site.
 
         h3 Pagination
@@ -700,7 +703,8 @@ block main
 append footer
 
 prepend scripts
-  script(src='#{paths.js}/livereload.min.js')
+  script
+    document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':3001/#{paths.js}/livereload.min.js?snipver=1"></' + 'script>')
   script
     Modernizr.load([{ load: ['#{paths.js}/vendor.min.js', '#{paths.js}/application.min.js'] }]);
     var _gaq = _gaq || [];

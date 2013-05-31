@@ -16,7 +16,6 @@ $grid-padding: $gutter-width; // 20px
 %container {
   $container-style: fluid;
   @include container;
-  background: yellow;
   //@include susy-grid-background;
   //@include grid-background($total-columns, $column-width, $gutter-width, $base-line-height, $grid-padding, $force-fluid: true);
   overflow: hidden;
