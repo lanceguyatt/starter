@@ -110,32 +110,33 @@ module.exports = (grunt) ->
         compileDebug: false
         extension: null
         runtime: false
-        locals:
-          site:
-            name: 'Starter'
-            title: 'Starter'
-            description: 'A Sass/Compass/Jade/Coffeescript powered, Grunt and Bower based HTML5 starter kit'
-            keywords: 'html5,sass,jade,boilerplate'
-            email: '<%= jade.options.locals.author.email %>'
-            url: '<%= jade.options.locals.author.url %>'
-            image: '<%= jade.options.locals.site.url %>/logo.png'
-            lang: 'en'
-            locale: 'en_GB'
-            dir: 'ltr'
-            type: 'website'
-            copyrightYear:
-              default: '<%= grunt.template.today("yyyy") %>'
-              roman: 'MMXIII'
+        locals: grunt.file.readJSON 'src/routes/index.json'
+        #locals:
+        #  site:
+        #    name: 'Starter'
+        #    title: 'Starter'
+        #    description: 'A Sass/Compass/Jade/Coffeescript powered, Grunt and Bower based HTML5 starter kit'
+        #    keywords: 'html5,sass,jade,boilerplate'
+        #    email: '<%= jade.options.locals.author.email %>'
+        #    url: '<%= jade.options.locals.author.url %>'
+        #    image: '<%= jade.options.locals.site.url %>/logo.png'
+        #    lang: 'en'
+        #    locale: 'en_GB'
+        #    dir: 'ltr'
+        #    type: 'website'
+        #    copyrightYear:
+        #      default: '<%= grunt.template.today("yyyy") %>'
+        #      roman: 'MMXIII'
 
-          author:
-            name: 'Lance Guyatt'
-            email: 'lance@lanceguyatt.com'
-            url: 'http://lanceguyatt.com'
+        #  author:
+        #    name: 'Lance Guyatt'
+        #    email: 'lance@lanceguyatt.com'
+        #    url: 'http://lanceguyatt.com'
 
-          paths:
-            images: 'images/'
-            css: 'stylesheets/css'
-            js: 'javascripts/js'
+        #  paths:
+        #    images: 'images/'
+        #    css: 'stylesheets/css'
+        #    js: 'javascripts/js'
 
       dev:
         src: '<%= paths.jade %>'
@@ -180,7 +181,6 @@ module.exports = (grunt) ->
         importPath: '<%= paths.vendor %>'
         require: [
          'modular-scale'
-         'stitch'
          'susy'
         ]
 

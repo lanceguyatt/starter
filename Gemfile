@@ -6,5 +6,4 @@ source 'https://rubygems.org'
 group :assets do
   gem 'modular-scale'
   gem 'susy'
-  gem 'stitch'
 end

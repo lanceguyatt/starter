@@ -14,9 +14,6 @@ GEM
     sass (3.2.9)
     sassy-math (1.5)
       compass (~> 0.11)
-    stitch (0.1.6)
-      compass
-      sass (~> 3.2.0.alpha)
     susy (1.0.8)
       compass (>= 0.12.2)
       sass (>= 3.2.0)
@@ -26,5 +23,4 @@ PLATFORMS
 
 DEPENDENCIES
   modular-scale
-  stitch
   susy

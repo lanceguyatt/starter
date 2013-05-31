@@ -13,23 +13,28 @@ $column-width: 4em; // 64px The width of a single Column in your Grid. <length> 
 $gutter-width: 1.25em; // 20px The space between Columns. <length> Units must match $column-width.
 $grid-padding: $gutter-width; // 20px
 
+#grid {
+  //@include grid-background($total-columns, $column-width, $gutter-width, $base-line-height, $grid-padding, $force-fluid: true);
+}
+
 %container {
-  //$container-style: fluid;
+  $container-style: fluid;
   @include container;
-  background: orange;
+  //background: orange;
   overflow: hidden;
 }
 
-@include hashgrid($total-columns, $column-width, $gutter-width, $grid-padding);
+//@include hashgrid(0, 0, 0, 0);
 
 .container {
   @extend %container;
 }
 
-@include at-breakpoint(8) {
+$total-columns: 8; // 692px
+@include at-breakpoint($total-columns) {
 
   %container {
-    //$container-style: magic;
+    $container-style: magic;
     @include set-container-width;
   }
 
@@ -37,11 +42,9 @@ $grid-padding: $gutter-width; // 20px
 }
 
 $total-columns: 12; // 1028px
-
 @include at-breakpoint($total-columns) {
 
   %container {
-    //$container-style: magic;
     @include set-container-width;
   }
 

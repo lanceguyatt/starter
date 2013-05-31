@@ -1,23 +1,14 @@
 // Typography
 
-#{elements-of-type(block)} {
-
-}
-
-/* @group =type */
 p {
   @include margin-trailer(3);
 }
 
-$headings: 'h1, h2, h3, h4, h5, h6';
-$type: 'h1, h2, h3, h4, h5, h6, p, ul, ol, table, form';
-
 #{$type} {
   margin-top: 0;
-  background: blue;
 }
 
-// HEADINGS
+// Headings
 
 h1 {
   $font-size: 56px;
@@ -28,40 +19,38 @@ h1 {
 h2 {
   $font-size: 40px;
   @include adjust-font-size-to($font-size, 5);
-  @include margin-trailer(3, $font-size);
+  @include margin-trailer(2, $font-size);
 }
 
 h3 {
   $font-size: 32px;
   @include adjust-font-size-to($font-size, 4);
-  @include margin-trailer(3, $font-size);
+  @include margin-trailer(2, $font-size);
 }
 
 h4 {
   $font-size: 16px;
   @include adjust-font-size-to($font-size, 3);
-  @include margin-trailer(3, $font-size);
+  @include margin-trailer(1, $font-size);
 }
 
 h5 {
   $font-size: 14px;
-  @include adjust-font-size-to($font-size, 2);
-  @include margin-trailer(3, $font-size);
+  @include adjust-font-size-to($font-size, 3);
+  @include margin-trailer(1, $font-size);
 }
 
 h6 {
   $font-size: 12px;
-  @include adjust-font-size-to($font-size, 2);
-  @include margin-trailer(3, $font-size);
+  @include adjust-font-size-to($font-size, 3);
+  @include margin-trailer(1, $font-size);
 }
 
 #{$headings} {
-  @extend %improve-text-rendering;
-  //color: $headings-color;
-  color: red;
+  color: $headings-color;
 }
 
-// LISTS
+// Lists
 
 ul, ol {
   margin: 0 0 rhythm(3) rhythm(3);
@@ -93,10 +82,10 @@ ol.unstyled {
 // MISC
 
 hr {
-  border: 0;
-  @include margin-trailer(3);
-  @include trailing-border(4px);
-  border-color: $border-color;
+  border: none;
+  @include leading-border(2px, 3);
+  //@include margin-trailer(3);
+  border-bottom-color: $border-color;
   clear: both;
 }
 
@@ -133,5 +122,3 @@ cite {}
 img {
   max-width: 100%;
 }
-
-/* @end */

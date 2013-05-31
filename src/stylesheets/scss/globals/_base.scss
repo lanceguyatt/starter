@@ -66,6 +66,8 @@ $headings-font-family:  $helvetica;
 $headings-font-weight:  normal !default; // instead of browser default, bold
 $headings-color:        inherit !default; // empty to use BS default, $textColor
 
+$font-smoothing:        true;
+
 // Grays
 
 $black:                 #000;
@@ -102,8 +104,12 @@ $text-color:            $black !default;
 $link-color:            #08c !default;
 $link-color-hover:      darken($link-color, 15%) !default;
 
-$link: '&:link, &:visited';
-$hover: '&:focus, &:hover, &:active';
+// Variables
+
+$link:                  '&:link, &:visited';
+$hover:                 '&:focus, &:hover, &:active';
+$headings:              'h1, h2, h3, h4, h5, h6';
+$type:                  'h1, h2, h3, h4, h5, h6, p, ul, ol, table, form';
 
 // Media Queries
 
@@ -137,17 +143,11 @@ $hover: '&:focus, &:hover, &:active';
 //$gutter-width: 1.25em; // 20px The space between Columns. <length> Units must match $column-width.
 //$grid-padding: 1.125; // 24px
 $border-box-sizing: false;
-$breakpoint-media-output: false; // Turn off media-query output for IE-only stylesheets.
+$breakpoint-media-output: true; // Turn off media-query output for IE-only stylesheets.
 $breakpoint-ie-output: false; // Turn off media-query fallback output for non-IE stylesheets.
 $breakpoint-raw-output: false; // Pass through raw output without media-queries or fallback classes for IE-only stylesheets.
 
 @import "susy";
-
-// Stitch CSS
-
-// https://github.com/anthonyshort/stitch-css
-
-@import "stitch";
 
 // Modular Scale
 
@@ -162,15 +162,20 @@ $border-color: $gray;
 $inline-block-alignment: middle;
 
 @import 'compass/css3'; // Use one CSS3 mixin instead of multiple vendor prefixes.
-@import 'compass/css3/images'; //Provides mixins that work across many modern browsers with the latest CSS3 image rendering primitives.
-@import 'compass/css3/user-interface';
+//@import 'compass/css3/images'; //Provides mixins that work across many modern browsers with the latest CSS3 image rendering primitives.
+
+//@import 'compass/css3/user-interface';
+
 @import 'compass/utilities/general/clearfix';
-@import 'compass/typography/text/ellipsis';
-@import 'compass/typography/text/force-wrap';
-@import 'compass/typography/text/replacement';
+
+@import 'compass/typography';
+//@import 'compass/typography/text/force-wrap';
+//@import 'compass/typography/text/replacement';
 
 // Custom helpers
 
 //@import 'fonts';
 @import '../helpers/mixins';
 @import '../helpers/placeholders';
+
+@include establish-baseline;

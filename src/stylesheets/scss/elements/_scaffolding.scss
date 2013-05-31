@@ -1,6 +1,9 @@
 /* @group =scaffolding */
 html {
-  @extend %improve-text-rendering;
+  @if $font-smoothing == true {
+    //text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
   background-color: $body-background;
   color: $text-color;
 }
