@@ -13,15 +13,14 @@
   Compass: compass-style.org
   Grunt: http://gruntjs.com
   Hashgrid: http://hashgrid.com
+  Humans Txt: http://humanstxt.org
   HTML5 Boilerplate: http://html5boilerplate.com
   Jade: http://jade-lang.com
   jQuery: http://jquery.com
   Modernizr: http://modernizr.com
   Modular Scale: https://github.com/Team-Sass/modular-scale
   Sass: http://sass-lang.com
-  Stitch CSS: https://github.com/anthonyshort/stitch-css
-  Susy: susy.oddbird.net/guides/reference
-  Humans Txt: http://humanstxt.org
+  Susy: http://susy.oddbird.net/guides/reference
 
 /* SITE */
 

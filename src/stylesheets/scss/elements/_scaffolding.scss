@@ -1,7 +1,7 @@
-/* @group =scaffolding */
+// Scaffolding
+
 html {
   @if $font-smoothing == true {
-    //text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
   background-color: $body-background;
@@ -23,4 +23,3 @@ a {
     color: $link-color-hover;
   }
 }
-/* @end */

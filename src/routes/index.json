@@ -6,7 +6,7 @@
     "keywords": "html5,sass,jade,boilerplate",
     "email": "<%= jade.options.locals.author.email %>",
     "url": "https://github.com/lanceguyatt/starter",
-    "image": "<%= jade.options.locals.site.url %>/dist/logo.png",
+    "image": "<%= jade.options.locals.site.url %>/tree/master/dist/logo.png",
     "lang": "en",
     "locale": "en_GB",
     "dir": "ltr",

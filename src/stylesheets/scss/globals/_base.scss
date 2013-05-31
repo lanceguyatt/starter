@@ -133,18 +133,64 @@ $type:                  'h1, h2, h3, h4, h5, h6, p, ul, ol, table, form';
 // $cursor-pointer-value: "pointer";
 // $cursor-help-value: "help";
 
-// Susy
+// Susy settings
 
 // Responsive grids for Compass.
 // susy.oddbird.net/guides/reference/
 
-//$total-columns: 4; // The number of Columns in your default Grid Layout <number> Unitless number.
-//$column-width: 4em; // 64px The width of a single Column in your Grid. <length> Length in any unit of measurement (em, px, %, etc).
-//$gutter-width: 1.25em; // 20px The space between Columns. <length> Units must match $column-width.
-//$grid-padding: 1.125; // 24px
-$border-box-sizing: false;
+// The total number of columns in the grid
+$total-columns: 12              !default;
+
+// The width of columns and gutters.
+// These must all be set with the comparable units.
+$column-width: 4em             !default;
+$gutter-width: 1em             !default;
+
+// Padding on the left and right of a Grid Container.
+$grid-padding: $gutter-width   !default;
+
+// ---------------------------------------------------------------------------
+// Advanced Settings
+
+// From Direction:
+// Controls for right-to-left or bi-directional sites.
+$from-direction:               left !default;
+
+// Omega Float Direction:
+// The direction that +omega elements are floated by deafult.
+$omega-float:                   opposite-position($from-direction) !default;
+
+// Container Width:
+// Override the total width of your grid, using any length (50em, 75%, etc.)
+$container-width:               false !default;
+
+// Container Style:
+// 'magic'  - Static (fixed or elastic) when there's enough space,
+//            fluid when there isn't. This is the SUSY MAGIC SAUCE(TM).
+// 'static' - Forces the grid container to remain static at all times.
+// 'fluid'  - Forces the grid to remain fluid at all times.
+//            (this will overrule any static $container-width settings)
+$container-style: magic          !default;
+
+// Border-Box Sizing
+// Adjust the grid math appropriately for box-sizing: border-box;
+// Warning: This does not actually apply the new box model!
+// In most cases you can ignore this setting,
+// and simply apply the border-box-sizing mixin.
+$border-box-sizing: false        !default;
+
+
+// IE Settings
+
+// When you are using a seperate IE stylesheet,
+// you can use these settings to control the output of at-breakpoint.
+// By default, at-breakpoint will output media-queries as well as
+// any defined ie-fallback classes.
+
 $breakpoint-media-output: true; // Turn off media-query output for IE-only stylesheets.
-$breakpoint-ie-output: false; // Turn off media-query fallback output for non-IE stylesheets.
+$breakpoint-ie-output: true; // Turn off media-query fallback output for non-IE stylesheets.
+
+// Danger Zone! Only set as 'true' in IE-specific style sheets.
 $breakpoint-raw-output: false; // Pass through raw output without media-queries or fallback classes for IE-only stylesheets.
 
 @import "susy";
