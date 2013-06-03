@@ -10,8 +10,9 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
       title #{site.name} | #{site.title}
 
       //- default meta
-      meta(name='description', content='#{site.description}')
-      meta(name='keywords', content='#{site.keywords}')
+      //-
+        meta(name='description', content='#{site.description}')
+        meta(name='keywords', content='#{site.keywords}')
 
       //- microdata meta
       meta(itemprop='name', content='#{site.name}')
@@ -20,13 +21,14 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
       meta(itemprop='image', content='#{site.image}')
 
       //- opengraph meta
-      meta(property='og:site_name', content='#{site.name}')
-      meta(property='og:locale', content='#{site.locale}')
-      meta(property='og:type', content='#{site.type}')
-      meta(property='og:title', content='#{site.title}')
-      meta(property='og:description', content='#{site.description}')
-      meta(property='og:url', content='#{site.url}')
-      meta(property='og:image', content='#{site.image}')
+      //-
+        meta(property='og:site_name', content='#{site.name}')
+        meta(property='og:locale', content='#{site.locale}')
+        meta(property='og:type', content='#{site.type}')
+        meta(property='og:title', content='#{site.title}')
+        meta(property='og:description', content='#{site.description}')
+        meta(property='og:url', content='#{site.url}')
+        meta(property='og:image', content='#{site.image}')
 
       //- mobile meta
       meta(name='apple-mobile-web-app-capable', content='yes')
@@ -34,11 +36,12 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
       meta(name='viewport', content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1')
 
       //- iOS meta
-      meta(name='apple-mobile-web-app-title', content='#{site.name}')
+      //-
+        meta(name='apple-mobile-web-app-title', content='#{site.name}')
 
       //- MS meta
-      meta(name='msapplication-window', content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1')
       //-
+        meta(name='msapplication-window', content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1')
         meta(name='msapplication-TileColor', content='#cccccc')
         meta(name='msapplication-TileImage', content='#{site.url}/apple-touch-icon-144x144-precomposed.png')
 
@@ -47,13 +50,16 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
 
       //- stylesheets
       link(rel='stylesheet', href='#{paths.css}/style.css', media='all')
+
       //-
         link(rel='stylesheet', href='#{paths.css}/layout.css', media='all and (min-width: 36.25em)')
+
       //-
         // if (lt IE 9) & (!IEMobile)
           link(rel='stylesheet', href='#{paths.css}/tablet.css', media='all')
 
       link(rel='shortcut icon', href='favicon.ico')
+
       //-
         link(rel='apple-touch-icon-precomposed', href='#{site.url}/apple-touch-icon-precomposed.png')
 

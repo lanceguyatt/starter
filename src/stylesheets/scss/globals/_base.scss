@@ -224,7 +224,4 @@ $inline-block-alignment: middle;
 @import '../helpers/mixins';
 @import '../helpers/placeholders';
 
-$environment: false;
-
-
 @include establish-baseline;

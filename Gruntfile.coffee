@@ -82,13 +82,13 @@ module.exports = (grunt) ->
         dest: '<%= paths.js %>'
         ext: '.min.js'
 
-    # Clean directories
+    # Clean files and folders
     clean:
       tmp: '<%= paths.tmp %>'
       javascripts: '<%= paths.javascripts %>'
       stylesheets: '<%= paths.stylesheets %>'
 
-    # Compile jade templates
+    # Compile your Jade templates
     jade:
       options:
         basePath: null
@@ -132,21 +132,23 @@ module.exports = (grunt) ->
           ext: '.html'
         ]
 
-    # Compile coffee scripts
+    # Compile CoffeeScript files into JavaScript
     coffee:
       options:
         bare: true
         banner: '<%= meta.banner %>'
 
-      files:
-        expand: true
-        flatten: true
-        cwd: '<%= paths.coffee %>'
-        src: ['**/*.coffee']
-        dest: '<%= paths.js %>'
-        ext: '.js'
+      all:
+        files: [
+          expand: true
+          flatten: true
+          cwd: '<%= paths.coffee %>'
+          src: ['**/*.coffee']
+          dest: '<%= paths.js %>'
+          ext: '.js'
+        ]
 
-    # Compile Compass to CSS
+    # Compile Sass to CSS using Compass
     compass:
       options:
         basePath: '<%= paths.base %>'
@@ -155,7 +157,7 @@ module.exports = (grunt) ->
         javascriptsDir: '<%= paths.js %>'
         imagesDir: '<%= paths.images %>'
         fontsDir: '<%= paths.fonts %>'
-        #relativeAssets: true
+        relativeAssets: true
         #bundleExec: true
         #importPath: '<%= paths.vendor %>'
         require: [
@@ -178,7 +180,7 @@ module.exports = (grunt) ->
           noLineComments: true
           outputStyle: 'compressed'
 
-    # Compress CSS files.
+    # Minify CSS files
     cssmin:
       options:
         banner: '<%= meta.banner %>'
@@ -190,7 +192,7 @@ module.exports = (grunt) ->
         dest: '<%= paths.css %>'
         ext: '.min.css'
 
-    # Run predefined tasks whenever watched file patterns are added, changed or deleted.
+    # Run predefined tasks whenever watched files change
     watch:
       options:
         nospawn: true
@@ -211,7 +213,7 @@ module.exports = (grunt) ->
         options:
           livereload: true
 
-    # Compile modernizr file
+    # Build out a lean, mean Modernizr machine
     modernizr:
       devFile: '<%= paths.vendor %>/modernizr/modernizr.js'
       outputFile: '<%= paths.js %>/modernizr.min.js'
@@ -221,21 +223,21 @@ module.exports = (grunt) ->
         load: true
         mq: false
         cssclasses: true
-      extensibility:
-        addtest: false
-        prefix: false
-        teststyles: false
-        testprops: false
-        testallprops: false
-        hasevents: false
-        prefixes: false
-        domprefixes: false
-      uglify: true
-      parseFiles: false
-      matchCommunityTests: false
-      customTests: []
+        extensibility:
+          addtest: false
+          prefix: false
+          teststyles: false
+          testprops: false
+          testallprops: false
+          hasevents: false
+          prefixes: false
+          domprefixes: false
+        uglify: true
+        parseFiles: false
+        matchCommunityTests: false
+        customTests: []
 
-    # Validate files with JSHint.
+    # Validate files with JSHint
     jshint:
       options:
         jshintrc: '<%= paths.base %>.jshintrc'
@@ -243,13 +245,13 @@ module.exports = (grunt) ->
         '<%= paths.js %>/application.js'
       ]
 
-    # Lint HTML files
+    # Validate html files
     htmllint:
       dev: [
         '<%= paths.dist %>/**/*.html'
       ]
 
-    # Lint CSS files
+    # Lint CSS files with csslint
     csslint:
       options:
         csslintrc: '<%= paths.base %>.csslintrc'
@@ -279,7 +281,6 @@ module.exports = (grunt) ->
           hostname: '*'
           port: 3002
           base: '<%= paths.tests %>'
-
 
     # Task complete messages
     notify:
@@ -340,7 +341,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-asciify'
 
   # Run in development mode
-  grunt.registerTask 'default', ['Development mode'], ->
+  grunt.registerTask 'default', 'Development mode', ->
     grunt.task.run 'asciify'
     grunt.task.run 'clean'
     grunt.task.run 'notify:clean'
@@ -360,8 +361,16 @@ module.exports = (grunt) ->
     grunt.task.run 'watch'
     grunt.task.run 'notify:dev'
 
+  # Install bower
+  grunt.registerTask 'bower-install', 'Installs Bower dependencies.', ->
+    bower = require('bower')
+    done = @async()
+    bower.commands.install().on('data', (data) ->
+      grunt.log.write data
+    ).on 'end', done
+
   # Run tests
-  grunt.registerTask 'test', ['Testing mode'], ->
+  grunt.registerTask 'test', 'Testing mode', ->
     grunt.task.run 'asciify'
     grunt.task.run 'jade:dev'
     grunt.task.run 'htmllint:dev'
@@ -370,7 +379,7 @@ module.exports = (grunt) ->
     grunt.task.run 'jshint:dist'
 
   # Compile for distribution
-  grunt.registerTask 'dist', ['Distribution build'], ->
+  grunt.registerTask 'dist', 'Distribution build', ->
     grunt.task.run 'asciify'
     grunt.task.run 'clean'
     grunt.task.run 'notify:clean'
