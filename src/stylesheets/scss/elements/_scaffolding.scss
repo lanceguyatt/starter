@@ -2,7 +2,7 @@
 
 html {
   @if $font-smoothing == true {
-    -webkit-font-smoothing: antialiased;
+    @include font-smoothing(antialiased);
   }
   background-color: $body-background;
   color: $text-color;

@@ -2,11 +2,12 @@
 
 @import 'globals/_base';
 @import 'helpers/_normalize';
-//@import 'helpers/_display';
-@import 'helpers/_hashgrid';
+// @import 'helpers/_display';
+// @import 'helpers/_hashgrid';
 @import 'elements/_scaffolding';
 @import 'elements/_typography';
 @import 'modules/_misc';
+//@import 'modules/_icon';
 
 $total-columns: 4; // The number of Columns in your default Grid Layout <number> Unitless number.
 $column-width: 4rem; // 64px The width of a single Column in your Grid. <length> Length in any unit of measurement (em, px, %, etc).
@@ -21,11 +22,30 @@ $grid-padding: $gutter-width; // 20px
   overflow: hidden;
 }
 
-.container {
+$main-elements: '.header-inner, .main-inner, .footer-inner';
+
+#{$main-elements} {
   @extend %container;
 }
 
-@include hashgrid($total-columns, $column-width, $gutter-width, $grid-padding);
+//   @include hashgrid($total-columns, $column-width, $gutter-width, $grid-padding);
+
+.header {
+  @include padding-leader(1);
+  @include margin-trailer(4);
+}
+
+.main {
+  @include margin-trailer(2);
+}
+
+.footer {
+  @include padding-leader(2);
+  background-color: #333;
+  p {
+    @include margin-trailer(2);
+  }
+}
 
 $total-columns: 8; // 692px
 
@@ -38,7 +58,7 @@ $total-columns: 8; // 692px
     //@include grid-background($total-columns, $column-width, $gutter-width, $base-line-height, $grid-padding, $force-fluid: true);
   }
 
-  @include hashgrid($total-columns, $column-width, $gutter-width, $grid-padding);
+  //   @include hashgrid($total-columns, $column-width, $gutter-width, $grid-padding);
 }
 
 
@@ -53,6 +73,5 @@ $total-columns: 12; // 1028px
     //@include grid-background($total-columns, $column-width, $gutter-width, $base-line-height, $grid-padding, $force-fluid: true);
   }
 
-  @include hashgrid($total-columns, $column-width, $gutter-width, $grid-padding);
-
+  //   @include hashgrid($total-columns, $column-width, $gutter-width, $grid-padding);
 }

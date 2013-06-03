@@ -8,6 +8,13 @@ module.exports = (grunt) ->
     # Read package JSON
     pkg: grunt.file.readJSON 'package.json'
 
+    asciify:
+      banner:
+        text: '<%= pkg.name %>'
+        options:
+          font: 'graffiti'
+          log: true
+
     # Create banner meta
     meta:
       banner: '/* <%= pkg.name %> v<%= pkg.version %> Copyright <%= grunt.template.today("yyyy") %> Designed and built by <%= pkg.author.name %> */'
@@ -18,9 +25,8 @@ module.exports = (grunt) ->
 
       dist: '<%= paths.base %>dist'
       src: '<%= paths.base %>src'
-      tmp: '<%= paths.base %>tmp'
       tests: '<%= paths.base %>tests'
-
+      tmp: '<%= paths.base %>tmp'
 
       routes: '<%= paths.src %>/routes'
       views: '<%= paths.src %>/views'
@@ -39,45 +45,42 @@ module.exports = (grunt) ->
       fonts: '<%= paths.dist %>/fonts'
       images: '<%= paths.dist %>/images'
 
-    vendor: [
-      '<%= paths.js %>/vendor.js',
-      '<%= paths.vendor %>/jquery/jquery.js',
-      '<%= paths.vendor %>/hashgrid/hashgrid.js'
-    ]
-
     # Compress images
     smushit:
       dist:
         src: '<%= paths.images %>'
         dest: '<%= paths.images %>'
 
-    # Concat files
+    # Concatenate files
     concat:
       options:
         stripBanners: true
         banner: '<%= meta.banner %>'
-        separator: ';'
-      vendor:
-        files: '<%= paths.js %>/vendor.js': '<%= vendor %>'
+        #separator: ';'
 
-    # Minify files
+      vendor:
+        files: '<%= paths.js %>/vendor.js': [
+          '<%= paths.js %>/vendor.js',
+          '<%= paths.vendor %>/jquery/jquery.js',
+          '<%= paths.vendor %>/hashgrid/hashgrid.js'
+        ]
+
+    # Minify files with UglifyJS.
     uglify:
       options:
-        #banner: '<%= meta.banner %>'
+        banner: '<%= meta.banner %>'
         beautify: false
         compress: true
         mangle: false
         except: ['jQuery']
 
-      all:
-        files: [
-          expand: true
-          flatten: true
-          cwd: '<%= paths.js %>'
-          src: ['**/*.js', '!*.min.js']
-          dest: '<%= paths.js %>'
-          ext: '.min.js'
-        ]
+      files:
+        expand: true
+        flatten: true
+        cwd: '<%= paths.js %>'
+        src: ['**/*.js', '!*.min.js']
+        dest: '<%= paths.js %>'
+        ext: '.min.js'
 
     # Clean directories
     clean:
@@ -107,6 +110,7 @@ module.exports = (grunt) ->
         src: '<%= paths.jade %>'
         dest: '<%= paths.dist %>'
 
+    # Minify HTML
     htmlmin:
       options:
         removeComments: false
@@ -134,17 +138,15 @@ module.exports = (grunt) ->
         bare: true
         banner: '<%= meta.banner %>'
 
-      all:
-        files: [
-          expand: true
-          flatten: true
-          cwd: '<%= paths.coffee %>'
-          src: ['**/*.coffee']
-          dest: '<%= paths.js %>'
-          ext: '.js'
-        ]
+      files:
+        expand: true
+        flatten: true
+        cwd: '<%= paths.coffee %>'
+        src: ['**/*.coffee']
+        dest: '<%= paths.js %>'
+        ext: '.js'
 
-    # Compile compass files
+    # Compile Compass to CSS
     compass:
       options:
         basePath: '<%= paths.base %>'
@@ -165,7 +167,7 @@ module.exports = (grunt) ->
         options:
           debugInfo: true
           environment: 'development'
-          noLineComments: false
+          noLineComments: true
           outputStyle: 'expanded'
 
       dist:
@@ -176,49 +178,43 @@ module.exports = (grunt) ->
           noLineComments: true
           outputStyle: 'compressed'
 
-    # Minify CSS
+    # Compress CSS files.
     cssmin:
       options:
         banner: '<%= meta.banner %>'
-      all:
-        files: [
-          expand: true
-          cwd: '<%= paths.css %>'
-          src: ['**/*.css', '!*.min.css']
-          dest: '<%= paths.css %>'
-          ext: '.min.css'
-        ]
 
-    # Files to watch
+      files:
+        expand: true
+        cwd: '<%= paths.css %>'
+        src: ['**/*.css', '!*.min.css']
+        dest: '<%= paths.css %>'
+        ext: '.min.css'
+
+    # Run predefined tasks whenever watched file patterns are added, changed or deleted.
     watch:
       options:
-        livereload: 35729
+        nospawn: true
 
       jade:
         files: '<%= paths.views %>{,**/}*.jade'
-        tasks: [
-          'jade:dev'
-          'notify:jade'
-        ]
+        tasks: ['jade:dev', 'notify:jade']
+        options:
+          livereload: true
 
       coffee:
         files: '<%= paths.coffee %>/{,**/}*.coffee'
-        tasks: [
-          'coffee'
-          'notify:coffee'
-        ]
+        tasks: ['coffee', 'notify:coffee']
 
       compass:
         files: '<%= paths.scss %>/{,**/}*.{scss,sass}'
-        tasks: [
-          'compass:dev'
-          'notify:compass'
-        ]
+        tasks: ['compass:dev', 'notify:compass']
+        options:
+          livereload: true
 
     # Compile modernizr file
     modernizr:
       devFile: '<%= paths.vendor %>/modernizr/modernizr.js'
-      outputFile: '<%= paths.js %>/modernizr.js'
+      outputFile: '<%= paths.js %>/modernizr.min.js'
       extra:
         shiv: true
         printshiv: false
@@ -234,12 +230,12 @@ module.exports = (grunt) ->
         hasevents: false
         prefixes: false
         domprefixes: false
-      uglify: false
+      uglify: true
       parseFiles: false
       matchCommunityTests: false
       customTests: []
 
-    # Lint JS file
+    # Validate files with JSHint.
     jshint:
       options:
         jshintrc: '<%= paths.base %>.jshintrc'
@@ -270,7 +266,7 @@ module.exports = (grunt) ->
           import: 2
         src: ['<%= paths.css %>/**/*.css']
 
-    # Start web server
+    # Start a connect web server
     connect:
       default:
         options:
@@ -341,15 +337,32 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-modernizr'
   grunt.loadNpmTasks 'grunt-notify'
   grunt.loadNpmTasks 'grunt-smushit'
+  grunt.loadNpmTasks 'grunt-asciify'
 
   # Run in development mode
   grunt.registerTask 'default', ['Development mode'], ->
-    grunt.task.run 'notify:dev'
+    grunt.task.run 'asciify'
+    grunt.task.run 'clean'
+    grunt.task.run 'notify:clean'
+    grunt.task.run 'compass:dev'
+    grunt.task.run 'notify:compass'
+    grunt.task.run 'coffee'
+    grunt.task.run 'notify:coffee'
+    grunt.task.run 'concat'
+    grunt.task.run 'notify:concat'
+    grunt.task.run 'modernizr'
+    grunt.task.run 'notify:modernizr'
+    grunt.task.run 'jade:dev'
+    grunt.task.run 'notify:jade'
+    #grunt.task.run 'uglify'
+    #grunt.task.run 'notify:uglify'
     grunt.task.run 'connect'
     grunt.task.run 'watch'
+    grunt.task.run 'notify:dev'
 
   # Run tests
   grunt.registerTask 'test', ['Testing mode'], ->
+    grunt.task.run 'asciify'
     grunt.task.run 'jade:dev'
     grunt.task.run 'htmllint:dev'
     grunt.task.run 'compass:dev'
@@ -358,6 +371,7 @@ module.exports = (grunt) ->
 
   # Compile for distribution
   grunt.registerTask 'dist', ['Distribution build'], ->
+    grunt.task.run 'asciify'
     grunt.task.run 'clean'
     grunt.task.run 'notify:clean'
     grunt.task.run 'compass:dist'
@@ -365,8 +379,10 @@ module.exports = (grunt) ->
     grunt.task.run 'notify:compass'
     grunt.task.run 'coffee'
     grunt.task.run 'notify:coffee'
-    grunt.task.run 'concat'
-    grunt.task.run 'notify:concat'
+    #grunt.task.run 'concat'
+    #grunt.task.run 'notify:concat'
+    grunt.task.run 'uglify'
+    grunt.task.run 'notify:uglify'
     grunt.task.run 'modernizr'
     grunt.task.run 'notify:modernizr'
     #grunt.task.run 'usebanner:dist'
@@ -377,6 +393,4 @@ module.exports = (grunt) ->
     grunt.task.run 'notify:htmlmin'
     #grunt.task.run 'smushit:dist'
     #grunt.task.run 'notify:smushit'
-    grunt.task.run 'uglify'
-    grunt.task.run 'notify:uglify'
     grunt.task.run 'notify:dist'
