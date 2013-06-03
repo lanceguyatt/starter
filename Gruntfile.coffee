@@ -17,7 +17,7 @@ module.exports = (grunt) ->
 
     # Create banner meta
     meta:
-      banner: '/* <%= pkg.name %> v<%= pkg.version %> Copyright <%= grunt.template.today("yyyy") %> Designed and built by <%= pkg.author.name %> */'
+      banner: '/* <%= pkg.name %> v<%= pkg.version %> Copyright <%= grunt.template.today("yyyy") %> Designed and built by <%= pkg.author.name %> <%= pkg.author.url %> */'
 
     # Directory paths
     paths:
@@ -167,8 +167,9 @@ module.exports = (grunt) ->
 
       dev:
         options:
-          debugInfo: true
+          debugInfo: false
           environment: 'development'
+          force: true
           noLineComments: true
           outputStyle: 'expanded'
 
