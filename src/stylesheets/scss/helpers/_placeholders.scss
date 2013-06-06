@@ -31,9 +31,6 @@
   @include experimental('font-feature-settings', $value);
 }
 
-
-
-
 //  Sharpen an image if it has become blurry due to upscaling or downscaling
 //  @see https://developer.mozilla.org/en/CSS/image-rendering
 

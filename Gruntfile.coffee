@@ -17,7 +17,7 @@ module.exports = (grunt) ->
 
     # Create banner meta
     meta:
-      banner: '/* <%= pkg.name %> v<%= pkg.version %> Copyright <%= grunt.template.today("yyyy") %> Designed and built by <%= pkg.author.name %> <%= pkg.author.url %> */'
+      banner: '/* <%= pkg.name %> v<%= pkg.version %> Copyright (c) <%= grunt.template.today("yyyy") %> by <%= pkg.author.name %> (<%= pkg.author.url %>) */'
 
     # Directory paths
     paths:
@@ -88,7 +88,7 @@ module.exports = (grunt) ->
       javascripts: '<%= paths.javascripts %>'
       stylesheets: '<%= paths.stylesheets %>'
 
-    # Compile your Jade templates
+    # Compile Jade templates
     jade:
       options:
         basePath: null
@@ -290,7 +290,7 @@ module.exports = (grunt) ->
           message: 'Development running'
       clean:
         options:
-          message: 'Distribution cleaned'
+          message: 'Folders and files cleaned'
       coffee:
         options:
           message: 'Coffee compiled'
@@ -318,6 +318,9 @@ module.exports = (grunt) ->
       htmlmin:
         options:
           message: 'HTML minified'
+      connect:
+        options:
+          message: 'Server started'
       dist:
         options:
           message: 'Distribution complete'
@@ -330,7 +333,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-connect'
   grunt.loadNpmTasks 'grunt-contrib-csslint'
-  grunt.loadNpmTasks 'grunt-contrib-cssmin'
+  #grunt.loadNpmTasks 'grunt-contrib-cssmin'
   grunt.loadNpmTasks 'grunt-contrib-htmlmin'
   grunt.loadNpmTasks 'grunt-contrib-jshint'
   grunt.loadNpmTasks 'grunt-contrib-watch'
@@ -345,8 +348,6 @@ module.exports = (grunt) ->
   # Run in development mode
   grunt.registerTask 'default', 'Development mode', ->
     grunt.task.run 'asciify'
-    grunt.task.run 'clean'
-    grunt.task.run 'notify:clean'
     grunt.task.run 'compass:dev'
     grunt.task.run 'notify:compass'
     grunt.task.run 'coffee'
@@ -360,6 +361,7 @@ module.exports = (grunt) ->
     #grunt.task.run 'uglify'
     #grunt.task.run 'notify:uglify'
     grunt.task.run 'connect'
+    grunt.task.run 'notify:connect'
     grunt.task.run 'watch'
     grunt.task.run 'notify:dev'
 
