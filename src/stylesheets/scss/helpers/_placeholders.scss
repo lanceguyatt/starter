@@ -20,7 +20,8 @@
 }
 
 @mixin font-smoothing($value) {
-  @include experimental('font-smoothing', $value);
+  -webkit-font-smoothing: $value;
+  //@include experimental('font-smoothing', $value);
 }
 
 @mixin text-rendering($value) {

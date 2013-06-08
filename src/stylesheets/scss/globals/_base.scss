@@ -10,7 +10,7 @@ $legacy-support-for-ie8: $legacy-support-for-ie; // Setting this to false will r
 
 $experimental-support-for-mozilla: true; // Support for mozilla in experimental css3 properties (-moz).
 $experimental-support-for-webkit: true; // Support for webkit in experimental css3 properties (-webkit).
-$experimental-support-for-opera: true; // Support for opera in experimental css3 properties (-o).
+$experimental-support-for-opera: false; // Support for opera in experimental css3 properties (-o).
 $experimental-support-for-microsoft: false; // Support for microsoft in experimental css3 properties (-ms).
 $experimental-support-for-khtml: false; // Support for khtml in experimental css3 properties (-khtml).
 
@@ -19,7 +19,7 @@ $experimental-support-for-pie: false; //Support for CSS PIE in experimental css3
 
 $support-for-original-webkit-gradients: false; // Support for webkit's original (non-standard) gradient syntax.
 
-$legacy-support-for-mozilla: true; // Whether to output legacy support for mozilla. Usually this means hacks to support Firefox 3.6 or earlier.
+$legacy-support-for-mozilla: false; // Whether to output legacy support for mozilla. Usually this means hacks to support Firefox 3.6 or earlier.
 
 @import "compass/support";
 
@@ -218,10 +218,4 @@ $inline-block-alignment: middle;
 //@import 'compass/typography/text/force-wrap';
 //@import 'compass/typography/text/replacement';
 
-// Custom helpers
-
-//@import 'fonts';
-@import '../helpers/mixins';
-@import '../helpers/placeholders';
-
-@include establish-baseline;
+//@include establish-baseline;

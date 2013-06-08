@@ -8,13 +8,6 @@ module.exports = (grunt) ->
     # Read package JSON
     pkg: grunt.file.readJSON 'package.json'
 
-    asciify:
-      banner:
-        text: '<%= pkg.name %>'
-        options:
-          font: 'graffiti'
-          log: true
-
     # Create banner meta
     meta:
       banner: '/* <%= pkg.name %> v<%= pkg.version %> Copyright (c) <%= grunt.template.today("yyyy") %> by <%= pkg.author.name %> (<%= pkg.author.url %>) */'
@@ -178,7 +171,7 @@ module.exports = (grunt) ->
       extra:
         shiv: true
         printshiv: false
-        load: true
+        load: false
         mq: false
         cssclasses: true
         extensibility:
@@ -232,14 +225,6 @@ module.exports = (grunt) ->
           '<%= paths.js %>/**/*.js'
         ]
 
-    # Start a connect web server
-    connect:
-      default:
-        options:
-          hostname: '*'
-          port: 3001
-          base: '<%= paths.dist %>'
-
     # Task complete messages
     notify:
       clean:
@@ -266,37 +251,33 @@ module.exports = (grunt) ->
       usebanner:
         options:
           message: 'Banners added'
-      connect:
-        options:
-          message: 'Server started'
       dev:
         options:
           message: 'Development running'
+      testing:
+        options:
+          message: 'Running tests'
       dist:
         options:
           message: 'Distribution complete'
 
   # Dependencies
-  grunt.loadNpmTasks 'grunt-asciify'
   grunt.loadNpmTasks 'grunt-banner'
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-compass'
   grunt.loadNpmTasks 'grunt-contrib-concat'
-  grunt.loadNpmTasks 'grunt-contrib-connect'
-  grunt.loadNpmTasks 'grunt-contrib-csslint'
-  grunt.loadNpmTasks 'grunt-contrib-jshint'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
-  grunt.loadNpmTasks 'grunt-html'
   grunt.loadNpmTasks 'grunt-jade'
   grunt.loadNpmTasks 'grunt-modernizr'
   grunt.loadNpmTasks 'grunt-notify'
+  grunt.loadNpmTasks 'grunt-contrib-csslint'
+  grunt.loadNpmTasks 'grunt-contrib-jshint'
+  grunt.loadNpmTasks 'grunt-html'
 
   # Run in development mode
   grunt.registerTask 'default', 'Development mode', ->
-    grunt.task.run 'connect'
-    grunt.task.run 'notify:connect'
     grunt.task.run 'watch'
     grunt.task.run 'notify:dev'
 
@@ -310,6 +291,7 @@ module.exports = (grunt) ->
 
   # Run tests
   grunt.registerTask 'test', 'Testing mode', ->
+    grunt.task.run 'notify:testing'
     grunt.task.run 'jade:dev'
     grunt.task.run 'htmllint:dev'
     grunt.task.run 'compass:dev'
