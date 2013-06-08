@@ -1,9 +1,11 @@
+include ../helpers/_mixins
+
 !!! 5
 html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype='http://schema.org/WebPage')
   head
     meta(charset='utf-8')
     // 
-      | Copyright (c) #{site.copyrightYear.default} by #{author.name} (#{author.url})
+      | Copyright (c) #{site.copyrightYear} by #{author.name} (#{author.url})
 
     block head
 
@@ -70,10 +72,10 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
 
   body
 
-    include ../partials/_header
+    include ../page/_header
 
     block main
 
-    include ../partials/_footer
+    include ../page/_footer
 
     block scripts

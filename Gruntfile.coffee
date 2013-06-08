@@ -45,12 +45,6 @@ module.exports = (grunt) ->
       fonts: '<%= paths.dist %>/fonts'
       images: '<%= paths.dist %>/images'
 
-    # Compress images
-    smushit:
-      dist:
-        src: '<%= paths.images %>'
-        dest: '<%= paths.images %>'
-
     # Concatenate files
     concat:
       options:
@@ -110,28 +104,6 @@ module.exports = (grunt) ->
         src: '<%= paths.jade %>'
         dest: '<%= paths.dist %>'
 
-    # Minify HTML
-    #htmlmin:
-    #  options:
-    #    removeComments: false
-    #    removeCommentsFromCDATA: true
-    #    collapseWhitespace: true
-    #    collapseBooleanAttributes: true
-    #    removeAttributeQuotes: false
-    #    removeRedundantAttributes: false
-    #    useShortDoctype: true
-    #    removeEmptyAttributes: false
-
-    #  all:
-    #    files: [
-    #      expand: true
-    #      flatten: true
-    #      cwd: '<%= paths.dist %>'
-    #      src: ['**/*.html']
-    #      dest: '<%= paths.dist %>'
-    #      ext: '.html'
-    #    ]
-
     # Compile CoffeeScript files into JavaScript
     coffee:
       options:
@@ -158,8 +130,6 @@ module.exports = (grunt) ->
         imagesDir: '<%= paths.images %>'
         fontsDir: '<%= paths.fonts %>'
         relativeAssets: true
-        #bundleExec: true
-        #importPath: '<%= paths.vendor %>'
         require: [
          'modular-scale'
          'susy'
@@ -167,10 +137,9 @@ module.exports = (grunt) ->
 
       dev:
         options:
-          debugInfo: false
+          debugInfo: true
           environment: 'development'
-          force: true
-          noLineComments: true
+          noLineComments: false
           outputStyle: 'expanded'
 
       dist:
@@ -180,18 +149,6 @@ module.exports = (grunt) ->
           force: true
           noLineComments: true
           outputStyle: 'compressed'
-
-    # Minify CSS files
-    #cssmin:
-    #  options:
-    #    banner: '<%= meta.banner %>'
-
-    #  files:
-    #    expand: true
-    #    cwd: '<%= paths.css %>'
-    #    src: ['**/*.css', '!*.min.css']
-    #    dest: '<%= paths.css %>'
-    #    ext: '.min.css'
 
     # Run predefined tasks whenever watched files change
     watch:
@@ -285,9 +242,6 @@ module.exports = (grunt) ->
 
     # Task complete messages
     notify:
-      dev:
-        options:
-          message: 'Development running'
       clean:
         options:
           message: 'Folders and files cleaned'
@@ -303,9 +257,6 @@ module.exports = (grunt) ->
       uglify:
         options:
           message: 'Uglification complete'
-      smushit:
-        options:
-          message: 'Images compressed'
       jade:
         options:
           message: 'Jade compiled'
@@ -315,17 +266,18 @@ module.exports = (grunt) ->
       usebanner:
         options:
           message: 'Banners added'
-      htmlmin:
-        options:
-          message: 'HTML minified'
       connect:
         options:
           message: 'Server started'
+      dev:
+        options:
+          message: 'Development running'
       dist:
         options:
           message: 'Distribution complete'
 
   # Dependencies
+  grunt.loadNpmTasks 'grunt-asciify'
   grunt.loadNpmTasks 'grunt-banner'
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
@@ -333,8 +285,6 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-connect'
   grunt.loadNpmTasks 'grunt-contrib-csslint'
-  #grunt.loadNpmTasks 'grunt-contrib-cssmin'
-  grunt.loadNpmTasks 'grunt-contrib-htmlmin'
   grunt.loadNpmTasks 'grunt-contrib-jshint'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
@@ -342,24 +292,10 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-jade'
   grunt.loadNpmTasks 'grunt-modernizr'
   grunt.loadNpmTasks 'grunt-notify'
-  grunt.loadNpmTasks 'grunt-smushit'
-  grunt.loadNpmTasks 'grunt-asciify'
 
   # Run in development mode
   grunt.registerTask 'default', 'Development mode', ->
     grunt.task.run 'asciify'
-    grunt.task.run 'compass:dev'
-    grunt.task.run 'notify:compass'
-    grunt.task.run 'coffee'
-    grunt.task.run 'notify:coffee'
-    grunt.task.run 'concat'
-    grunt.task.run 'notify:concat'
-    grunt.task.run 'modernizr'
-    grunt.task.run 'notify:modernizr'
-    grunt.task.run 'jade:dev'
-    grunt.task.run 'notify:jade'
-    #grunt.task.run 'uglify'
-    #grunt.task.run 'notify:uglify'
     grunt.task.run 'connect'
     grunt.task.run 'notify:connect'
     grunt.task.run 'watch'
@@ -388,24 +324,19 @@ module.exports = (grunt) ->
     grunt.task.run 'clean'
     grunt.task.run 'notify:clean'
     grunt.task.run 'compass:dist'
-    #grunt.task.run 'cssmin'
     grunt.task.run 'notify:compass'
     grunt.task.run 'coffee'
     grunt.task.run 'notify:coffee'
-    #grunt.task.run 'concat'
-    #grunt.task.run 'notify:concat'
+    grunt.task.run 'concat'
+    grunt.task.run 'notify:concat'
     grunt.task.run 'uglify'
     grunt.task.run 'notify:uglify'
     grunt.task.run 'modernizr'
     grunt.task.run 'notify:modernizr'
-    #grunt.task.run 'usebanner:dist'
-    #grunt.task.run 'notify:usebanner'
+    grunt.task.run 'usebanner:dist'
+    grunt.task.run 'notify:usebanner'
     grunt.task.run 'jade:dist'
     grunt.task.run 'notify:jade'
-    #grunt.task.run 'htmlmin'
-    #grunt.task.run 'notify:htmlmin'
-    #grunt.task.run 'smushit:dist'
-    #grunt.task.run 'notify:smushit'
     grunt.task.run 'usebanner'
     grunt.task.run 'notify:usebanner'
     grunt.task.run 'notify:dist'
