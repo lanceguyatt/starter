@@ -1,17 +1,21 @@
-/* TEAM */
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
 
   Role: Interaction Developer
   Name: Lance Guyatt
+  Email: lance [at] lanceguyatt.com
   Site: http://lanceguyatt.com
   Twitter: @lanceguyatt
   Location: London, United Kingdom
 
-/* THANKS */
+# TECHNOLOGY COLOPHON
 
   Bower: http://bower.io
   Coffeescript: http://coffeescript.org
   Compass: compass-style.org
-  Grunt: http://gruntjs.com
+  Gruntjs: http://gruntjs.com
   Hashgrid: http://hashgrid.com
   Humans Txt: http://humanstxt.org
   HTML5 Boilerplate: http://html5boilerplate.com
@@ -20,11 +24,11 @@
   Modernizr: http://modernizr.com
   Modular Scale: https://github.com/Team-Sass/modular-scale
   Sass: http://sass-lang.com
+  Schema: http://schema.org
   Susy: http://susy.oddbird.net/guides/reference
 
-/* SITE */
+# SITE
 
-  Last updated: 2013/05/28
   Language: English
   Doctype: HTML5
   Standards: HTML5, CSS3

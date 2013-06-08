@@ -83,10 +83,11 @@ ol.unstyled {
 
 hr {
   border: none;
-  @include leading-border(2px, 3);
   //@include margin-trailer(3);
   border-bottom-color: $border-color;
   clear: both;
+  @include leading-border(2px, 3);
+
 }
 
 // Blockquotes
@@ -110,9 +111,10 @@ blockquote {
 // Addresses
 
 address {
-  @include margin-trailer(1);
   display: block;
   font-style: normal;
+  @include margin-trailer(1);
+
 }
 
 // Misc

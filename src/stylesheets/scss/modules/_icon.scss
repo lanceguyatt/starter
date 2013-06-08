@@ -1,0 +1,21 @@
+.icon {
+  text-decoration: none;
+}
+
+.icon:before {
+  @include font-feature-settings('liga' 1 'dlig' 1);
+  @include font-smoothing(antialiased);
+  @include text-rendering(optimizeLegibility);
+  text-decoration: none;
+  font-family: 'LigatureSymbols';
+}
+
+.icon-twitter:before    { content: '\E12f'; }
+.icon-zoomin:before     { content: '\E142'; }
+.icon-download:before   { content: '\E14f'; }
+.icon-full:before     { content: '\E053'; }
+.icon-code:before     { content: '\E032'; }
+.icon-setting:before    { content: '\E055'; }
+.icon-present:before    { content: '\E109'; }
+.icon-check:before      { content: '\E029'; }
+.icon-back:before     { content: '\E00f'; }

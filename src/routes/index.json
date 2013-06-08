@@ -1,7 +1,7 @@
 {
   "site": {
-    "name": "<%= pkg.title %>",
-    "title": "<%= pkg.title %> homepage",
+    "name": "<%= pkg.name %>",
+    "title": "<%= pkg.title %>",
     "description": "<%= pkg.description %>",
     "keywords": "<%= pkg.keywords %>",
     "email": "<%= pkg.author.email %>",
@@ -11,10 +11,7 @@
     "locale": "en_GB",
     "dir": "ltr",
     "type": "website",
-    "copyrightYear": {
-      "default": "<%= grunt.template.today('yyyy') %>",
-      "roman": "MMXIII"
-    }
+    "copyrightYear": "<%= grunt.template.today('yyyy') %>"
   },
   "author": {
     "name": "<%= pkg.author.name %>",

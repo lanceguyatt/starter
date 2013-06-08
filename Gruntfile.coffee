@@ -295,7 +295,6 @@ module.exports = (grunt) ->
 
   # Run in development mode
   grunt.registerTask 'default', 'Development mode', ->
-    grunt.task.run 'asciify'
     grunt.task.run 'connect'
     grunt.task.run 'notify:connect'
     grunt.task.run 'watch'
@@ -311,7 +310,6 @@ module.exports = (grunt) ->
 
   # Run tests
   grunt.registerTask 'test', 'Testing mode', ->
-    grunt.task.run 'asciify'
     grunt.task.run 'jade:dev'
     grunt.task.run 'htmllint:dev'
     grunt.task.run 'compass:dev'
@@ -320,7 +318,6 @@ module.exports = (grunt) ->
 
   # Compile for distribution
   grunt.registerTask 'dist', 'Distribution build', ->
-    grunt.task.run 'asciify'
     grunt.task.run 'clean'
     grunt.task.run 'notify:clean'
     grunt.task.run 'compass:dist'
@@ -333,8 +330,6 @@ module.exports = (grunt) ->
     grunt.task.run 'notify:uglify'
     grunt.task.run 'modernizr'
     grunt.task.run 'notify:modernizr'
-    grunt.task.run 'usebanner:dist'
-    grunt.task.run 'notify:usebanner'
     grunt.task.run 'jade:dist'
     grunt.task.run 'notify:jade'
     grunt.task.run 'usebanner'
