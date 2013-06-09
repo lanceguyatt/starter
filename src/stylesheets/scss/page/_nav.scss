@@ -1,0 +1,19 @@
+.primary {
+  margin: pem(20px) 0 0 pem(20px);
+  a {
+    display: block;
+    text-align: center;
+    width: pem(86px);
+    margin-bottom: pem(5px);
+    span {
+      background: url(#{images}/sprite.png) no-repeat 0 0;
+    }
+    &.active {
+      span {
+
+      }
+    }
+  }
+}
+
+#primary ul{margin:20px 0 0 20px}#primary a{text-align:center;display:block;width:86px;margin-bottom:5px}#primary a span{background:url(../img/sprite.png) no-repeat 0 0;display:block;height:44px;width:85px;margin:0 auto 2px}#primary a:focus span,#primary a:active span,#primary a.active span{background-position:-85px 0}#primary a[href='#ramdisk'] span{background-position:-301px 0;width:43px;height:46px}#primary a[href='#ramdisk']:focus span,#primary a[href='#ramdisk']:active span,#primary a[href='#ramdisk'].active span{background-position:-344px 0}

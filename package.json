@@ -1,6 +1,6 @@
 {
-  "name": "starter",
-  "title": "Starter",
+  "name": "lanceguyatt",
+  "title": "Lance Guyatt, Developer",
   "description": "A Sass/Compass/Jade/Coffeescript powered, Grunt and Bower based HTML5 starter kit.",
   "version": "1.0.2",
   "keywords": [
@@ -18,7 +18,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/lanceguyatt/starter.git"
+    "url": "https://lanceguyatt@bitbucket.org/lanceguyatt/static-lanceguyatt-website.git"
   },
   "licenses": {
     "type": "Creative Commons licensed",
@@ -41,6 +41,7 @@
     "grunt-contrib-watch": "~0.4.3",
     "grunt-jade": "~0.4.0",
     "grunt-modernizr": "~0.3.0",
-    "grunt-notify": "~0.2.3"
+    "grunt-notify": "~0.2.3",
+    "moment": "~2.0.0"
   }
 }

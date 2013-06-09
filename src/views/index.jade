@@ -2,4 +2,43 @@ extends layouts/_default
 
 block main
 
-  p #{site.description}
+  div(class='section', hidden)
+    div(class='header')
+      h1 Workbench
+      a(href='#', class='icon close', title='Close this window') Close
+
+    if primary
+      nav(hidden)
+        ul(role='navigation', class='primary')
+          for link, i in primary
+            li: a(href='##{link.id}', title='#{link.title}', class='#{link.class}') #{link.name}
+            //-
+  div(id='work')
+
+  if clients
+    section(id='xxwork', class='section', hidden)
+      div(class='header')
+        a(href='#', class='icon close', title='Close this window') Close
+        h1 Work
+        span(class='icon resize') Resize
+        span(class='icon tab') Tab
+
+        ul
+          for client, i in clients
+            li: a(href='##{client.id}', title='#{client.name}'): span #{client.name}
+
+      for client, i in clients
+        div(id='#{client.id}', itemscope, itemtype='http://schema.org/CreativeWork')
+          if client.title
+            - var name = client.title
+          else
+            - var name = client.name
+          h1(itemprop='name')
+            span(#{name}
+          
+          h2(itemprop='role') #{client.description}
+          if client.image
+            a(href='#{client.url}', rel='external')
+              img(src='#{paths.images}/#{client.image.url}', width='#{client.image.width}', height='#{client.image.height}', alt='#{client.name} logo')
+
+

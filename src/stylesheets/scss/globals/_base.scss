@@ -53,6 +53,8 @@ $menlo:                 Menlo, Monaco, Consolas, "Courier New", monospace !defau
 
 // Custom font stacks
 
+$topaz:                 "Topaz", sans-serif;
+
 // Assign font stacks
 
 $sans-font-family:      $helvetica;
@@ -60,7 +62,7 @@ $serif-font-family:     $georgia;
 $mono-font-family:      $menlo;
 $alt-font-family:       $serif-font-family;
 
-$base-font-family:      $sans-font-family; // The font family set on the html element.
+$base-font-family:      $topaz; // The font family set on the html element.
 
 $headings-font-family:  $helvetica;
 $headings-font-weight:  normal !default; // instead of browser default, bold
@@ -73,14 +75,14 @@ $font-smoothing:        true;
 $black:                 #000;
 $gray-darker:           #222;
 $gray-dark:             #333;
-$gray:                  #555;
+$gray:                  rgba(#aaa, 1);
 $gray-light:            #999;
 $gray-lighter:          #eee;
 $white:                 #fff;
 
 // Accent colors
 
-$blue:                  #049cdb;
+$blue:                  rgba(#6687ba, 1);
 $blue-dark:             #0064cd;
 $green:                 #46a546;
 $red:                   #9d261d;
@@ -96,13 +98,13 @@ $success-color:         #5da423;
 
 // Scaffolding
 
-$body-background:       $white !default;
+$body-background:       $gray !default;
 $text-color:            $black !default;
 
 // Links
 
-$link-color:            #08c !default;
-$link-color-hover:      darken($link-color, 15%) !default;
+$link-color:            $black !default;
+$link-color-hover:      $black !default;
 
 // Variables
 

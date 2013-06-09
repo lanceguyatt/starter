@@ -6,6 +6,7 @@ html {
   }
   background-color: $body-background;
   color: $text-color;
+  cursor: inline-image('cursor.png'), default;
 }
 
 body {
