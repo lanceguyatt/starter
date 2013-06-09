@@ -54,7 +54,7 @@ module.exports = (grunt) ->
 
       vendor:
         files: [
-          dest: '<%= paths.js %>vendor.js'
+          dest: '<%= paths.js %>/vendor.js'
           src: '<%= vendor %>'
         ]
 
@@ -66,13 +66,15 @@ module.exports = (grunt) ->
         mangle: false
         except: ['jQuery']
 
-      files:
-        expand: true
-        flatten: true
-        cwd: '<%= paths.js %>'
-        src: ['**/*.js', '!*.min.js']
-        dest: '<%= paths.js %>'
-        ext: '.min.js'
+      all:
+        files: [
+          expand: true
+          flatten: true
+          cwd: '<%= paths.js %>'
+          src: ['**/*.js', '!*.min.js']
+          dest: '<%= paths.js %>'
+          ext: '.min.js'
+        ]
 
     # Compile Jade templates
     jade:
@@ -278,22 +280,11 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-jade'
   grunt.loadNpmTasks 'grunt-modernizr'
   grunt.loadNpmTasks 'grunt-notify'
-  grunt.loadNpmTasks 'grunt-contrib-csslint'
-  grunt.loadNpmTasks 'grunt-contrib-jshint'
-  grunt.loadNpmTasks 'grunt-html'
 
   # Run in development mode
   grunt.registerTask 'default', 'Development mode', ->
     grunt.task.run 'watch'
     grunt.task.run 'notify:dev'
-
-  # Install bower dependencies
-  grunt.registerTask 'bower-install', 'Installs Bower dependencies.', ->
-    bower = require('bower')
-    done = @async()
-    bower.commands.install().on('data', (data) ->
-      grunt.log.write data
-    ).on 'end', done
 
   # Compile for distribution
   grunt.registerTask 'dist', 'Distribution build', ->
