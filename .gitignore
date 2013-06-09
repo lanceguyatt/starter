@@ -36,7 +36,7 @@ nbproject
 node_modules
 dist/stylesheets
 dist/javascripts
-dist/index.html
+dist/*.html
 tests/*
 tmp
 src/vendor/*
