@@ -54,7 +54,7 @@ module.exports = (grunt) ->
 
       vendor:
         files: [
-          dest: '<%= paths.js %>vendor.js'
+          dest: '<%= paths.js %>/vendor.js'
           src: '<%= vendor %>'
         ]
 
@@ -122,8 +122,8 @@ module.exports = (grunt) ->
         fontsDir: '<%= paths.fonts %>'
         relativeAssets: true
         require: [
-         'modular-scale'
-         'susy'
+          'modular-scale'
+          'susy'
         ]
 
       dev:
