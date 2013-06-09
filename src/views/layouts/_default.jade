@@ -76,11 +76,24 @@ html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype=
 
     div(class='container')
 
-      include ../page/_header
+      header(class='header', role='banner')
+        h1 #{site.title}
 
-      include ../page/_main
+      div(class='main', role='main', itemprop='mainContentofPage')
 
-      include ../page/_footer
+        block main
+
+      footer(class='footer', role='contentinfo')
+
+        p(class='copyright')
+          | Copyright &#169; 
+          span(itemprop='copyrightYear') #{site.copyrightYear}
+          | 
+          span(itemprop='author', itemscope, itemtype='http://schema.org/Person')
+            a(href='#{author.url}', rel='external', target='_blank')
+              span(itemprop='name') #{author.name}
+            meta(itemprop='url', content='#{author.url}')
+
 
     block scripts
 
