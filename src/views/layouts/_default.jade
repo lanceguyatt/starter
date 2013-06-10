@@ -1,0 +1,159 @@
+include ../helpers/_mixins
+
+!!! 5
+html(dir='#{site.dir}', lang='#{site.lang}', class='no-js', itemscope, itemtype='http://schema.org/WebPage')
+  head
+    meta(charset='utf-8')
+    // 
+      |  #{site.name}. Copyright © #{site.date.created.short}-#{site.copyrightYear} All Rights Reserved. 
+
+    block head
+
+      title #{site.name} - #{site.title}
+
+      //- default meta
+      //-
+        meta(name='description', content='#{site.description}')
+        meta(name='keywords', content='#{site.keywords}')
+
+      //- microdata meta
+      meta(itemprop='name', content='#{site.name}')
+      meta(itemprop='description', content='#{site.description}')
+      meta(itemprop='url', content='#{site.url}')
+      meta(itemprop='image', content='#{site.image}')
+
+      //- opengraph meta
+      meta(property='og:site_name', content='#{site.name}')
+      meta(property='og:locale', content='#{site.locale}')
+      meta(property='og:type', content='#{site.type}')
+      meta(property='og:title', content='#{site.title}')
+      meta(property='og:description', content='#{site.description}')
+      meta(property='og:url', content='#{site.url}')
+      meta(property='og:image', content='#{site.image}')
+
+      meta(property='profile:first_name', content='#{person.name.first}')
+      meta(property='profile:last_name', content='#{person.name.last}')
+
+      meta(property='fb:app_id', content='#{site.facebook.id}')
+      meta(property='fb:admins', content='#{site.facebook.admins}')
+
+      meta(itemprop='datepublished', content='#{site.date.published.long}')
+      meta(itemprop='dateCreated', content='#{site.date.created.long}')
+
+      //- mobile meta
+      meta(name='apple-mobile-web-app-capable', content='yes')
+      meta(name='HandheldFriendly', content='true')
+
+      meta(name='viewport', content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1')
+
+      //- iOS meta
+      //-
+        meta(name='apple-mobile-web-app-title', content='#{site.name}')
+
+      //- Microsoft meta
+      //-
+        meta(name='msapplication-window', content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1')
+        meta(name='msapplication-TileColor', content='#cccccc')
+        meta(name='msapplication-TileImage', content='#{site.url}/apple-touch-icon-144x144-precomposed.png')
+
+        // if (lte IE 9)
+          meta(name='msapplication-tooltip', content='#{site.title}')
+          meta(name='msapplication-starturl, content='/?comp=9')
+
+        // if (lte IE 8)
+          meta(name='msapplication-tooltip', content='#{site.title}')
+          meta(name='msapplication-TileColor', content='#222222')
+          meta(name='msapplication-TileImage', content='#{site.url.long}/apple-touch-icon-144x144-precomposed.png')
+
+      //- verification meta
+      //-
+        meta(name='google-site-verification', content='XXXXXXXXXXXX')
+
+      //- stylesheets
+      link(rel='stylesheet', href='#{paths.css}/style.css', media='all')
+
+      //-
+        link(rel='stylesheet', href='#{paths.css}/layout.css', media='all and (min-width: 36.25em)')
+
+      //-
+        // if (lt IE 9) & (!IEMobile)
+          link(rel='stylesheet', href='#{paths.css}/layout.css', media='all')
+
+      //- icons
+      link(rel='shortcut icon', href='favicon.ico')
+      //-
+        link(rel='apple-touch-icon-precomposed', href='#{site.url}/apple-touch-icon-precomposed.png')
+
+      //- author
+      link(rel='author', href='humans.txt', type='text/plain')
+      link(rel='home', href='#{site.url.long}')
+
+      script(src='#{paths.js}/modernizr.min.js')
+
+  body
+
+    div(class='container')
+
+      header(class='branding', role='header')
+        h1
+          span(itemprop='name author') #{name}
+          |, 
+        h2
+          span(itemprop='description') #{person.role}
+          |. 
+        p Copyright © #{site.date.created.short}-<span itemprop="copyrightYear">#{site.copyrightYear}</span> All Rights Reserved.
+        span(class='icon tab') Tab
+
+      div(class='main', role='main', itemprop='mainContentofPage')
+
+        block main
+
+      footer(hidden, id='about', itemprop='author', itemscope, itemtype='http://schema.org/Person', role='contentinfo')
+        h1 About
+
+        img(src='#{paths.images}/#{person.image.url}', width='#{person.image.width}', height='#{person.image.height}', alt='#{name} logo')
+
+        if links
+          ul
+            for link, i in links
+              li: a(href='#{link.url}', rel='external', title='#{link.title}', class='#{link.class}', itemprop='url') #{link.name}
+
+        dl
+          dt Name
+          dd
+            span(itemprop='name')
+              span(itemprop='firstName') #{person.name.first}
+              span(itemprop='familyName') #{person.name.last}
+          dt Role
+          dd: span(itemprop='role') #{person.role}
+          dt Company
+          dd: span(itemprop='worksFor') #{person.worksfor}
+          dt Email
+          dd: a(href='mailto:#{person.email}', itemprop='email') #{person.email}
+          dt Telephone
+          dd: a(href='tel:#{person.telephone.long}') #{person.telephone.short}
+
+        dl
+          dt Locality
+          dd: span(itemprop='locality') #{address.locality}
+          dt Country
+          dd: span(itemprop='country') #{address.country}
+
+        dl
+          dt Notes
+          dd: span(itemprop='description') #{person.description}
+
+        a(href='#', class='button') Ok
+
+    block scripts
+
+      script(src='#{paths.js}/vendor.min.js')
+      script(src='#{paths.js}/applicationjs')
+      //-
+        script
+          (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+          function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+          e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+          e.src='//www.google-analytics.com/analytics.js';
+          r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+          ga('create','UA-XXXXX-X');ga('send','pageview');

@@ -1,3 +1,5 @@
+require 'moment'
+
 module.exports = (grunt) ->
 
   'use strict'
@@ -84,7 +86,121 @@ module.exports = (grunt) ->
         compileDebug: false
         extension: null
         runtime: false
-        locals: grunt.file.readJSON './src/routes/index.json'
+        #locals: grunt.file.readJSON './src/routes/index.json'
+        locals:
+
+          site:
+            name: 'Lance Guyatt, Interaction Developer'
+            title: 'Lance Guyatt, Interaction Developer'
+            description: 'I am an award winning Interaction Developer with 8 years professional experience in developing web applications.'
+            url:
+              long: 'http://lanceguyatt.com'
+              short: 'http://goo.gl/YroFM'
+            copyrightYear: '2013'
+            image:
+              url: 'lanceguyatt.png'
+              type: 'png'
+              width: 200
+              height: 200
+            type: 'website'
+            lang: 'en-GB'
+            date:
+              published:
+                long: '2013-04-13'
+                short: '2013'
+              created:
+                long: '2000-01-01'
+                short: '2000'
+            facebook:
+              id: '148190791903784'
+              admins: '781041907'
+
+          paths:
+            css: 'stylesheets/css'
+            js: 'javascripts/js'
+            images: 'images'
+
+          person:
+            name:
+              first: 'Lance'
+              last: 'Guyatt'
+            role: 'Interaction Developer'
+            worksfor: 'WilsonFletcher'
+            description: 'Test'
+            image:
+              url: 'lanceguyatt.png'
+              width: 200
+              height: 200
+            email: 'lance@lanceguyatt.com'
+            telephone:
+              long: '+447723198662'
+              short: '07723198662'
+
+          address:
+            locality: 'London'
+            country: 'United Kingdom'
+
+          clients: [
+            id: 'wilsonfletcher'
+            name: 'WilsonFletcher'
+            description: 'Strategic digital design'
+            url: 'http://wilsonfletcher.com'
+            date:
+              created:
+                long: '2012-07-13'
+                short: '13/07/2012'
+            image:
+              url: 'logo-wilsonfletcher.png'
+              width: 200
+              height: 49
+          ]
+
+          primary: [
+            id: '#ramdisk'
+            class: 'ramdisk'
+            name: 'Ram Disk'
+            title: 'Ram Disk 5% full, 25M free, 5,627K in use'
+          ,
+            id: '#work'
+            class: 'work'
+            name: 'Work'
+            title: 'Work 7% full, 35M free, 2,927K in use'
+          ,
+            id: '#about'
+            class: 'about'
+            name: 'About'
+            title: '87% full, 5M free, 1,321K in use'
+          ]
+
+          links: [
+            name: 'Email'
+            url: 'lance@lanceguyatt.com'
+            title: 'Email me'
+            class: 'email'
+          ,
+            name: 'LinkedIn'
+            url: 'http://uk.linkedin.com/in/lanceguyatt'
+            title: 'Linkedin'
+            class: 'linkedin'
+          ,
+            name: 'Google+'
+            url: 'https://plus.google.com/102432796825488724849'
+            title: 'Google+'
+            class: 'google'
+          ,
+            name: 'Twitter'
+            url: 'https://twitter.com/#!/lanceguyatt'
+            title: 'Twitter'
+            class: 'twitter'
+          ,
+            name: 'Github'
+            url: 'https://github.com/lanceguyatt'
+            title: 'Github'
+            class: 'github'
+          ]
+
+          #name: 'Test'
+          name: '<%= jade.options.locals.person.name.first %> <%= jade.options.locals.person.name.last %>'
 
       dev:
         options:
