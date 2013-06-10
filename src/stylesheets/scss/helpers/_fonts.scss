@@ -1,7 +1,0 @@
-// Compass Font Face
-
-// Provides a mixin to support @font-face
-// http://compass-style.org/reference/compass/css3/font_face/
-// http://compass-style.org/reference/compass/helpers/font-files/
-
-@include font-face('Topaz', font-files('topaz-a1200.woff', woff, 'topaz-a1200.ttf', truetype), 'topaz-a1200.eot', normal, normal);
