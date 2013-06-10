@@ -1,0 +1,25 @@
+// Scaffolding
+
+html {
+  @if $font-smoothing == true {
+    @include font-smoothing(antialiased);
+  }
+  background-color: $body-background;
+  color: $text-color;
+}
+
+body {
+  font-family: $base-font-family;
+  font-size: pem($base-font-size);
+  line-height: pem($base-line-height * 3);
+}
+
+a {
+  @extend %transition-all;
+  color: $link-color;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  #{$hover} {
+    color: $link-color-hover;
+  }
+}

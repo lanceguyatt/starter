@@ -1,0 +1,79 @@
+// Compass Display Helpers
+
+// Helper functions for working with the display property.
+// http://compass-style.org/reference/compass/helpers/display/
+
+// address, article, aside, blockquote, center, dd, details, dir, div, dl, dt, fieldset, figcaption, figure, footer, form, frameset, h1, h2, h3, h4, h5, h6, header, hgroup, hr, isindex, menu, nav, noframes, noscript, ol, p, pre, section, summary, ul
+
+#{elements-of-type(block)} {
+  background-color: purple;
+}
+
+// a, abbr, acronym, audio, b, basefont, bdo, big, br, canvas, cite, code, command, datalist, dfn, em, embed, font, i, img, input, kbd, keygen, label, mark, meter, output, progress, q, rp, rt, ruby, s, samp, select, small, span, strike, strong, sub, sup, textarea, time, tt, u, var, video, wbr
+
+#{elements-of-type(inline)} {
+  background-color: yellow;
+}
+
+// img
+
+#{elements-of-type(inline-block)} {
+}
+
+// table
+
+#{elements-of-type(table)} {
+}
+
+// li
+
+#{elements-of-type(list-item)} {
+}
+
+// table-row-group
+// tbody
+
+#{elements-of-type(table-row-group)} {
+}
+
+// table-header-group
+// thead
+
+#{elements-of-type(table-header-group)} {
+}
+
+//table-footer-group
+//tfoot
+
+#{elements-of-type(table-footer-group)} {
+}
+
+//table-row
+//tr
+
+#{elements-of-type(table-row)} {
+}
+
+//table-cell
+//td, th
+
+#{elements-of-type(table-cell)} {
+}
+
+//html5-block
+//article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary
+
+#{elements-of-type(html5-block)} {
+}
+
+//html5-inline
+//audio, canvas, command, datalist, embed, keygen, mark, meter, output, progress, rp, rt, ruby, time, video, wbr
+
+#{elements-of-type(html5-inline)} {
+}
+
+//html5
+//article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, mark, menu, meter, nav, output, progress, rp, rt, ruby, section, summary, time, video, wbr
+
+#{elements-of-type(html5)} {
+}

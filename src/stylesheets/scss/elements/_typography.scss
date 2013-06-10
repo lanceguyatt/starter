@@ -1,0 +1,126 @@
+// Typography
+
+p {
+  @include margin-trailer(3);
+}
+
+#{$type} {
+  margin-top: 0;
+}
+
+// Headings
+
+h1 {
+  $font-size: 56px;
+  @include adjust-font-size-to($font-size, 7);
+  @include margin-trailer(3, $font-size);
+}
+
+h2 {
+  $font-size: 40px;
+  @include adjust-font-size-to($font-size, 5);
+  @include margin-trailer(2, $font-size);
+}
+
+h3 {
+  $font-size: 32px;
+  @include adjust-font-size-to($font-size, 4);
+  @include margin-trailer(2, $font-size);
+}
+
+h4 {
+  $font-size: 16px;
+  @include adjust-font-size-to($font-size, 3);
+  @include margin-trailer(1, $font-size);
+}
+
+h5 {
+  $font-size: 14px;
+  @include adjust-font-size-to($font-size, 3);
+  @include margin-trailer(1, $font-size);
+}
+
+h6 {
+  $font-size: 12px;
+  @include adjust-font-size-to($font-size, 3);
+  @include margin-trailer(1, $font-size);
+}
+
+#{$headings} {
+  color: $headings-color;
+}
+
+// Lists
+
+ul, ol {
+  margin: 0 0 rhythm(3) rhythm(3);
+  padding: 0;
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin-bottom: 0;
+}
+
+// ul {
+//   list-style: disc;
+// }
+
+// ol {
+//   list-style: decimal;
+// }
+
+li {}
+
+ul.unstyled,
+ol.unstyled {
+  @extend %unstyled;
+}
+
+// MISC
+
+hr {
+  border: none;
+  //@include margin-trailer(3);
+  border-bottom-color: $border-color;
+  clear: both;
+  @include leading-border(2px, 3);
+
+}
+
+// Blockquotes
+
+blockquote {
+  margin: 0 0 rhythm(3) 0;
+  p {
+    @include margin-trailer(0);
+  }
+}
+
+// Quotes
+
+//q:before,
+//q:after,
+//blockquote:before,
+//blockquote:after {
+//  content: "";
+//}
+
+// Addresses
+
+address {
+  display: block;
+  font-style: normal;
+  @include margin-trailer(1);
+
+}
+
+// Misc
+
+cite {}
+
+img {
+  max-width: 100%;
+}
