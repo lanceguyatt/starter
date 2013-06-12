@@ -1,3 +1,3 @@
-(($) ->
-  console.log 'Welcome to starter'
-) jQuery
+$(document).ready ->
+
+  grid = new hashgrid(numberOfGrids: 2)

@@ -124,8 +124,9 @@ module.exports = (grunt) ->
         fontsDir: '<%= paths.fonts %>'
         relativeAssets: true
         require: [
-         'modular-scale'
-         'susy'
+          'breakpoint'
+          'modular-scale'
+          'susy'
         ]
 
       dev:
@@ -154,8 +155,8 @@ module.exports = (grunt) ->
           '<%= paths.views %>/**/*.jade'
         ]
         tasks: ['jade:dev', 'notify:jade']
-        options:
-          livereload: true
+        #options:
+          #livereload: true
 
       coffee:
         files: '<%= paths.coffee %>/{,**/}*.coffee'
@@ -164,8 +165,8 @@ module.exports = (grunt) ->
       compass:
         files: '<%= paths.scss %>/{,**/}*.{scss,sass}'
         tasks: ['compass:dev', 'notify:compass']
-        options:
-          livereload: true
+        #options:
+          #livereload: true
 
       grunt:
         files: '<%= paths.base %>Gruntfile.coffee'

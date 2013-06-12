@@ -111,19 +111,6 @@ $hover:                 '&:focus, &:hover, &:active';
 $headings:              'h1, h2, h3, h4, h5, h6';
 $type:                  'h1, h2, h3, h4, h5, h6, p, ul, ol, table, form';
 
-// Media Queries
-
-// $small-screen: 768px;
-// $medium-screen: 1280px;
-// $large-screen: 1440px;
-
-// $screen: "only screen";
-// $small: "only screen and (min-width: #{$small-screen})";
-// $medium: "only screen and (min-width: #{$medium-screen})";
-// $large: "only screen and (min-width: #{$large-screen})";
-// $landscape: "only screen and (orientation: landscape)";
-// $portrait: "only screen and (orientation: portrait)";
-
 // Cursors
 
 // Custom use example -> $cursor-default-value: url(http://cursors-site.net/path/to/custom/cursor/default.cur),progress;
@@ -139,30 +126,30 @@ $type:                  'h1, h2, h3, h4, h5, h6, p, ul, ol, table, form';
 // susy.oddbird.net/guides/reference/
 
 // The total number of columns in the grid
-$total-columns: 12              !default;
+$total-columns:           12; // The number of Columns in your default Grid Layout <number> Unitless number.
 
 // The width of columns and gutters.
 // These must all be set with the comparable units.
-$column-width: 4em             !default;
-$gutter-width: 1em             !default;
+$column-width:            3.75em; // 60px
+$gutter-width:            1.25em; // 20px The space between Columns. <length> Units must match $column-width.
 
 // Padding on the left and right of a Grid Container.
-$grid-padding: $gutter-width   !default;
+$grid-padding:            0.625em; // 10px
 
 // ---------------------------------------------------------------------------
 // Advanced Settings
 
 // From Direction:
 // Controls for right-to-left or bi-directional sites.
-$from-direction:               left !default;
+$from-direction:          left;
 
 // Omega Float Direction:
 // The direction that +omega elements are floated by deafult.
-$omega-float:                   opposite-position($from-direction) !default;
+$omega-float:             opposite-position($from-direction);
 
 // Container Width:
 // Override the total width of your grid, using any length (50em, 75%, etc.)
-$container-width:               false !default;
+$container-width:         false;
 
 // Container Style:
 // 'magic'  - Static (fixed or elastic) when there's enough space,
@@ -170,15 +157,14 @@ $container-width:               false !default;
 // 'static' - Forces the grid container to remain static at all times.
 // 'fluid'  - Forces the grid to remain fluid at all times.
 //            (this will overrule any static $container-width settings)
-$container-style: magic          !default;
+$container-style:         magic;
 
 // Border-Box Sizing
 // Adjust the grid math appropriately for box-sizing: border-box;
 // Warning: This does not actually apply the new box model!
 // In most cases you can ignore this setting,
 // and simply apply the border-box-sizing mixin.
-$border-box-sizing: false        !default;
-
+$border-box-sizing:       false;
 
 // IE Settings
 
@@ -188,12 +174,29 @@ $border-box-sizing: false        !default;
 // any defined ie-fallback classes.
 
 $breakpoint-media-output: true; // Turn off media-query output for IE-only stylesheets.
-$breakpoint-ie-output: true; // Turn off media-query fallback output for non-IE stylesheets.
+$breakpoint-ie-output:    true; // Turn off media-query fallback output for non-IE stylesheets.
 
 // Danger Zone! Only set as 'true' in IE-specific style sheets.
-$breakpoint-raw-output: false; // Pass through raw output without media-queries or fallback classes for IE-only stylesheets.
+$breakpoint-raw-output:   false; // Pass through raw output without media-queries or fallback classes for IE-only stylesheets.
 
 @import "susy";
+
+// Breakpoint
+
+// Really Simple Media Queries with Sass
+// https://github.com/Team-Sass/breakpoint/wiki/Basic-Media-Queries
+
+$breakpoint-no-query-fallbacks: true;
+$breakpoint-to-ems: true; // will write Media Queries in Ems
+
+$breakpoints: 'mobile landscape' (screen 321px),
+              'tablet portrait' (screen 569px),
+              'tablet landscape' (screen 769px),
+              'desktop' (screen 1025px),
+              'high resolution' (min-resolution 1.5dppx);
+
+@import 'breakpoint';
+
 
 // Modular Scale
 
