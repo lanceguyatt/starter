@@ -16,7 +16,9 @@
   "author": {
     "name": "<%= pkg.author.name %>",
     "email": "<%= pkg.author.email %>",
-    "url": "<%= pkg.author.url %>"
+    "url": "<%= pkg.author.url %>",
+    "twitter": "@lanceguyatt",
+    "google": "https://plus.google.com/103654360130207659246"
   },
   "paths": {
     "images": "images/",
