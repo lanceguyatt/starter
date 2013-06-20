@@ -16,35 +16,37 @@
 //html5-block
 //article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary
 
-#{elements-of-type(html5-block)} {
+// #{elements-of-type(html5-block)} {
+//   display: block;
+//   //-webkit-backface-visibility: hidden;
+// }
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
   display: block;
 }
-
-// article,
-// aside,
-// details,
-// figcaption,
-// figure,
-// footer,
-// header,
-// hgroup,
-// menu,
-// nav,
-// section,
-// summary {
-//   display: block;
-// }
 
 // Corrects inline-block display not defined in IE6/7/8/9 & FF3
 
 audio,
 canvas,
 video {
-  display: inline-block;
-  @if $legacy_support_for_ie {
-    *display: inline;
-    *zoom: 1;
-  }
+  @include inline-block;
+  //display: inline-block;
+  //@if $legacy_support_for_ie {
+  //  *display: inline;
+  // *zoom: 1;
+  //}
 }
 
 // 1. Prevents modern browsers from displaying 'audio' without controls
@@ -110,10 +112,10 @@ a {
     outline: thin dotted;
   }
   // 2
-  //&:hover,
-  //&:active {
-  //  outline: 0;
-  //}
+  &:hover,
+  &:active {
+   outline: 0;
+  }
 }
 
 // =============================================================================
@@ -205,9 +207,9 @@ pre,
 samp {
   font-family: $mono-font-family;
   //font-family: monospace, serif;
-  // @if $legacy_support_for_ie {
-  //   _font-family: 'courier new', monospace;
-  // }
+  @if $legacy_support_for_ie {
+    _font-family: 'courier new', monospace;
+  }
   font-size: 1em;
 }
 
@@ -319,6 +321,8 @@ sub {
 
 img {
   border: 0; // 1
+  max-width: 100%;
+  vertical-align: middle;
   @if $legacy_support_for_ie {
     -ms-interpolation-mode: bicubic; // 2
   }
@@ -498,4 +502,7 @@ textarea {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+  width: 100%;
 }
+
+

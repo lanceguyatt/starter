@@ -1,0 +1,171 @@
+//
+// Grid variables
+//
+
+//
+// Grid placeholders
+//
+
+//
+// Grid mixins
+//
+
+@mixin generate-columns($size, $total-columns: $total-columns) {
+
+  // Generate span columns i.e .s-1
+  @for $i from 1 through $total-columns {
+    .#{$size}#{-$i} {
+      @if $i == $total-columns {
+        @include span-columns($i omega, $total-columns);
+      } @else {
+        @include span-columns($i, $total-columns);
+      }
+    }
+  }
+
+  // Generate push columns i.e .s-push-1
+  @for $i from 1 through $total-columns - 1 {
+    .#{$size}-push#{-$i} {
+      @include push($i, $total-columns);
+    }
+  }
+
+  // Generate pull columns i.e .s-pull-1
+  @for $i from 1 through $total-columns - 1 {
+    .#{$size}-pull#{-$i} {
+      @include pull($i, $total-columns);
+    }
+  }
+
+  // Generate omega class i.e .s-omega
+  .#{$size}-omega { // i.e s-omega
+    @include omega;
+  }
+
+  // Generate show class i.e .s-show
+  .#{$size}-show {
+    display: block;
+  }
+
+  // Generate hide class i.e s-hide
+  .#{$size}-hide {
+    display: none;
+  }
+
+  // Generate centered class ie. s-centered
+  .#{$size}-centered {
+    float: none !important;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+  }
+
+  // Generate centered class ie. s-uncentered
+  .#{$size}-uncentered {
+    float: $default-float !important;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  // Generate centered class ie. s-uncentered.opposite
+  .#{$size}-uncentered.opposite {
+    float: $omega-float !important;
+  }
+
+}
+
+// generate a block grid
+
+@mixin block-grid($size, $columns, $total-columns: $total-columns, $nth-omega: $total-columns / $columns, $remove-nth-omega: false) {
+  .#{$size}-block-grid-#{$columns}-#{$total-columns} > li {
+    @if $remove-nth-omega {
+      @include remove-nth-omega(#{$remove-nth-omega}n);
+    }
+    @include span-columns($columns, $total-columns);
+    @include nth-omega(#{$nth-omega}n);
+  }
+}
+
+.row {
+  //background-color: yellow;
+  @include container;
+  //@include susy-grid-background;
+}
+
+.row .row {
+  //background: green;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: none;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+  @include clearfix;
+}
+
+.column {
+  @extend %ellipsis-no-wrap;
+  background: rgba(#eee, 1);
+  //border: 1px solid #eee;
+  text-align: center;
+  //@include box-sizing(border-box);
+  @include padding-leader(3);
+  @include padding-trailer(3);
+  @include margin-trailer(3);
+
+}
+
+// Block grids
+
+.grid {
+  display: block;
+  list-style: none;
+  margin: 0;
+}
+
+.grid > li {
+  @extend .column;
+}
+
+@include respond-to($small) {
+
+  //@include hashgrid($total-columns, $column-width, $gutter-width, $grid-padding);
+
+  @include generate-columns('s');
+
+}
+
+@include respond-to($medium) {
+
+  @include generate-columns('m');
+
+}
+
+@include respond-to($large) {
+
+  .l-2-8 {
+    @include span-columns(2, 8);
+  }
+
+  .l-2-4 {
+    @include span-columns(2, 4);
+  }
+
+  .l-4-8 {
+    @include span-columns(4, 8);
+  }
+
+  @include generate-columns('l');
+
+}
+
+@include respond-to($xlarge) {
+
+  @include generate-columns('xl');
+
+}
+
+@include respond-to($xxlarge) {
+
+  @include generate-columns('xxl');
+}

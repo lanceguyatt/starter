@@ -5,14 +5,18 @@ $base-line-height: 8px !default;
   $width: $column-width * $total-columns + $gutter-width * ($total-columns - 1) + ($grid-padding * 2);
 
   #grid {
+    margin-left: - ($width) / 2;
+    padding-left: $grid-padding;
+    padding-right: $grid-padding;
     width: $width;
-    margin-left: - $width / 2;
+    @include box-sizing(border-box);
     .vert {
-      margin-right: $gutter-width;
-      width: $column-width;
-      &.first-line {
-        margin-left: $grid-padding;
-      }
+      @include span-columns(1, $total-columns);
+      @include nth-omega(#{$total-columns}n);
+      //width: $column-width;
+      // &.first-line {
+      //   margin-left: $grid-padding;
+      // }
     }
   }
 }

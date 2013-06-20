@@ -1,0 +1,96 @@
+extends layouts/_default
+
+block title
+
+  mixin title('Grids')
+
+block main
+
+  div(class='row')
+    h2 Grid
+    div(class='s-1 column')
+    div(class='s-1 column')
+    div(class='s-1 column')
+    div(class='s-1 column')
+    div(class='s-1 column')
+    div(class='s-1 column')
+    div(class='s-1 column')
+    div(class='s-1 column')
+    div(class='s-1 column')
+    div(class='s-1 column')
+    div(class='s-1 column')
+    div(class='s-1 s-omega column')
+
+
+  div(class='row')
+    div(class='s-12 m-12 l-4 xl-4 xxl-6')
+      div(class='column')
+        div(class='s-show m-hide l-hide xl-hide xxl-hide') .s-12
+        div(class='s-hide m-show l-hide xl-hide xxl-hide') .m-12
+        div(class='s-hide m-hide l-show xl-hide xxl-hide') .l-4
+        div(class='s-hide m-hide l-hide xl-show xxl-hide') .xl-4
+        div(class='s-hide m-hide l-hide xl-hide xxl-show') .xxl-6x1
+
+    div(class='s-12 m-6 l-8 l-omega xl-4 xxl-6 xxl-omega')
+      div(class='column')
+        div(class='s-show m-hide l-hide xl-hide xxl-hide') .s-12
+        div(class='s-hide m-show l-hide xl-hide xxl-hide') .m-6
+        div(class='s-hide m-hide l-show xl-hide xxl-hide') .l-8
+        div(class='s-hide m-hide l-hide xl-show xxl-hide') .xl-4
+        div(class='s-hide m-hide l-hide xl-hide xxl-show') .xxl-6x2
+
+    div(class='s-6 m-6 m-omega l-8 xl-4 xl-omega xxl-6')
+      div(class='column')
+        div(class='s-show m-hide l-hide xl-hide xxl-hide') .s-6
+        div(class='s-hide m-show l-hide xl-hide xxl-hide') .m-6
+        div(class='s-hide m-hide l-show xl-hide xxl-hide') .l-8
+        div(class='s-hide m-hide l-hide xl-show xxl-hide') .xl-4
+        div(class='s-hide m-hide l-hide xl-hide xxl-show') .xxl-6x1
+
+    div(class='s-6 s-omega m-12 l-4 l-omega xl-12 xxl-6 xxl-omega')
+      div(class='column')
+        div(class='s-show m-hide l-hide xl-hide xxl-hide') .s-6
+        div(class='s-hide m-show l-hide xl-hide xxl-hide') .m-12
+        div(class='s-hide m-hide l-show xl-hide xxl-hide') .l-4
+        div(class='s-hide m-hide l-hide xl-show xxl-hide') .xl-12
+        div(class='s-hide m-hide l-hide xl-hide xxl-show') .xxl-6x2
+
+  div(class='row')
+    h2 Nested grids
+
+  div(class='row')
+
+    div(class='l-8')
+
+      div(class='column') .l-8
+
+      div(class='row')
+
+        div(class='l-4-8 column')
+          div(class='m-show-down') .full
+          div(class='l-show-up') .l-4-8
+
+        div(class='l-4-8 l-omega')
+
+          div(class='column') .l-4-8
+
+          div(class='row')
+
+            div(class='l-2-4 column') .l-2-4
+
+            div(class='l-2-4 l-omega column') .l-2-4
+
+  div(class='row')
+
+    h2 Centered
+
+    div(class='s-12 s-centered m-9 m-centered l-4 l-uncentered xl-6 xl-centered xxl-10 xxl-uncentered.opposite column')
+      div(class='s-show m-hide l-hide xl-hide xxl-hide') .s-12 .s-centered
+      div(class='s-hide m-show l-hide xl-hide xxl-hide') .m-9 .m-centered
+      div(class='s-hide m-hide l-show xl-hide xxl-hide') .l-4 .l-uncentered
+      div(class='s-hide m-hide l-hide xl-show xxl-hide') .xl-6 .xl-centered
+      div(class='s-hide m-hide l-hide xl-hide xxl-show') .xxl-6 .xxl-uncentered.opposite
+
+
+
+

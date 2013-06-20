@@ -33,7 +33,7 @@ $base-line-height: 8px; // The base line height determines the basic unit of ver
 $default-rhythm-border-style: solid; // Set the default border style for rhythm borders.
 $relative-font-sizing: true; // Set to false if you want to use absolute pixels in sizing your typography.
 $round-to-nearest-half-line: false;
-$min-line-padding: 1px; // Ensure there is at least this many pixels of vertical padding above and below the text.
+$min-line-padding: 2px; // Ensure there is at least this many pixels of vertical padding above and below the text.
 //$font-unit: $base-font-size;
 $base-rhythm-unit: $base-line-height; // The basic unit of font rhythm.
 
@@ -55,18 +55,33 @@ $menlo:                 Menlo, Monaco, Consolas, "Courier New", monospace !defau
 
 // Assign font stacks
 
-$sans-font-family:      $helvetica;
-$serif-font-family:     $georgia;
-$mono-font-family:      $menlo;
-$alt-font-family:       $serif-font-family;
+$sans-font-family: $helvetica;
+$serif-font-family: $georgia;
+$mono-font-family: $menlo;
+$alt-font-family: $serif-font-family;
 
-$base-font-family:      $sans-font-family; // The font family set on the html element.
+$base-font-family: $sans-font-family; // The font family set on the html element.
 
-$headings-font-family:  $helvetica;
-$headings-font-weight:  normal !default; // instead of browser default, bold
-$headings-color:        inherit !default; // empty to use BS default, $textColor
+// font smoothing
 
-$font-smoothing:        true;
+// We use this to control font-smoothing
+$font-smoothing: antialiased !default;
+
+// Text direction
+
+// We use these to control text direction settings
+$text-direction: ltr !default;
+
+// NOTE: No need to change this conditional statement, $text-direction variable controls it all.
+$default-float: left !default;
+$opposite-direction: right !default;
+@if $text-direction == ltr {
+  $default-float: left;
+  $opposite-direction: right;
+} @else {
+  $default-float: right;
+  $opposite-direction: left;
+}
 
 // Grays
 
@@ -95,9 +110,11 @@ $alert-color:           #c60f13;
 $success-color:         #5da423;
 
 // Scaffolding
-
-$body-background:       $white !default;
-$text-color:            $black !default;
+$body-background: $white !default;
+$body-font-color: $black !default;
+$body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !default;
+$body-font-style: normal !default;
+$body-font-weight: normal !default;
 
 // Links
 
@@ -108,17 +125,15 @@ $link-color-hover:      darken($link-color, 15%) !default;
 
 $link:                  '&:link, &:visited';
 $hover:                 '&:focus, &:hover, &:active';
-$headings:              'h1, h2, h3, h4, h5, h6';
-$type:                  'h1, h2, h3, h4, h5, h6, p, ul, ol, table, form';
 
 // Cursors
 
 // Custom use example -> $cursor-default-value: url(http://cursors-site.net/path/to/custom/cursor/default.cur),progress;
 
-// $cursor-crosshair-value: "crosshair";
-// $cursor-default-value: "default";
-// $cursor-pointer-value: "pointer";
-// $cursor-help-value: "help";
+$cursor-crosshair-value: "crosshair";
+$cursor-default-value: "default";
+$cursor-pointer-value: "pointer";
+$cursor-help-value: "help";
 
 // Susy settings
 
@@ -126,30 +141,30 @@ $type:                  'h1, h2, h3, h4, h5, h6, p, ul, ol, table, form';
 // susy.oddbird.net/guides/reference/
 
 // The total number of columns in the grid
-$total-columns:           12; // The number of Columns in your default Grid Layout <number> Unitless number.
+$total-columns: 12; // The number of Columns in your default Grid Layout <number> Unitless number.
 
 // The width of columns and gutters.
 // These must all be set with the comparable units.
-$column-width:            3.75em; // 60px
-$gutter-width:            1.25em; // 20px The space between Columns. <length> Units must match $column-width.
+$column-width: 3.75em; // 60px
+$gutter-width: 1.25em; // 20px The space between Columns. <length> Units must match $column-width.
 
 // Padding on the left and right of a Grid Container.
-$grid-padding:            0.625em; // 10px
+$grid-padding: 0.625em; // 10px
 
 // ---------------------------------------------------------------------------
 // Advanced Settings
 
 // From Direction:
 // Controls for right-to-left or bi-directional sites.
-$from-direction:          left;
+$from-direction: $default-float;
 
 // Omega Float Direction:
 // The direction that +omega elements are floated by deafult.
-$omega-float:             opposite-position($from-direction);
+$omega-float: opposite-position($from-direction);
 
 // Container Width:
 // Override the total width of your grid, using any length (50em, 75%, etc.)
-$container-width:         false;
+$container-width: 58.75em;
 
 // Container Style:
 // 'magic'  - Static (fixed or elastic) when there's enough space,
@@ -157,14 +172,14 @@ $container-width:         false;
 // 'static' - Forces the grid container to remain static at all times.
 // 'fluid'  - Forces the grid to remain fluid at all times.
 //            (this will overrule any static $container-width settings)
-$container-style:         magic;
+$container-style: magic;
 
 // Border-Box Sizing
 // Adjust the grid math appropriately for box-sizing: border-box;
 // Warning: This does not actually apply the new box model!
 // In most cases you can ignore this setting,
 // and simply apply the border-box-sizing mixin.
-$border-box-sizing:       false;
+$border-box-sizing: true;
 
 // IE Settings
 
@@ -174,10 +189,10 @@ $border-box-sizing:       false;
 // any defined ie-fallback classes.
 
 $breakpoint-media-output: true; // Turn off media-query output for IE-only stylesheets.
-$breakpoint-ie-output:    true; // Turn off media-query fallback output for non-IE stylesheets.
+$breakpoint-ie-output: true; // Turn off media-query fallback output for non-IE stylesheets.
 
 // Danger Zone! Only set as 'true' in IE-specific style sheets.
-$breakpoint-raw-output:   false; // Pass through raw output without media-queries or fallback classes for IE-only stylesheets.
+$breakpoint-raw-output: false; // Pass through raw output without media-queries or fallback classes for IE-only stylesheets.
 
 @import "susy";
 
@@ -189,22 +204,24 @@ $breakpoint-raw-output:   false; // Pass through raw output without media-querie
 $breakpoint-no-query-fallbacks: true;
 $breakpoint-to-ems: true; // will write Media Queries in Ems
 
-$breakpoints: 'mobile landscape' (screen 321px),
-              'tablet portrait' (screen 569px),
-              'tablet landscape' (screen 769px),
-              'desktop' (screen 1025px),
-              'high resolution' (min-resolution 1.5dppx);
+$small: 'small';
+$medium: 'medium';
+$large: 'large';
+$xlarge: 'xlarge';
+$xxlarge: 'xxlarge';
+
+$breakpoints: '#{$small}' (screen),
+              '#{$medium}' (screen 321px),
+              '#{$large}' (screen 569px),
+              '#{$xlarge}' (screen 769px),
+              '#{$xxlarge}' (screen 1025px);
+              // '#{$nexus7}' (width 540px 749px),
+              // '#{$landscape}' (orientation landscape),
+              // '#{$portrait}' (orientation portrait),
+              // '#{$hidpi}' (min-resolution 1.5dppx),
+              // '#{$crossres}' (max-resolution 143dpi);
 
 @import 'breakpoint';
-
-
-// Modular Scale
-
-// Modular Scale is a Sass based mixin that calculates the incremental values of the modular scale in proportion to a set size and ratio. It was inspired by and adapted from Tim Brown's modularscale.com.
-// https://github.com/Team-Sass/modular-scale
-
-//$ratio: 1.618;
-@import "modular-scale";
 
 $border-color: $gray;
 

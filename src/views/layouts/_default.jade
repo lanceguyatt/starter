@@ -36,15 +36,9 @@ html(dir='#{site.dir}', lang='#{site.lang}', prefix='og: http://ogp.me/ns schema
       //- mobile meta
       meta(name='apple-mobile-web-app-capable', content='yes')
       meta(name='HandheldFriendly', content='true')
-
       meta(name='viewport', content='user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1')
 
       //- iOS meta
-      //-
-        link(rel='apple-touch-icon-precomposed', sizes='144x144', href='apple-touch-icon-144x144-precomposed.png')
-        link(rel='apple-touch-icon-precomposed', sizes='114x114', href='apple-touch-icon-114x114-precomposed.png')
-        link(rel='apple-touch-icon-precomposed', sizes='72x72', href='apple-touch-icon-72x72-precomposed.png')
-        link(rel='apple-touch-icon-precomposed', sizes='57x57', href='apple-touch-icon-72x72-precomposed.png')
         meta(name='apple-mobile-web-app-title', content='#{site.name}')
 
       //- Microsoft meta
@@ -53,56 +47,56 @@ html(dir='#{site.dir}', lang='#{site.lang}', prefix='og: http://ogp.me/ns schema
         meta(name='msapplication-TileColor', content='#cccccc')
         meta(name='msapplication-TileImage', content='#{site.url}/apple-touch-icon-144x144-precomposed.png')
 
-      //- twitter card
+      //- Twitter card
       //-
-      meta(name='twitter:card', content='summary')
-      meta(name='twitter:site', content='#{author.twitter}')
-      meta(name='twitter:domain', content='#{site.url}')
-      meta(name='twitter:title', content='#{site.title}')
-      meta(name='twitter:creator', content='#{author.twitter}')
-      meta(name='twitter:description', content='#{site.description}')
-      meta(name='twitter:image:src', content='#{site.image}')
+        meta(name='twitter:card', content='summary')
+        meta(name='twitter:site', content='#{author.twitter}')
+        meta(name='twitter:domain', content='#{site.url}')
+        meta(name='twitter:title', content='#{site.title}')
+        meta(name='twitter:creator', content='#{author.twitter}')
+        meta(name='twitter:description', content='#{site.description}')
+        meta(name='twitter:image:src', content='#{site.image}')
 
-      //- verification meta
+      //- Google meta
       //-
         meta(name='google-site-verification', content='XXXXXXXXXXXX')
 
       //- stylesheets
       link(rel='stylesheet', href='#{paths.css}/style.css', media='all')
-
       //-
         link(rel='stylesheet', href='#{paths.css}/layout.css', media='all and (min-width: 36.25em)')
-
-      //-
         // if (lt IE 9) & (!IEMobile)
           link(rel='stylesheet', href='#{paths.css}/layout.css', media='all')
 
       //- icons
+      link(rel='shortcut icon', href='favicon.ico',  type='image/x-icon')
       //-
-        link(rel='apple-touch-icon-precomposed', href='#{site.url}/apple-touch-icon-precomposed.png')
-      link(rel='shortcut icon', href='favicon.ico')
+        link(rel='apple-touch-icon-precomposed', href='apple-touch-icon-57x57-precomposed.png')
+        link(rel='apple-touch-icon-precomposed', href='apple-touch-icon-72x72-precomposed.png', sizes='72x72')
+        link(rel='apple-touch-icon-precomposed', href='apple-touch-icon-114x114-precomposed.png', sizes='114x114')
+        link(rel='apple-touch-icon-precomposed', href='apple-touch-icon-144x144-precomposed.png', sizes='144x144')
+
 
       //- author
       //-
         link(rel='author', href='/#{author.twitter}')
-      link(rel='publisher', href='#{author.google}')
-      link(rel='author', href='humans.txt', type='text/plain')
+        link(rel='publisher', href='#{author.google}')
+      link(rel='author', href='humans.txt')
 
       script(src='#{paths.js}/modernizr.min.js')
 
   body
 
-    div(class='container')
-
-      header(class='header', role='banner')
+    header(class='header', role='banner')
+      div(class='row')
         h1 #{site.title}
 
-      div(class='main', role='main', itemprop='mainContentofPage')
+    main(class='main', role='main', itemprop='mainContentofPage')
 
-        block main
+      block main
 
-      footer(class='footer', role='contentinfo')
-
+    footer(class='footer', role='contentinfo')
+      div(class='row')
         p(class='copyright')
           | Copyright &#169; 
           span(itemprop='copyrightYear') #{site.copyrightYear}

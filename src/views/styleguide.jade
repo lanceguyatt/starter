@@ -1,14 +1,14 @@
 extends layouts/_default
 
+mixin headings
+
 block title
 
   mixin title('Styleguide')
 
 block main
 
-  h1 #{site.name} styleguide
-
-  div(class='prose')
+  div(class='row')
     p This document is a guide to the mark-up styles used throughout the site. Parts of this markup guide are attributable to 
       a(href='http://www.mezzoblue.com/') Dave Shea
       | , and licensed under a 

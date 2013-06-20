@@ -2,7 +2,8 @@
 
 @import 'globals/_base';
 
-@import 'helpers/_normalize';
+@import 'core/_normalize';
+
 @import 'helpers/mixins';
 @import 'helpers/placeholders';
 //@import 'helpers/_display';
@@ -10,27 +11,17 @@
 //@import 'helpers/fonts';
 
 @import 'elements/_scaffolding';
-@import 'elements/_typography';
+@import 'elements/_type';
 
-@import 'modules/_misc';
+@import 'page/_header';
+
+@import 'modules/_grid';
+
+//@import 'modules/_misc';
 //@import 'modules/_icon';
 
-@include hashgrid($total-columns, $column-width, $gutter-width, $grid-padding);
+//@include hashgrid($total-columns, $column-width, $gutter-width, $grid-padding);
 
-.container {
-  @include container;
-  @include padding-leader(3);
-  //@include susy-grid-background;
-}
+//@import 'media/print';
 
-@include respond-to('mobile landscape') {
-}
 
-@include respond-to('tablet portrait') {
-}
-
-@include respond-to('tablet landscape') {
-}
-
-@include respond-to('desktop') {
-}
