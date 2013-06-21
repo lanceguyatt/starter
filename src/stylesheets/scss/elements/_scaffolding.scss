@@ -1,49 +1,39 @@
 // Scaffolding
 
-
-
-
-// *,
-// *:before,
-// *:after {
-//   @include box-sizing(border-box);
-// }
-
-html,
-body {
-  font-size: pem($base-font-size);
-}
-
 html {
+  //@include adjust-font-size-to($base-font-size, 3);
   background-color: $body-background;
   color: $body-font-color;
+  //font-size: pem($base-font-size);
 }
 
 body {
   @extend %antialiased;
-  cursor: $cursor-default-value;
+  //cursor: $cursor-default-value;
   font-family: $body-font-family;
   font-style: $body-font-style;
   font-weight: $body-font-weight;
-  line-height: pem($base-line-height * 3);
   margin: 0;
   padding: 0;
   position: relative;
+  @include adjust-font-size-to($base-font-size, 3);
 }
 
 a:hover {
-  cursor: $cursor-pointer-value;
+  //cursor: $cursor-pointer-value;
 }
 
 // Override outline from normalize, we don't like it
-a:focus { outline: none; }
+a:focus {
+  outline: none;
+}
 
 // Grid Defaults to get images and embeds to work properly
 img,
 object,
 embed {
-  max-width: 100%;
   height: auto;
+  max-width: 100%;
 }
 
 object,
@@ -59,19 +49,24 @@ embed {
 .map_canvas {
   img,
   embed,
-  object { max-width: none !important;
+  object {
+    max-width: none !important;
   }
 }
 
 // Miscellaneous useful HTML classes
 .left {
   float: #{$default-float} !important;
-  //@include float('#{$default-float} !important');
+  @if $legacy_support_for_ie6 {
+    display: inline;
+  }
 }
 
 .right {
   float: #{$opposite-direction} !important;
-  //@include float('#{$opposite-direction} !important');
+  @if $legacy_support_for_ie6 {
+    display: inline;
+  }
 }
 
 .text-left {
@@ -104,6 +99,7 @@ embed {
 
 // Get rid of gap under images by making them display: inline-block; by default
 img {
-  display: inline-block;
+  @include inline-block;
+  //display: inline-block;
   vertical-align: middle;
 }

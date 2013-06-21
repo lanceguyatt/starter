@@ -1,4 +1,4 @@
-$base-line-height: 8px !default;
+$base-line-height: pem(8px) !default;
 
 @mixin hashgrid($total-columns, $column-width, $gutter-width, $grid-padding) {
 
@@ -13,12 +13,9 @@ $base-line-height: 8px !default;
     .vert {
       @include span-columns(1, $total-columns);
       @include nth-omega(#{$total-columns}n);
-      //width: $column-width;
-      // &.first-line {
-      //   margin-left: $grid-padding;
-      // }
     }
   }
+
 }
 
 #grid {

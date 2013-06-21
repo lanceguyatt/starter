@@ -6,91 +6,723 @@ block title
 
 block main
 
-  div(class='row')
-    h2 Grid
-    div(class='s-1 column')
-    div(class='s-1 column')
-    div(class='s-1 column')
-    div(class='s-1 column')
-    div(class='s-1 column')
-    div(class='s-1 column')
-    div(class='s-1 column')
-    div(class='s-1 column')
-    div(class='s-1 column')
-    div(class='s-1 column')
-    div(class='s-1 column')
-    div(class='s-1 s-omega column')
+  div(class='container')
 
+    section(class='docs')
+      h2 Default columns
 
-  div(class='row')
-    div(class='s-12 m-12 l-4 xl-4 xxl-6')
-      div(class='column')
-        div(class='s-show m-hide l-hide xl-hide xxl-hide') .s-12
-        div(class='s-hide m-show l-hide xl-hide xxl-hide') .m-12
-        div(class='s-hide m-hide l-show xl-hide xxl-hide') .l-4
-        div(class='s-hide m-hide l-hide xl-show xxl-hide') .xl-4
-        div(class='s-hide m-hide l-hide xl-hide xxl-show') .xxl-6x1
+      div(class='columns')
+        div(class='s-1 column') 1
+        div(class='s-1 column') 1
+        div(class='s-1 column') 1
+        div(class='s-1 column') 1
+        div(class='s-1 column') 1
+        div(class='s-1 column') 1
+        div(class='s-1 column') 1
+        div(class='s-1 column') 1
+        div(class='s-1 column') 1
+        div(class='s-1 column') 1
+        div(class='s-1 column') 1
+        div(class='s-1 s-omega column') 1
 
-    div(class='s-12 m-6 l-8 l-omega xl-4 xxl-6 xxl-omega')
-      div(class='column')
-        div(class='s-show m-hide l-hide xl-hide xxl-hide') .s-12
-        div(class='s-hide m-show l-hide xl-hide xxl-hide') .m-6
-        div(class='s-hide m-hide l-show xl-hide xxl-hide') .l-8
-        div(class='s-hide m-hide l-hide xl-show xxl-hide') .xl-4
-        div(class='s-hide m-hide l-hide xl-hide xxl-show') .xxl-6x2
+      div(class='columns')
+        div(class='s-2 column') 2
+        div(class='s-2 column') 2
+        div(class='s-2 column') 2
+        div(class='s-2 column') 2
+        div(class='s-2 column') 2
+        div(class='s-2 s-omega column') 2
 
-    div(class='s-6 m-6 m-omega l-8 xl-4 xl-omega xxl-6')
-      div(class='column')
-        div(class='s-show m-hide l-hide xl-hide xxl-hide') .s-6
-        div(class='s-hide m-show l-hide xl-hide xxl-hide') .m-6
-        div(class='s-hide m-hide l-show xl-hide xxl-hide') .l-8
-        div(class='s-hide m-hide l-hide xl-show xxl-hide') .xl-4
-        div(class='s-hide m-hide l-hide xl-hide xxl-show') .xxl-6x1
+      div(class='columns')
+        div(class='s-3 column') 3
+        div(class='s-3 column') 3
+        div(class='s-3 column') 3
+        div(class='s-3 s-omega column') 3
 
-    div(class='s-6 s-omega m-12 l-4 l-omega xl-12 xxl-6 xxl-omega')
-      div(class='column')
-        div(class='s-show m-hide l-hide xl-hide xxl-hide') .s-6
-        div(class='s-hide m-show l-hide xl-hide xxl-hide') .m-12
-        div(class='s-hide m-hide l-show xl-hide xxl-hide') .l-4
-        div(class='s-hide m-hide l-hide xl-show xxl-hide') .xl-12
-        div(class='s-hide m-hide l-hide xl-hide xxl-show') .xxl-6x2
+      div(class='columns')
+        div(class='s-4 column') 4
+        div(class='s-4 column') 4
+        div(class='s-4 s-omega column') 4
 
-  div(class='row')
-    h2 Nested grids
+      div(class='columns')
+        div(class='s-5 column') 5
+        div(class='s-7 s-omega column') 7
 
-  div(class='row')
+      div(class='columns')
+        div(class='s-6 column') 6
+        div(class='s-6 s-omega column') 6
 
-    div(class='l-8')
+      div(class='columns')
+        div(class='s-7 column') 7
+        div(class='s-5 s-omega column') 5
 
-      div(class='column') .l-8
+      div(class='columns')
+        div(class='s-8 column') 8
+        div(class='s-4 s-omega column') 4
 
-      div(class='row')
+      div(class='columns')
+        div(class='s-9 column') 9
+        div(class='s-3 s-omega column') 3
 
-        div(class='l-4-8 column')
-          div(class='m-show-down') .full
-          div(class='l-show-up') .l-4-8
+      div(class='columns')
+        div(class='s-10 column') 10
+        div(class='s-2 s-omega column') 2
 
-        div(class='l-4-8 l-omega')
+      div(class='columns')
+        div(class='s-11 column') 11
+        div(class='s-1 s-omega column') 1
 
-          div(class='column') .l-4-8
+      div(class='columns')
+        div(class='s-12 column') 12
 
-          div(class='row')
+    section(class='docs')
+      h2 Push columns
 
-            div(class='l-2-4 column') .l-2-4
+      div(class='columns')
+        div(class='s-1 s-push-1 column') 1
 
-            div(class='l-2-4 l-omega column') .l-2-4
+      div(class='columns')
+        div(class='s-1 s-push-2 column') 1
 
-  div(class='row')
+      div(class='columns')
+        div(class='s-1 s-push-3 column') 1
 
-    h2 Centered
+      div(class='columns')
+        div(class='s-1 s-push-4 column') 1
 
-    div(class='s-12 s-centered m-9 m-centered l-4 l-uncentered xl-6 xl-centered xxl-10 xxl-uncentered.opposite column')
-      div(class='s-show m-hide l-hide xl-hide xxl-hide') .s-12 .s-centered
-      div(class='s-hide m-show l-hide xl-hide xxl-hide') .m-9 .m-centered
-      div(class='s-hide m-hide l-show xl-hide xxl-hide') .l-4 .l-uncentered
-      div(class='s-hide m-hide l-hide xl-show xxl-hide') .xl-6 .xl-centered
-      div(class='s-hide m-hide l-hide xl-hide xxl-show') .xxl-6 .xxl-uncentered.opposite
+      div(class='columns')
+        div(class='s-1 s-push-5 column') 1
 
+      div(class='columns')
+        div(class='s-1 s-push-6 column') 1
 
+      div(class='columns')
+        div(class='s-1 s-push-7 column') 1
+
+      div(class='columns')
+        div(class='s-1 s-push-8 column') 1
+
+      div(class='columns')
+        div(class='s-1 s-push-9 column') 1
+
+      div(class='columns')
+        div(class='s-1 s-push-10 column') 1
+
+      div(class='columns')
+        div(class='s-1 s-push-11 column') 1
+
+    section(class='docs')
+      h2 Pull columns
+
+      div(class='columns')
+        div(class='s-1 s-omega s-pull-1 column') 1
+
+      div(class='columns')
+        div(class='s-1 s-omega s-pull-2 column') 1
+
+      div(class='columns')
+        div(class='s-1 s-push-3 column') 1
+
+      div(class='columns')
+        div(class='s-1 s-push-4 column') 1
+
+      div(class='columns')
+        div(class='s-1 s-push-5 column') 1
+
+      div(class='columns')
+        div(class='s-1 s-push-6 column') 1
+
+      div(class='columns')
+        div(class='s-1 s-push-7 column') 1
+
+      div(class='columns')
+        div(class='s-1 s-push-8 column') 1
+
+      div(class='columns')
+        div(class='s-1 s-push-9 column') 1
+
+      div(class='columns')
+        div(class='s-1 s-push-10 column') 1
+
+      div(class='columns')
+        div(class='s-1 s-push-11 column') 1
+
+    section(class='docs')
+      h2 Centered columns
+
+      div(class='columns')
+        div(class='s-1 s-centered column') 1
+
+      div(class='columns')
+        div(class='s-2 s-centered column') 2
+
+      div(class='columns')
+        div(class='s-3 s-centered column') 3
+
+      div(class='columns')
+        div(class='s-4 s-centered column') 4
+
+      div(class='columns')
+        div(class='s-5 s-centered column') 5
+
+      div(class='columns')
+        div(class='s-6 s-centered column') 6
+
+      div(class='columns')
+        div(class='s-7 s-centered column') 7
+
+      div(class='columns')
+        div(class='s-8 s-centered column') 8
+
+      div(class='columns')
+        div(class='s-9 s-centered column') 9
+
+      div(class='columns')
+        div(class='s-10 s-centered column') 10
+
+      div(class='columns')
+        div(class='s-11 s-centered column') 11
+
+      div(class='columns')
+        div(class='s-12 s-centered column') 12
+
+    section(class='docs')
+      h2 Uncentered columns
+
+      div(class='columns')
+        div(class='s-1 s-centered s-uncentered column') 1
+
+      div(class='columns')
+        div(class='s-2 s-centered s-uncentered column') 2
+
+      div(class='columns')
+        div(class='s-3 s-centered s-uncentered column') 3
+
+      div(class='columns')
+        div(class='s-4 s-centered s-uncentered column') 4
+
+      div(class='columns')
+        div(class='s-5 s-centered s-uncentered column') 5
+
+      div(class='columns')
+        div(class='s-6 s-centered s-uncentered column') 6
+
+      div(class='columns')
+        div(class='s-7 s-centered s-uncentered column') 7
+
+      div(class='columns')
+        div(class='s-8 s-centered s-uncentered column') 8
+
+      div(class='columns')
+        div(class='s-9 s-centered s-uncentered column') 9
+
+      div(class='columns')
+        div(class='s-10 s-centered s-uncentered column') 10
+
+      div(class='columns')
+        div(class='s-11 s-centered s-uncentered column') 11
+
+      div(class='columns')
+        div(class='s-12 s-centered s-uncentered column') 12
+
+    section(class='docs')
+      h2 Uncentered opposite columns
+
+      div(class='columns')
+        div(class='s-1 s-centered s-uncentered opposite column') 1
+
+      div(class='columns')
+        div(class='s-2 s-centered s-uncentered opposite column') 2
+
+      div(class='columns')
+        div(class='s-3 s-centered s-uncentered opposite column') 3
+
+      div(class='columns')
+        div(class='s-4 s-centered s-uncentered opposite column') 4
+
+      div(class='columns')
+        div(class='s-5 s-centered s-uncentered opposite column') 5
+
+      div(class='columns')
+        div(class='s-6 s-centered s-uncentered opposite column') 6
+
+      div(class='columns')
+        div(class='s-7 s-centered s-uncentered opposite column') 7
+
+      div(class='columns')
+        div(class='s-8 s-centered s-uncentered opposite column') 8
+
+      div(class='columns')
+        div(class='s-9 s-centered s-uncentered opposite column') 9
+
+      div(class='columns')
+        div(class='s-10 s-centered s-uncentered opposite column') 10
+
+      div(class='columns')
+        div(class='s-11 s-centered s-uncentered opposite column') 11
+
+      div(class='columns')
+        div(class='s-12 s-centered s-uncentered opposite column') 12
+
+    section(class='docs')
+      h2 Nested columns
+
+      div(class='columns')
+        div(class='s-2 column') 2
+          div(class='columns')
+            div(class='s-1-2 column') 1
+            div(class='s-1-2 s-omega column') 1
+        div(class='s-2 column') 2
+          div(class='columns')
+            div(class='s-1-2 column') 1
+            div(class='s-1-2 s-omega column') 1
+        div(class='s-2 column') 2
+          div(class='columns')
+            div(class='s-1-2 column') 1
+            div(class='s-1-2 s-omega column') 1
+        div(class='s-2 column') 2
+          div(class='columns')
+            div(class='s-1-2 column') 1
+            div(class='s-1-2 s-omega column') 1
+        div(class='s-2 column') 2
+          div(class='columns')
+            div(class='s-1-2 column') 1
+            div(class='s-1-2 s-omega column') 1
+        div(class='s-2 s-omega column') 2
+          div(class='columns')
+            div(class='s-1-2 column') 1
+            div(class='s-1-2 s-omega column') 1
+
+      div(class='columns')
+        div(class='s-3 column') 3
+          div(class='columns')
+            div(class='s-2-3 column') 2
+            div(class='s-1-3 s-omega column') 1
+        div(class='s-3 column') 3
+          div(class='columns')
+            div(class='s-1-3 column') 1
+            div(class='s-1-3 column') 1
+            div(class='s-1-3 s-omega column') 1
+        div(class='s-3 column') 3
+          div(class='columns')
+            div(class='s-1-3 column') 1
+            div(class='s-1-3 column') 1
+            div(class='s-1-3 s-omega column') 1
+        div(class='s-3 s-omega column') 3
+          div(class='columns')
+            div(class='s-1-3 column') 1
+            div(class='s-1-3 column') 1
+            div(class='s-1-3 s-omega column') 1
+
+      div(class='columns')
+        div(class='s-4 column') 4
+          div(class='columns')
+            div(class='s-3-4 column') 3
+            div(class='s-1-4 s-omega column') 1
+        div(class='s-4 column') 4
+          div(class='columns')
+            div(class='s-2-4 column') 2
+            div(class='s-2-4 s-omega column') 2
+        div(class='s-4 s-omega column') 4
+          div(class='columns')
+            div(class='s-1-4 column') 1
+            div(class='s-1-4 column') 1
+            div(class='s-1-4 column') 1
+            div(class='s-1-4 s-omega column') 1
+
+      div(class='columns')
+        div(class='s-5 column') 5
+          div(class='columns')
+            div(class='s-4-5 column') 4
+            div(class='s-1-5 s-omega column') 1
+        div(class='s-1 column') 1
+        div(class='s-5 column') 5
+          div(class='columns')
+            div(class='s-4-5 column') 4
+            div(class='s-1-5 s-omega column') 1
+        div(class='s-1 s-omega column') 1
+
+      div(class='columns')
+        div(class='s-6 column') 6
+          div(class='columns')
+            div(class='s-5-6 column') 5
+            div(class='s-1-6 s-omega column') 1
+
+        div(class='s-6 s-omega column') 6
+          div(class='columns')
+            div(class='s-4-6 column') 4
+            div(class='s-2-6 s-omega column') 2
+
+      div(class='columns')
+        div(class='s-6 column') 6
+          div(class='columns')
+            div(class='s-3-6 column') 3
+            div(class='s-3-6 s-omega column') 3
+        div(class='s-6 s-omega column') 6
+          div(class='columns')
+            div(class='s-2-6 column') 2
+            div(class='s-2-6 column') 2
+            div(class='s-2-6 s-omega column') 2
+
+      div(class='columns')
+        div(class='s-7 column') 7
+          div(class='columns')
+            div(class='s-6-7 column') 6
+            div(class='s-1-7 s-omega column') 1
+        div(class='s-5 s-omega column') 5
+
+      div(class='columns')
+        div(class='s-7 column') 7
+          div(class='columns')
+            div(class='s-5-7 column') 5
+            div(class='s-2-7 s-omega column') 2
+        div(class='s-5 s-omega column') 5
+
+      div(class='columns')
+        div(class='s-7 column') 7
+          div(class='columns')
+            div(class='s-4-7 column') 4
+            div(class='s-3-7 s-omega column') 3
+        div(class='s-5 s-omega column') 5
+
+      div(class='columns')
+        div(class='s-7 column') 7
+          div(class='columns')
+            div(class='s-1-7 column') 1
+            div(class='s-1-7 column') 1
+            div(class='s-1-7 column') 1
+            div(class='s-1-7 column') 1
+            div(class='s-1-7 column') 1
+            div(class='s-1-7 column') 1
+            div(class='s-1-7 s-omega column') 1
+        div(class='s-5 s-omega column') 5
+
+      div(class='columns')
+        div(class='s-8 column') 8
+          div(class='columns')
+            div(class='s-7-8 column') 7
+            div(class='s-1-8 s-omega column') 1
+        div(class='s-4 s-omega column') 4
+
+      div(class='columns')
+        div(class='s-8 column') 8
+          div(class='columns')
+            div(class='s-6-8 column') 6
+            div(class='s-2-8 s-omega column') 2
+        div(class='s-4 s-omega column') 4
+
+      div(class='columns')
+        div(class='s-8 column') 8
+          div(class='columns')
+            div(class='s-5-8 column') 5
+            div(class='s-3-8 s-omega column') 3
+        div(class='s-4 s-omega column') 4
+
+      div(class='columns')
+        div(class='s-8 column') 8
+          div(class='columns')
+            div(class='s-4-8 column') 4
+            div(class='s-4-8 s-omega column') 4
+        div(class='s-4 s-omega column') 4
+
+      div(class='columns')
+        div(class='s-8 column') 8
+          div(class='columns')
+            div(class='s-3-8 column') 3
+            div(class='s-3-8 column') 3
+            div(class='s-2-8 s-omega column') 2
+        div(class='s-4 s-omega column') 4
+
+      div(class='columns')
+        div(class='s-8 column') 8
+          div(class='columns')
+            div(class='s-1-8 column') 1
+            div(class='s-1-8 column') 1
+            div(class='s-1-8 column') 1
+            div(class='s-1-8 column') 1
+            div(class='s-1-8 column') 1
+            div(class='s-1-8 column') 1
+            div(class='s-1-8 column') 1
+            div(class='s-1-8 s-omega column') 1
+        div(class='s-4 s-omega column') 4
+
+      div(class='columns')
+        div(class='s-9 column') 9
+          div(class='columns')
+            div(class='s-8-9 column') 8
+            div(class='s-1-9 s-omega column') 1
+        div(class='s-3 s-omega column') 3
+
+      div(class='columns')
+        div(class='s-9 column') 9
+          div(class='columns')
+            div(class='s-7-9 column') 7
+            div(class='s-2-9 s-omega column') 2
+        div(class='s-3 s-omega column') 3
+
+      div(class='columns')
+        div(class='s-9 column') 9
+          div(class='columns')
+            div(class='s-6-9 column') 6
+            div(class='s-3-9 s-omega column') 3
+        div(class='s-3 s-omega column') 3
+
+      div(class='columns')
+        div(class='s-9 column') 9
+          div(class='columns')
+            div(class='s-5-9 column') 5
+            div(class='s-4-9 s-omega column') 4
+        div(class='s-3 s-omega column') 3
+
+      div(class='columns')
+        div(class='s-9 column') 9
+          div(class='columns')
+            div(class='s-3-9 column') 3
+            div(class='s-3-9 column') 3
+            div(class='s-3-9 s-omega column') 3
+        div(class='s-3 s-omega column') 3
+
+      div(class='columns')
+        div(class='s-9 column') 9
+          div(class='columns')
+            div(class='s-1-9 column') 1
+            div(class='s-1-9 column') 1
+            div(class='s-1-9 column') 1
+            div(class='s-1-9 column') 1
+            div(class='s-1-9 column') 1
+            div(class='s-1-9 column') 1
+            div(class='s-1-9 column') 1
+            div(class='s-1-9 column') 1
+            div(class='s-1-9 s-omega column') 1
+        div(class='s-3 s-omega column') 3
+
+      div(class='columns')
+        div(class='s-10 column') 10
+          div(class='columns')
+            div(class='s-9-10 column') 9
+            div(class='s-1-10 s-omega column') 1
+        div(class='s-2 s-omega column') 2
+
+      div(class='columns')
+        div(class='s-10 column') 10
+          div(class='columns')
+            div(class='s-8-10 column') 8
+            div(class='s-2-10 s-omega column') 2
+        div(class='s-2 s-omega column') 2
+
+      div(class='columns')
+        div(class='s-10 column') 10
+          div(class='columns')
+            div(class='s-7-10 column') 7
+            div(class='s-3-10 s-omega column') 3
+        div(class='s-2 s-omega column') 2
+
+      div(class='columns')
+        div(class='s-10 column') 10
+          div(class='columns')
+            div(class='s-6-10 column') 6
+            div(class='s-4-10 s-omega column') 4
+        div(class='s-2 s-omega column') 2
+
+      div(class='columns')
+        div(class='s-10 column') 10
+          div(class='columns')
+            div(class='s-5-10 column') 5
+            div(class='s-5-10 s-omega column') 5
+        div(class='s-2 s-omega column') 2
+
+      div(class='columns')
+        div(class='s-10 column') 10
+          div(class='columns')
+            div(class='s-2-10 column') 2
+            div(class='s-2-10 column') 2
+            div(class='s-2-10 column') 2
+            div(class='s-2-10 column') 2
+            div(class='s-2-10 s-omega column') 2
+        div(class='s-2 s-omega column') 2
+
+      div(class='columns')
+        div(class='s-10 column') 10
+          div(class='columns')
+            div(class='s-1-10 column') 1
+            div(class='s-1-10 column') 1
+            div(class='s-1-10 column') 1
+            div(class='s-1-10 column') 1
+            div(class='s-1-10 column') 1
+            div(class='s-1-10 column') 1
+            div(class='s-1-10 column') 1
+            div(class='s-1-10 column') 1
+            div(class='s-1-10 column') 1
+            div(class='s-1-10 s-omega column') 1
+        div(class='s-2 s-omega column') 2
+
+      div(class='columns')
+        div(class='s-11 column') 11
+          div(class='columns')
+            div(class='s-10-11 column') 10
+            div(class='s-1-11 s-omega column') 1
+        div(class='s-1 s-omega column') 1
+
+      div(class='columns')
+        div(class='s-11 column') 11
+          div(class='columns')
+            div(class='s-9-11 column') 9
+            div(class='s-2-11 s-omega column') 2
+        div(class='s-1 s-omega column') 1
+
+      div(class='columns')
+        div(class='s-11 column') 11
+          div(class='columns')
+            div(class='s-8-11 column') 8
+            div(class='s-3-11 s-omega column') 3
+        div(class='s-1 s-omega column') 1
+
+      div(class='columns')
+        div(class='s-11 column') 11
+          div(class='columns')
+            div(class='s-7-11 column') 7
+            div(class='s-4-11 s-omega column') 4
+        div(class='s-1 s-omega column') 1
+
+      div(class='columns')
+        div(class='s-11 column') 11
+          div(class='columns')
+            div(class='s-6-11 column') 6
+            div(class='s-5-11 s-omega column') 5
+        div(class='s-1 s-omega column') 1
+
+      div(class='columns')
+        div(class='s-11 column') 11
+          div(class='columns')
+            div(class='s-1-11 column') 1
+            div(class='s-1-11 column') 1
+            div(class='s-1-11 column') 1
+            div(class='s-1-11 column') 1
+            div(class='s-1-11 column') 1
+            div(class='s-1-11 column') 1
+            div(class='s-1-11 column') 1
+            div(class='s-1-11 column') 1
+            div(class='s-1-11 column') 1
+            div(class='s-1-11 column') 1
+            div(class='s-1-11 s-omega column') 1
+        div(class='s-1 s-omega column') 1
+
+      div(class='columns')
+        div(class='s-12 column') 12
+          div(class='columns')
+            div(class='s-11-12 column') 11
+            div(class='s-1-12 s-omega column') 1
+
+      div(class='columns')
+        div(class='s-12 column') 12
+          div(class='columns')
+            div(class='s-10-12 column') 10
+            div(class='s-2-12 s-omega column') 2
+
+      div(class='columns')
+        div(class='s-12 column') 12
+          div(class='columns')
+            div(class='s-9-12 column') 9
+            div(class='s-3-12 s-omega column') 3
+
+      div(class='columns')
+        div(class='s-12 column') 12
+          div(class='columns')
+            div(class='s-8-12 column') 8
+            div(class='s-4-12 s-omega column') 4
+
+      div(class='columns')
+        div(class='s-12 column') 12
+          div(class='columns')
+            div(class='s-7-12 column') 7
+            div(class='s-5-12 s-omega column') 5
+
+      div(class='columns')
+        div(class='s-12 column') 12
+          div(class='columns')
+            div(class='s-6-12 column') 6
+            div(class='s-6-12 s-omega column') 6
+
+      div(class='columns')
+        div(class='s-12 column') 12
+          div(class='columns')
+            div(class='s-4-12 column') 4
+            div(class='s-4-12 column') 4
+            div(class='s-4-12 s-omega column') 4
+
+      div(class='columns')
+        div(class='s-12 column') 12
+          div(class='columns')
+            div(class='s-3-12 column') 3
+            div(class='s-3-12 column') 3
+            div(class='s-3-12 column') 3
+            div(class='s-3-12 s-omega column') 3
+
+      div(class='columns')
+        div(class='s-12 column') 12
+          div(class='columns')
+            div(class='s-2-12 column') 2
+            div(class='s-2-12 column') 2
+            div(class='s-2-12 column') 2
+            div(class='s-2-12 column') 2
+            div(class='s-2-12 column') 2
+            div(class='s-2-12 s-omega column') 2
+
+      div(class='columns')
+        div(class='s-12 column') 12
+          div(class='columns')
+            div(class='s-1-12 column') 1
+            div(class='s-1-12 column') 1
+            div(class='s-1-12 column') 1
+            div(class='s-1-12 column') 1
+            div(class='s-1-12 column') 1
+            div(class='s-1-12 column') 1
+            div(class='s-1-12 column') 1
+            div(class='s-1-12 column') 1
+            div(class='s-1-12 column') 1
+            div(class='s-1-12 column') 1
+            div(class='s-1-12 column') 1
+            div(class='s-1-12 s-omega column') 1
+
+    div(class='columns', hidden)
+      div(class='s-12 s-centered m-9 m-centered l-4 l-uncentered xl-6 xl-centered xxl-10 xxl-uncentered.opposite column')
+        div(class='s-show m-hide l-hide xl-hide xxl-hide') .s-12 .s-centered
+        div(class='s-hide m-show l-hide xl-hide xxl-hide') .m-9 .m-centered
+        div(class='s-hide m-hide l-show xl-hide xxl-hide') .l-4 .l-uncentered
+        div(class='s-hide m-hide l-hide xl-show xxl-hide') .xl-6 .xl-centered
+        div(class='s-hide m-hide l-hide xl-hide xxl-show') .xxl-6 .xxl-uncentered.opposite
+
+    div(class='columns', hidden)
+      div(class='s-12 m-12 l-4 xl-4 xxl-6')
+        div(class='column')
+          div(class='s-show m-hide l-hide xl-hide xxl-hide') .s-12
+          div(class='s-hide m-show l-hide xl-hide xxl-hide') .m-12
+          div(class='s-hide m-hide l-show xl-hide xxl-hide') .l-4
+          div(class='s-hide m-hide l-hide xl-show xxl-hide') .xl-4
+          div(class='s-hide m-hide l-hide xl-hide xxl-show') .xxl-6x1
+
+      div(class='s-12 m-6 l-8 l-omega xl-4 xxl-6 xxl-omega')
+        div(class='column')
+          div(class='s-show m-hide l-hide xl-hide xxl-hide') .s-12
+          div(class='s-hide m-show l-hide xl-hide xxl-hide') .m-6
+          div(class='s-hide m-hide l-show xl-hide xxl-hide') .l-8
+          div(class='s-hide m-hide l-hide xl-show xxl-hide') .xl-4
+          div(class='s-hide m-hide l-hide xl-hide xxl-show') .xxl-6x2
+
+      div(class='s-6 m-6 m-omega l-8 xl-4 xl-omega xxl-6')
+        div(class='column')
+          div(class='s-show m-hide l-hide xl-hide xxl-hide') .s-6
+          div(class='s-hide m-show l-hide xl-hide xxl-hide') .m-6
+          div(class='s-hide m-hide l-show xl-hide xxl-hide') .l-8
+          div(class='s-hide m-hide l-hide xl-show xxl-hide') .xl-4
+          div(class='s-hide m-hide l-hide xl-hide xxl-show') .xxl-6x1
+
+      div(class='s-6 s-omega m-12 l-4 l-omega xl-12 xxl-6 xxl-omega')
+        div(class='column')
+          div(class='s-show m-hide l-hide xl-hide xxl-hide') .s-6
+          div(class='s-hide m-show l-hide xl-hide xxl-hide') .m-12
+          div(class='s-hide m-hide l-show xl-hide xxl-hide') .l-4
+          div(class='s-hide m-hide l-hide xl-show xxl-hide') .xl-12
+          div(class='s-hide m-hide l-hide xl-hide xxl-show') .xxl-6x2
 
 

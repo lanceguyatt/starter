@@ -50,6 +50,7 @@ $helvetica:             Helvetica, Arial, "Nimbus Sans L", sans-serif !default;
 $arial:                 Arial, Helvetica, "Nimbus Sans L", sans-serif !default;
 $courier:               "Courier New", "DejaVu Sans Mono", monospace, sans-serif !default;
 $menlo:                 Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$consolas:              Consolas, "Liberation Mono", Courier, monospace !default;
 
 // Custom font stacks
 
@@ -57,7 +58,7 @@ $menlo:                 Menlo, Monaco, Consolas, "Courier New", monospace !defau
 
 $sans-font-family: $helvetica;
 $serif-font-family: $georgia;
-$mono-font-family: $menlo;
+$mono-font-family: $consolas;
 $alt-font-family: $serif-font-family;
 
 $base-font-family: $sans-font-family; // The font family set on the html element.
@@ -164,7 +165,7 @@ $omega-float: opposite-position($from-direction);
 
 // Container Width:
 // Override the total width of your grid, using any length (50em, 75%, etc.)
-$container-width: 58.75em;
+//$container-width: 58.75em;
 
 // Container Style:
 // 'magic'  - Static (fixed or elastic) when there's enough space,
@@ -179,7 +180,7 @@ $container-style: magic;
 // Warning: This does not actually apply the new box model!
 // In most cases you can ignore this setting,
 // and simply apply the border-box-sizing mixin.
-$border-box-sizing: true;
+$border-box-sizing: false;
 
 // IE Settings
 

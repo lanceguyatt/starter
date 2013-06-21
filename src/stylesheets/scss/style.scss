@@ -2,26 +2,52 @@
 
 @import 'globals/_base';
 
-@import 'core/_normalize';
-
+@import 'helpers/_normalize';
 @import 'helpers/mixins';
 @import 'helpers/placeholders';
-//@import 'helpers/_display';
 @import 'helpers/_hashgrid';
+//@import 'helpers/_display';
 //@import 'helpers/fonts';
 
 @import 'elements/_scaffolding';
 @import 'elements/_type';
 
-@import 'page/_header';
+//@import 'page/_header';
 
 @import 'modules/_grid';
-
 //@import 'modules/_misc';
 //@import 'modules/_icon';
-
 //@include hashgrid($total-columns, $column-width, $gutter-width, $grid-padding);
 
 //@import 'media/print';
 
+.header {
+  background-color: #111;
+  @include padding-leader(1);
+  @include padding-trailer(1);
+  @include margin-trailer(4);
+  h1 {
+    color: $white;
+    @include adjust-font-size-to($h6-font-size);
+    @include margin-trailer(0);
+  }
+}
 
+.main {
+  @include margin-trailer(3);
+}
+
+.footer {
+  background-color: #3f3f3f;
+  color: $white;
+  @include padding-leader(1);
+  @include padding-trailer(1);
+  p {
+    $font-size: 14px;
+    @include adjust-font-size-to($font-size, 2);
+    @include margin-trailer(0);
+  }
+  a {
+    color: $white;
+  }
+}

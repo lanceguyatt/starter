@@ -8,14 +8,14 @@ block title
 
 block main
 
-  div(class='row')
+  div(class='container')
     p This document is a guide to the mark-up styles used throughout the site. Parts of this markup guide are attributable to 
       a(href='http://www.mezzoblue.com/') Dave Shea
       | , and licensed under a 
       a(rel='license', href='http://creativecommons.org/licenses/by-sa/2.0/uk/') Creative Commons License
       |.
 
-    hr
+    //- hr
 
     h2(id='sections') Sections
 
@@ -81,8 +81,8 @@ block main
     h3 Horizontal rule
     p The 
       code hr
-      |  element represents a paragraph-level thematic break, e.g. a scene change in a story, or a transition to another topic within a section of a reference book. The following extract from 
-      cite Pandora’s Star
+      |  element represents a paragraph-level thematic break, e.g. a scene change in a story, or a transition to another topic within a section of a reference book. The following extract from  
+      cite  Pandora’s Star
       |  by Peter F. Hamilton shows two paragraphs that precede a scene change and the paragraph that follows it: 
 
     div(class='example')
@@ -91,7 +91,7 @@ block main
         i Maybe it won’t be that bad 
         | , he told himself. The lie was comforting enough to get him through the rest of the night’s shift.
 
-      hr
+      //-hr
 
       p The Carlton AllLander drove Dudley home just after dawn. Like the astronomer, the vehicle was old and worn, but perfectly capable of doing its job. It had a cheap diesel engine, common enough on a semi-frontier world like Gralmond, although its drive array was a thoroughly modern photoneural processor. With its high suspension and deep-tread tyres it could plough along the dirt track to the observatory in all weather and seasons, including the metre-deep snow of Gralmond’s winters.
 
@@ -150,11 +150,11 @@ block main
         li This is the final item on this list.
 
     h3 Unordered list
-    p The
+    p The 
       code ul
-      |  element denotes an unordered list (ie. a list of loose items that don’t require numbering, or a bulleted list). Again, each item requires a surrounding
+      |  element denotes an unordered list (ie. a list of loose items that don’t require numbering, or a bulleted list). Again, each item requires a surrounding 
       code li
-      |  and
+      |  and 
       code li
       |  tag, to denote individual items. Here is an example list showing the constituent parts of the British Isles:
 

@@ -16,7 +16,6 @@ html(dir='#{site.dir}', lang='#{site.lang}', prefix='og: http://ogp.me/ns schema
         meta(name='description', content='#{site.description}')
         meta(name='keywords', content='#{site.keywords}')
 
-      
       //- microdata meta
       meta(itemprop='name', content='#{site.name}')
       meta(itemprop='description', content='#{site.description}')
@@ -88,24 +87,29 @@ html(dir='#{site.dir}', lang='#{site.lang}', prefix='og: http://ogp.me/ns schema
   body
 
     header(class='header', role='banner')
-      div(class='row')
-        h1 #{site.title}
+      div(class='container')
+        div(class='columns')
+          div(class='s-6')
+            h1 #{site.title}
 
     main(class='main', role='main', itemprop='mainContentofPage')
 
       block main
 
     footer(class='footer', role='contentinfo')
-      div(class='row')
-        p(class='copyright')
-          | Copyright &#169; 
-          span(itemprop='copyrightYear') #{site.copyrightYear}
-          | 
-          span(itemprop='author', itemscope, itemtype='http://schema.org/Person')
-            a(href='#{author.url}', rel='external', target='_blank')
-              span(itemprop='name') #{author.name}
-            meta(itemprop='url', content='#{author.url}')
-
+      div(class='container')
+        div(class='columns')
+          div(class='s-2')
+            p #{site.name}
+          div(class='s-6 s-omega text-right')
+            p(class='copyright')
+              | Copyright &#169; 
+              span(itemprop='copyrightYear') #{site.copyrightYear}
+              | 
+              span(itemprop='author', itemscope, itemtype='http://schema.org/Person')
+                a(href='#{author.url}', rel='external', target='_blank')
+                  span(itemprop='name') #{author.name}
+                meta(itemprop='url', content='#{author.url}')
 
     block scripts
 
