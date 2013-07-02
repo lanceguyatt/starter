@@ -28,3 +28,39 @@
 .pagination {
   @include delimited-list(' / ');
 }
+
+.docs .columns {
+  background-color: #dedede;
+}
+
+.docs .column {
+  //@extend %ellipsis-no-wrap;
+  background-color: #ccc;
+  text-align: center;
+  @include padding-leader(1);
+  @include padding-trailer(1);
+}
+
+.docs .column .column {
+  background-color: #aaa;
+  //@include stretch-y;
+}
+
+@include respond-to($small) {
+  .docs .column {
+    @include margin-trailer(2); // 16px
+    &:last-child {
+      @include margin-trailer(0);
+    }
+  }
+}
+
+@include respond-to($large) {
+  .docs .columns {
+    @include margin-trailer(2);
+  }
+
+  .docs .column {
+    @include margin-trailer(0);
+  }
+}

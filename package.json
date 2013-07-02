@@ -1,15 +1,15 @@
 {
   "name": "Starter",
   "title": "Starter",
-  "description": "A Sass/Compass/Jade/Coffeescript powered, Grunt and Bower based HTML5 starter kit",
-  "version": "1.0.2",
+  "description": "An HTML5 starterkit powered by Sass, Compass, Jade, Coffeescript, Gruntjs and Bower",
+  "version": "1.0.3",
   "keywords": [
     "jade",
     "html5",
     "compass",
     "sass"
   ],
-  "homepage": "https://raw.github.com/lanceguyatt/starter",
+  "homepage": "http://lanceguyatt.com/starter",
   "author": {
     "name": "Lance Guyatt",
     "email": "lance@lanceguyatt.com",

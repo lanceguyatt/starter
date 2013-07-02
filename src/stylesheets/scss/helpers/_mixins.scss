@@ -2,8 +2,6 @@
 
 @function pem($pxval, $base: $base-font-size) {
   @return #{$pxval / $base}em;
-  //@return $pxval / $base * 1em;
-  //@debug $pxval / $base * 1em;
 }
 
 // Sizing shortcuts
@@ -15,4 +13,34 @@
 
 @mixin square($size) {
   @include size($size, $size);
+}
+
+// Generate retina background-image & background-size
+
+@mixin background-image-retina($file, $repeat: false, $position: '0 0', $type: png, $size: true) {
+
+  $image-normal: $file + '.' + $type;
+  $image-retina: $file + '@2x.' + $type;
+
+  $height: image-height($image-normal);
+  $width: image-width($image-normal);
+
+  background-image: image-url($image-normal);
+
+  @if $repeat == true {
+    background-repeat: repeat;
+  } @else {
+    background-repeat: no-repeat;
+  }
+
+  background-position: unquote($position);
+
+  @if $size == true {
+    @include size($height, $width);
+  }
+
+  .backgroundsize & {
+    background-image: image-url($image-retina);
+    background-size: $width $height;
+  }
 }

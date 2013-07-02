@@ -1,0 +1,20 @@
+.footer {
+  background-color: $secondary-color;
+  //color: $white;
+  .container {
+    @include padding-leader(1);
+    @include padding-trailer(1);
+  }
+  p {
+    $font-size: 14px;
+    @include adjust-font-size-to($font-size, 2);
+    @include margin-trailer(0);
+  }
+  a {
+    color: inherit;
+  }
+}
+
+@include respond-to($medium) {
+  @include sticky-footer(rhythm(4), '#root', '#root-footer', '.footer');
+}

@@ -41,8 +41,8 @@ $base-rhythm-unit: $base-line-height; // The basic unit of font rhythm.
 
 // Typography
 
-$times-new-roman:       "Times New Roman", Times, Georgia, "DejaVu Serif", serif !default;
-$times:                 Times, "Times New Roman", Georgia, "DejaVu Serif", serif !default;
+$times-new-roman: "Times New Roman", Times, Georgia, "DejaVu Serif", serif !default;
+$times: Times, "Times New Roman", Georgia, "DejaVu Serif", serif !default;
 $georgia:               Georgia, "Times New Roman", "DejaVu Serif", serif !default;
 $verdana:               Verdana, Tahoma, "DejaVu Sans", sans-serif !default;
 $tahoma:                Tahoma, Verdana, "DejaVu Sans", sans-serif !default;
@@ -142,15 +142,15 @@ $cursor-help-value: "help";
 // susy.oddbird.net/guides/reference/
 
 // The total number of columns in the grid
-$total-columns: 12; // The number of Columns in your default Grid Layout <number> Unitless number.
+//$total-columns: 12; // The number of Columns in your default Grid Layout <number> Unitless number.
 
 // The width of columns and gutters.
 // These must all be set with the comparable units.
-$column-width: 3.75em; // 60px
-$gutter-width: 1.25em; // 20px The space between Columns. <length> Units must match $column-width.
+//$column-width: 3.75em; // 60px
+//$gutter-width: 1.25em; // 20px The space between Columns. <length> Units must match $column-width.
 
 // Padding on the left and right of a Grid Container.
-$grid-padding: 0.625em; // 10px
+//$grid-padding: 0.625em; // 10px
 
 // ---------------------------------------------------------------------------
 // Advanced Settings
@@ -208,14 +208,10 @@ $breakpoint-to-ems: true; // will write Media Queries in Ems
 $small: 'small';
 $medium: 'medium';
 $large: 'large';
-$xlarge: 'xlarge';
-$xxlarge: 'xxlarge';
 
 $breakpoints: '#{$small}' (screen),
-              '#{$medium}' (screen 321px),
-              '#{$large}' (screen 569px),
-              '#{$xlarge}' (screen 769px),
-              '#{$xxlarge}' (screen 1025px);
+              '#{$medium}' (screen 481px),
+              '#{$large}' (screen 769px);
               // '#{$nexus7}' (width 540px 749px),
               // '#{$landscape}' (orientation landscape),
               // '#{$portrait}' (orientation portrait),
@@ -230,13 +226,15 @@ $inline-block-alignment: middle;
 
 @import 'compass/css3'; // Use one CSS3 mixin instead of multiple vendor prefixes.
 //@import 'compass/css3/images'; //Provides mixins that work across many modern browsers with the latest CSS3 image rendering primitives.
-
 //@import 'compass/css3/user-interface';
 
-@import 'compass/utilities/general/clearfix';
+@import 'compass/utilities/general';
 
-@import 'compass/typography';
-//@import 'compass/typography/text/force-wrap';
-//@import 'compass/typography/text/replacement';
+@import 'compass/typography/links';
+@import 'compass/typography/lists';
+@import 'compass/typography/text';
+
+//@import 'compass/helpers';
+@import 'compass/layout';
 
 //@include establish-baseline;

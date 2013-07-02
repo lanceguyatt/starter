@@ -6,7 +6,7 @@
     "keywords": "<%= pkg.keywords %>",
     "email": "<%= pkg.author.email %>",
     "url": "<%= pkg.homepage %>",
-    "image": "<%= pkg.homepage %>/master/dist/logo.png",
+    "image": "<%= pkg.homepage %>/logo.png",
     "lang": "en",
     "locale": "en_GB",
     "dir": "ltr",
