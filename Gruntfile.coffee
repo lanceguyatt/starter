@@ -31,22 +31,26 @@ module.exports = (grunt) ->
       scss: '<%= paths.src %>/stylesheets/scss'
       css: '<%= paths.stylesheets %>/css'
 
-      jade: '<%= paths.views %>/*.jade'
-
       fonts: '<%= paths.dist %>/fonts'
       images: '<%= paths.dist %>/images'
 
+    files:
+      css: '<%= paths.stylesheets %>/**/*.css'
+      html: '<%= paths.dist %>/**/*.html'
+      jade: '<%= paths.views %>/**/*.jade'
+      js: '<%= paths.javascripts %>/**/*.js'
+
     plugins: [
       '<%= paths.js %>/plugins.js'
-      '<%= paths.plugins %>/jquery/jquery.js'
-      '<%= paths.plugins %>/hashgrid/hashgrid.js'
+      '<%= paths.bower %>/jquery/jquery.js'
+      '<%= paths.bower %>/hashgrid/hashgrid.js'
     ]
 
     # Clean files and folders
     clean:
-      html: '<%= paths.dist %>/**/*.html'
-      javascripts: '<%= paths.javascripts %>/**/*.js'
-      stylesheets: '<%= paths.stylesheets %>/**/*.css'
+      html: '<%= files.html %>'
+      javascripts: '<%= files.js %>'
+      stylesheets: '<%= files.css %>'
 
     # Concatenate files
     concat:
@@ -84,20 +88,17 @@ module.exports = (grunt) ->
         client: false
         compileDebug: false
         locals: grunt.file.readJSON './src/routes/index.json'
-      files:
-        src: '<%= paths.views %>/**/*.jade'
-        dest: '<%= paths.dist %>'
 
       dev:
         options:
           pretty: true
-        src: '<%= paths.views %>/**/*.jade'
+        src: '<%= files.jade %>'
         dest: '<%= paths.dist %>'
 
       dist:
         options:
           pretty: false
-        src: '<%= paths.views %>/**/*.jade'
+        src: '<%= files.jade %>'
         dest: '<%= paths.dist %>'
 
     # Compile CoffeeScript files into JavaScript
@@ -127,7 +128,6 @@ module.exports = (grunt) ->
         relativeAssets: true
         require: [
           'breakpoint'
-          'modular-scale'
           'susy'
         ]
 
@@ -177,7 +177,7 @@ module.exports = (grunt) ->
 
     # Build out a lean, mean Modernizr machine
     modernizr:
-      devFile: '<%= paths.vendor %>/modernizr/modernizr.js'
+      devFile: '<%= paths.bower %>/modernizr/modernizr.js'
       outputFile: '<%= paths.js %>/modernizr.min.js'
       extra:
         shiv: true
@@ -200,30 +200,30 @@ module.exports = (grunt) ->
         customTests: []
 
     # Validate files with JSHint
-    jshint:
-      options:
-        jshintrc: '<%= paths.base %>.jshintrc'
-      dev: [
-        '<%= paths.js %>/application.js'
-      ]
+    #jshint:
+    #  options:
+    #    jshintrc: '<%= paths.base %>.jshintrc'
+    #  dev: [
+    #    '<%= paths.js %>/app.js'
+    #  ]
 
     # Validate html files
-    htmllint:
-      dev: [
-        '<%= paths.dist %>/**/*.html'
-      ]
+    #htmllint:
+    #  dev: [
+    #    '<%= files.html %>'
+    #  ]
 
     # Lint CSS files with csslint
-    csslint:
-      options:
-        csslintrc: '<%= paths.base %>.csslintrc'
-        absoluteFilePathsForFormatters: true
-        import: 2
-
-      dev:
-        src: [
-          '<%= paths.css %>/**/*.css'
-        ]
+    #csslint:
+    #  options:
+    #    csslintrc: '<%= paths.base %>.csslintrc'
+    #    absoluteFilePathsForFormatters: true
+    #    import: 2
+    #
+    #  dev:
+    #    src: [
+    #      '<%= file.css %>'
+    #    ]
 
     # Adds a simple banner to files
     usebanner:
@@ -232,8 +232,8 @@ module.exports = (grunt) ->
         banner: '<%= meta.banner %>'
       files:
         src: [
-          '<%= paths.css %>/**/*.css'
-          '<%= paths.js %>/**/*.js'
+          '<%= files.css %>'
+          '<%= files.js %>'
         ]
 
     # Task complete messages
