@@ -19,8 +19,8 @@ module.exports = (grunt) ->
       dist: '<%= paths.base %>dist'
       src: '<%= paths.base %>src'
 
+      bower: '<%= paths.src %>/bower'
       routes: '<%= paths.src %>/routes'
-      vendor: '<%= paths.src %>/vendor'
       views: '<%= paths.src %>/views'
 
       javascripts: '<%= paths.dist %>/javascripts'
@@ -36,26 +36,27 @@ module.exports = (grunt) ->
       fonts: '<%= paths.dist %>/fonts'
       images: '<%= paths.dist %>/images'
 
-    vendor: [
-      '<%= paths.js %>/vendor.js'
-      '<%= paths.vendor %>/jquery/jquery.js'
-      '<%= paths.vendor %>/hashgrid/hashgrid.js'
+    plugins: [
+      '<%= paths.js %>/plugins.js'
+      '<%= paths.plugins %>/jquery/jquery.js'
+      '<%= paths.plugins %>/hashgrid/hashgrid.js'
     ]
 
     # Clean files and folders
     clean:
-      javascripts: '<%= paths.javascripts %>'
-      stylesheets: '<%= paths.stylesheets %>'
+      html: '<%= paths.dist %>/**/*.html'
+      javascripts: '<%= paths.javascripts %>/**/*.js'
+      stylesheets: '<%= paths.stylesheets %>/**/*.css'
 
     # Concatenate files
     concat:
       options:
         stripBanners: true
 
-      vendor:
+      plugins:
         files: [
-          dest: '<%= paths.js %>/vendor.js'
-          src: '<%= vendor %>'
+          dest: '<%= paths.js %>/plugins.js'
+          src: '<%= plugins %>'
         ]
 
     # Minify files with UglifyJS.
@@ -79,23 +80,24 @@ module.exports = (grunt) ->
     # Compile Jade templates
     jade:
       options:
-        basePath: null
+        basePath: '<%= paths.views %>'
         client: false
         compileDebug: false
-        extension: null
-        runtime: false
         locals: grunt.file.readJSON './src/routes/index.json'
+      files:
+        src: '<%= paths.views %>/**/*.jade'
+        dest: '<%= paths.dist %>'
 
       dev:
         options:
           pretty: true
-        src: '<%= paths.jade %>'
+        src: '<%= paths.views %>/**/*.jade'
         dest: '<%= paths.dist %>'
 
       dist:
         options:
           pretty: false
-        src: '<%= paths.jade %>'
+        src: '<%= paths.views %>/**/*.jade'
         dest: '<%= paths.dist %>'
 
     # Compile CoffeeScript files into JavaScript
@@ -150,10 +152,7 @@ module.exports = (grunt) ->
         nospawn: true
 
       jade:
-        files: [
-          '<%= paths.views %>/**/_*.jade'
-          '<%= paths.views %>/**/*.jade'
-        ]
+        files: '<%= paths.views %>/*{,**/}*.jade'
         tasks: ['jade:dev', 'notify:jade']
         options:
           livereload: true
