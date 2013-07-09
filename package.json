@@ -1,8 +1,8 @@
 {
   "name": "Starter",
   "title": "Starter",
-  "description": "An HTML5 starterkit powered by Sass, Compass, Jade, Coffeescript, Gruntjs and Bower",
-  "version": "1.0.3",
+  "description": "An HTML5 starterkit powered by Sass, Compass, Jade, Coffeescript, Gruntjs and Bower.",
+  "version": "1.0.4",
   "keywords": [
     "jade",
     "html5",

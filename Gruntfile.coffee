@@ -172,7 +172,10 @@ module.exports = (grunt) ->
         tasks: ['default']
 
       json:
-        files: '<%= paths.routes %>/index.json'
+        files: [
+          '<%= paths.src %>/package.json'
+          '<%= paths.routes %>/index.json'
+        ]
         tasks: ['default']
 
     # Build out a lean, mean Modernizr machine
