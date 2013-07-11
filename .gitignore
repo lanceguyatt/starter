@@ -39,4 +39,4 @@ dist/javascripts
 dist/*.html
 tests/*
 tmp
-src/vendor/*
+src/bower/*

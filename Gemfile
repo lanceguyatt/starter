@@ -5,6 +5,5 @@ source 'https://rubygems.org'
 # in production environments by default.
 group :assets do
   gem 'breakpoint'
-  gem 'modular-scale'
   gem 'susy'
 end

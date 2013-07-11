@@ -65,13 +65,22 @@ module.exports = (grunt) ->
 
     # Minify files with UglifyJS.
     uglify:
-      options:
-        beautify: false
-        compress: true
-        mangle: false
-        except: ['jQuery']
 
-      all:
+      dev:
+        files: [
+          expand: true
+          flatten: true
+          cwd: '<%= paths.js %>'
+          src: ['**/*.js', '!*.min.js']
+          dest: '<%= paths.js %>'
+          ext: '.min.js'
+        ]
+
+      dist:
+        options:
+          compress: true
+          preserveComments: false
+          except: ['jQuery']
         files: [
           expand: true
           flatten: true

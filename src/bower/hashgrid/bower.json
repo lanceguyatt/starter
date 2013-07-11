@@ -1,9 +1,0 @@
-{
-  "name": "hashgrid",
-  "version": "0.0.0",
-  "commit": "bd5d419e3e9134b09ac08739592cf2fdcc66b320",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dotjay/hashgrid.git"
-  }
-}
