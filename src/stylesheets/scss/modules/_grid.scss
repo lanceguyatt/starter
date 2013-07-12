@@ -38,14 +38,8 @@ $large-container-width: 64em; // 1280px max width
 }
 
 .vert {
+  background-color: rgba(#3cfeff, 0.25);
   @include box-sizing(border-box);
-  .grid-1 & {
-    background-color: rgba(#3cfeff, 0.25);
-  }
-  .grid-2 & {
-    border: solid rgba(#3cfeff, 1);
-    border-width: 0 1px;
-  }
 }
 
 .horiz {
@@ -59,7 +53,7 @@ $large-container-width: 64em; // 1280px max width
 // Grid mixins
 //
 
-@mixin generate-grid($size: 'span', $total-columns: $total-columns, $column-width: $column-width, $gutter-width: $gutter-width) {
+@mixin generate-grid($grid-id, $size: 'span', $total-columns: $total-columns, $column-width: $column-width, $gutter-width: $gutter-width) {
 
   // Generate span columns i.e .large-1
   @for $i from 1 through $total-columns {
@@ -133,13 +127,15 @@ $large-container-width: 64em; // 1280px max width
     text-align: center !important;
   }
 
+  @include generate-hashgrid($grid-id, $total-columns, $column-width, $gutter-width, $grid-padding);
+
 }
 
-@mixin generate-hashgrid($total-columns, $column-width, $gutter-width, $grid-padding) {
+@mixin generate-hashgrid($grid-id, $total-columns, $column-width, $gutter-width, $grid-padding) {
 
   $width: $column-width * $total-columns + $gutter-width * ($total-columns - 1) + ($grid-padding * 2);
 
-  #grid {
+  #grid.grid-#{$grid-id} {
     margin-left: - ($width) / 2;
     padding-left: $grid-padding;
     padding-right: $grid-padding;
@@ -148,7 +144,7 @@ $large-container-width: 64em; // 1280px max width
     //@include container;
   }
 
-  .vert {
+  #grid.grid-#{$grid-id} .vert {
     @include span-columns(1, $total-columns);
     @include nth-omega(#{$total-columns}n);
   }
@@ -176,9 +172,6 @@ $large-container-width: 64em; // 1280px max width
   position: relative;
 }
 
-//@include generate-grid();
-
-
 // Grid media queries
 
 @include respond-to($small) {
@@ -189,7 +182,7 @@ $large-container-width: 64em; // 1280px max width
     @include container();
   }
 
-  @include generate-grid($small, $small-total-columns, $small-column-width, $small-gutter-width);
+  @include generate-grid(1, $small, $small-total-columns, $small-column-width, $small-gutter-width);
 
 }
 
@@ -201,7 +194,7 @@ $large-container-width: 64em; // 1280px max width
     @include container();
   }
 
-  @include generate-grid($medium, $medium-total-columns, $medium-column-width, $medium-gutter-width);
+  @include generate-grid(2, $medium, $medium-total-columns, $medium-column-width, $medium-gutter-width);
 
 }
 
@@ -280,7 +273,6 @@ $large-container-width: 64em; // 1280px max width
   .#{$large}-10-12 { @include span-columns(10, 12); }
   .#{$large}-11-12 { @include span-columns(11, 12); }
 
-  @include generate-grid($large, $large-total-columns, $large-column-width, $large-gutter-width);
-  @include generate-hashgrid($large-total-columns, $large-column-width, $large-gutter-width, $large-grid-padding);
+  @include generate-grid(3, $large, $large-total-columns, $large-column-width, $large-gutter-width);
 
 }

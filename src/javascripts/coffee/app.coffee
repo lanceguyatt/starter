@@ -1,3 +1,3 @@
 $(document).ready ->
 
-  grid = new hashgrid(numberOfGrids: 2)
+  grid = new hashgrid(numberOfGrids: 3)

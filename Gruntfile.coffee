@@ -101,13 +101,25 @@ module.exports = (grunt) ->
       dev:
         options:
           pretty: true
-        src: '<%= files.jade %>'
+        src: [
+          '<%= paths.views %>/**/*.jade'
+          '!<%= paths.views %>/helpers/*.jade'
+          '!<%= paths.views %>/includes/*.jade'
+          '!<%= paths.views %>/layouts/*.jade'
+          '!<%= paths.views %>/page/*.jade'
+        ]
         dest: '<%= paths.dist %>'
 
       dist:
         options:
           pretty: false
-        src: '<%= files.jade %>'
+        src: [
+          '<%= paths.views %>/**/*.jade'
+          '!<%= paths.views %>/helpers/*.jade'
+          '!<%= paths.views %>/includes/*.jade'
+          '!<%= paths.views %>/layouts/*.jade'
+          '!<%= paths.views %>/page/*.jade'
+        ]
         dest: '<%= paths.dist %>'
 
     # Compile CoffeeScript files into JavaScript
