@@ -96,16 +96,14 @@ $gutter-width: 1.25rem; // 20px
 $grid-padding: 1.25rem; // 20px
 
 $small-total-columns: 4;
-
 $medium-total-columns: 8;
-
 $large-total-columns: 12;
 
 // Media layouts
 $small-media-layout: $small-total-columns; // (4 * 60px) + (3* 20px) + (2*10px) = 320px
-$small-only-media-layout: $small-total-columns 569px; // max-width: 569px
-$medium-media-layout: 569px $medium-total-columns; // (8 * 60px) + (9 * 20px) = 660px // min-width: 561px
-$large-media-layout: 900px $large-total-columns; // min-width 1024px (16 * 60) + (17 * 20) = 1300px min-width: 769px
+$small-only-media-layout: $small-total-columns 35.5625rem; // max-width: 569px
+$medium-media-layout: 35.5625rem $medium-total-columns; // (8 * 60px) + (9 * 20px) = 660px // min-width: 561px
+$large-media-layout: 56.25rem $large-total-columns; // min-width 1024px (16 * 60) + (17 * 20) = 1300px min-width: 769px
 
 $from-direction: $default-float;
 $omega-float: opposite-position($from-direction);

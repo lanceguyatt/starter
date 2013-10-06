@@ -235,7 +235,7 @@ module.exports = (grunt) ->
 
     csscomb:
       options:
-        sortOrder: '<%= directory.base %>/.csscomb.json'
+        sortOrder: '.csscomb.json'
       dist:
         files:
           'dist/stylesheets/css/style.max.css': ['dist/stylesheets/css/style.css']
@@ -305,7 +305,6 @@ module.exports = (grunt) ->
   # Compile for distribution
   grunt.registerTask 'dist', 'Distribution build', ->
     grunt.task.run 'clean'
-    #grunt.task.run 'csscomb'
     grunt.task.run 'notify:clean'
     grunt.task.run 'compass:dist'
     grunt.task.run 'notify:compass'
@@ -313,12 +312,13 @@ module.exports = (grunt) ->
     grunt.task.run 'notify:coffee'
     grunt.task.run 'concat'
     grunt.task.run 'notify:concat'
-    #grunt.task.run 'uglify'
-    #grunt.task.run 'notify:uglify'
+    grunt.task.run 'uglify'
+    grunt.task.run 'notify:uglify'
     grunt.task.run 'jade:dist'
     grunt.task.run 'notify:jade'
     grunt.task.run 'modernizr'
     grunt.task.run 'notify:modernizr'
     grunt.task.run 'usebanner'
     grunt.task.run 'notify:usebanner'
+    grunt.task.run 'csscomb'
     grunt.task.run 'notify:dist'

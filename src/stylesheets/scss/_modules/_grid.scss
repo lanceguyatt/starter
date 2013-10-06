@@ -36,18 +36,18 @@
   }
 
   // Generate push columns i.e .large-push-1
-  @for $i from 1 through $total-columns - 1 {
-    .#{$size}-push#{-$i} {
-      @include push($i, $total-columns);
-    }
-  }
+  // @for $i from 1 through $total-columns - 1 {
+  //   .#{$size}-push#{-$i} {
+  //     @include push($i, $total-columns);
+  //   }
+  // }
 
   // Generate pull columns i.e .large-pull-1
-  @for $i from 1 through $total-columns - 1 {
-    .#{$size}-pull#{-$i} {
-      @include pull($i, $total-columns);
-    }
-  }
+  // @for $i from 1 through $total-columns - 1 {
+  //   .#{$size}-pull#{-$i} {
+  //     @include pull($i, $total-columns);
+  //   }
+  // }
 
   // Generate omega class i.e .large-omega
   .#{$size}-omega {
@@ -55,48 +55,48 @@
   }
 
   // Generate show class i.e .large-show
-  .#{$size}-show {
-    display: block;
-  }
+  // .#{$size}-show {
+  //   display: block;
+  // }
 
   // Generate hide class i.e large-hide
-  .#{$size}-hide {
-    display: none;
-  }
+  // .#{$size}-hide {
+  //   display: none;
+  // }
 
   // Generate centered class ie. large-centered
-  .#{$size}-centered {
-    float: none !important;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-  }
+  // .#{$size}-centered {
+  //   float: none !important;
+  //   margin-left: auto;
+  //   margin-right: auto;
+  //   position: relative;
+  // }
 
   // Generate centered class ie. large-uncentered
-  .#{$size}-uncentered {
-    margin-left: 0;
-    margin-right: 0;
-    @include float(#{$default-float !important});
-  }
+  // .#{$size}-uncentered {
+  //   margin-left: 0;
+  //   margin-right: 0;
+  //   @include float(#{$default-float !important});
+  // }
 
   // Generate centered class ie. large-uncentered.opposite
-  .#{$size}-uncentered.opposite {
-    float: $omega-float !important;
-  }
+  // .#{$size}-uncentered.opposite {
+  //   float: $omega-float !important;
+  // }
 
-  .#{$size}-text-left {
-    text-align: #{$default-float} !important;
-  }
+  // .#{$size}-text-left {
+  //   text-align: #{$default-float} !important;
+  // }
 
-  .#{$size}-text-right {
-    text-align: #{$opposite-direction} !important;
-  }
+  // .#{$size}-text-right {
+  //   text-align: #{$opposite-direction} !important;
+  // }
 
-  .#{$size}-text-center {
-    text-align: center !important;
-  }
+  // .#{$size}-text-center {
+  //   text-align: center !important;
+  // }
 
-  //@include generate-hashgrid($grid-id, $total-columns, $column-width, $gutter-width, $grid-padding);
+  @include generate-hashgrid($grid-id, $total-columns, $column-width, $gutter-width, $grid-padding);
 
 }
 
@@ -105,7 +105,7 @@
   $width: $column-width * $total-columns + $gutter-width * ($total-columns - 1) + ($grid-padding * 2);
 
   #grid.grid-#{$grid-id} {
-    margin-left: - ($width) / 2;
+    margin-left: -#{($width)/2};
     padding-left: $grid-padding;
     padding-right: $grid-padding;
     width: $width;
@@ -116,128 +116,88 @@
     @include span-columns(1, $total-columns);
     @include nth-omega(#{$total-columns}n);
   }
-
 }
-
-// Generate block grid
-
-// @mixin block-grid($size, $columns, $total-columns: $total-columns, $nth-omega: $total-columns / $columns, $remove-nth-omega: false) {
-//   .#{$size}-block-grid-#{$columns}-#{$total-columns} > li {
-//     @if $remove-nth-omega {
-//       @include remove-nth-omega(#{$remove-nth-omega}n);
-//     }
-//     @include span-columns($columns, $total-columns);
-//     @include nth-omega(#{$nth-omega}n);
-//   }
-// }
-
-.columns {
-  @extend %pie-clearfix;
-  position: relative;
-}
-
-.column {
-  position: relative;
-}
-
-// Grid media queries
-.container {
-  background: green;
-  padding-left: $grid-padding;
-  padding-right: $grid-padding;
-}
-
-//@include generate-grid(1, $small, $small-total-columns, $small-column-width, $small-gutter-width);
 
 @include at-breakpoint($medium-media-layout) {
 
-  .container {
-    margin-left: auto;
-    margin-right: auto;
+  [class*='md'] {
+    margin-#{$opposite-direction}: gutter();
+    @include float($default-float);
   }
 
-  //@include generate-grid(2, $medium, $medium-total-columns, $medium-column-width, $medium-gutter-width);
+  .md-4 {
+    width: columns(4, $medium-total-columns);
+  }
 }
 
 @include at-breakpoint($large-media-layout) {
 
-  .container {
-    @include set-container-width; // 1260px
-  }
+  .lg-1-2 { @include span-columns(1, 2); }
+  .lg-1-3 { @include span-columns(1, 3); }
+  .lg-2-3 { @include span-columns(2, 3); }
+  .lg-1-4 { @include span-columns(1, 4); }
+  .lg-2-4 { @include span-columns(2, 4); }
+  .lg-3-4 { @include span-columns(3, 4); }
+  .lg-1-5 { @include span-columns(1, 5); }
+  .lg-2-5 { @include span-columns(2, 5); }
+  .lg-3-5 { @include span-columns(3, 5); }
+  .lg-4-5 { @include span-columns(4, 5); }
+  .lg-1-6 { @include span-columns(1, 6); }
+  .lg-2-6 { @include span-columns(2, 6); }
+  .lg-3-6 { @include span-columns(3, 6); }
+  .lg-4-6 { @include span-columns(4, 6); }
+  .lg-5-6 { @include span-columns(5, 6); }
+  .lg-1-7 { @include span-columns(1, 7); }
+  .lg-2-7 { @include span-columns(2, 7); }
+  .lg-3-7 { @include span-columns(3, 7); }
+  .lg-4-7 { @include span-columns(4, 7); }
+  .lg-5-7 { @include span-columns(5, 7); }
+  .lg-6-7 { @include span-columns(6, 7); }
+  .lg-1-8 { @include span-columns(1, 8); }
+  .lg-2-8 { @include span-columns(2, 8); }
+  .lg-3-8 { @include span-columns(3, 8); }
+  .lg-4-8 { @include span-columns(4, 8); }
+  .lg-5-8 { @include span-columns(5, 8); }
+  .lg-6-8 { @include span-columns(6, 8); }
+  .lg-7-8 { @include span-columns(7, 8); }
+  .lg-1-9 { @include span-columns(1, 9); }
+  .lg-2-9 { @include span-columns(2, 9); }
+  .lg-3-9 { @include span-columns(3, 9); }
+  .lg-4-9 { @include span-columns(4, 9); }
+  .lg-5-9 { @include span-columns(5, 9); }
+  .lg-6-9 { @include span-columns(6, 9); }
+  .lg-7-9 { @include span-columns(7, 9); }
+  .lg-8-9 { @include span-columns(8, 9); }
+  .lg-1-10 { @include span-columns(1, 10); }
+  .lg-2-10 { @include span-columns(2, 10); }
+  .lg-3-10 { @include span-columns(3, 10); }
+  .lg-4-10 { @include span-columns(4, 10); }
+  .lg-5-10 { @include span-columns(5, 10); }
+  .lg-6-10 { @include span-columns(6, 10); }
+  .lg-7-10 { @include span-columns(7, 10); }
+  .lg-8-10 { @include span-columns(8, 10); }
+  .lg-9-10 { @include span-columns(9, 10); }
+  .lg-1-11 { @include span-columns(1, 11); }
+  .lg-2-11 { @include span-columns(2, 11); }
+  .lg-3-11 { @include span-columns(3, 11); }
+  .lg-4-11 { @include span-columns(4, 11); }
+  .lg-5-11 { @include span-columns(5, 11); }
+  .lg-6-11 { @include span-columns(6, 11); }
+  .lg-7-11 { @include span-columns(7, 11); }
+  .lg-8-11 { @include span-columns(8, 11); }
+  .lg-9-11 { @include span-columns(9, 11); }
+  .lg-10-11 { @include span-columns(10, 11); }
+  .lg-1-12 { @include span-columns(1, 12); }
+  .lg-2-12 { @include span-columns(2, 12); }
+  .lg-3-12 { @include span-columns(3, 12); }
+  .lg-4-12 { @include span-columns(4, 12); }
+  .lg-5-12 { @include span-columns(5, 12); }
+  .lg-6-12 { @include span-columns(6, 12); }
+  .lg-7-12 { @include span-columns(7, 12); }
+  .lg-8-12 { @include span-columns(8, 12); }
+  .lg-9-12 { @include span-columns(9, 12); }
+  .lg-10-12 { @include span-columns(10, 12); }
+  .lg-11-12 { @include span-columns(11, 12); }
 
-  .large- {
-    background: red;
-  }
-
-  $large: 'large';
-
-  .#{$large}-1-2 { @include span-columns(1, 2); }
-  .#{$large}-1-3 { @include span-columns(1, 3); }
-  .#{$large}-2-3 { @include span-columns(2, 3); }
-  .#{$large}-1-4 { @include span-columns(1, 4); }
-  .#{$large}-2-4 { @include span-columns(2, 4); }
-  .#{$large}-3-4 { @include span-columns(3, 4); }
-  .#{$large}-1-5 { @include span-columns(1, 5); }
-  .#{$large}-2-5 { @include span-columns(2, 5); }
-  .#{$large}-3-5 { @include span-columns(3, 5); }
-  .#{$large}-4-5 { @include span-columns(4, 5); }
-  .#{$large}-1-6 { @include span-columns(1, 6); }
-  .#{$large}-2-6 { @include span-columns(2, 6); }
-  .#{$large}-3-6 { @include span-columns(3, 6); }
-  .#{$large}-4-6 { @include span-columns(4, 6); }
-  .#{$large}-5-6 { @include span-columns(5, 6); }
-  .#{$large}-1-7 { @include span-columns(1, 7); }
-  .#{$large}-2-7 { @include span-columns(2, 7); }
-  .#{$large}-3-7 { @include span-columns(3, 7); }
-  .#{$large}-4-7 { @include span-columns(4, 7); }
-  .#{$large}-5-7 { @include span-columns(5, 7); }
-  .#{$large}-6-7 { @include span-columns(6, 7); }
-  .#{$large}-1-8 { @include span-columns(1, 8); }
-  .#{$large}-2-8 { @include span-columns(2, 8); }
-  .#{$large}-3-8 { @include span-columns(3, 8); }
-  .#{$large}-4-8 { @include span-columns(4, 8); }
-  .#{$large}-5-8 { @include span-columns(5, 8); }
-  .#{$large}-6-8 { @include span-columns(6, 8); }
-  .#{$large}-7-8 { @include span-columns(7, 8); }
-  .#{$large}-1-9 { @include span-columns(1, 9); }
-  .#{$large}-2-9 { @include span-columns(2, 9); }
-  .#{$large}-3-9 { @include span-columns(3, 9); }
-  .#{$large}-4-9 { @include span-columns(4, 9); }
-  .#{$large}-5-9 { @include span-columns(5, 9); }
-  .#{$large}-6-9 { @include span-columns(6, 9); }
-  .#{$large}-7-9 { @include span-columns(7, 9); }
-  .#{$large}-8-9 { @include span-columns(8, 9); }
-  .#{$large}-1-10 { @include span-columns(1, 10); }
-  .#{$large}-2-10 { @include span-columns(2, 10); }
-  .#{$large}-3-10 { @include span-columns(3, 10); }
-  .#{$large}-4-10 { @include span-columns(4, 10); }
-  .#{$large}-5-10 { @include span-columns(5, 10); }
-  .#{$large}-6-10 { @include span-columns(6, 10); }
-  .#{$large}-7-10 { @include span-columns(7, 10); }
-  .#{$large}-8-10 { @include span-columns(8, 10); }
-  .#{$large}-9-10 { @include span-columns(9, 10); }
-  .#{$large}-1-11 { @include span-columns(1, 11); }
-  .#{$large}-2-11 { @include span-columns(2, 11); }
-  .#{$large}-3-11 { @include span-columns(3, 11); }
-  .#{$large}-4-11 { @include span-columns(4, 11); }
-  .#{$large}-5-11 { @include span-columns(5, 11); }
-  .#{$large}-6-11 { @include span-columns(6, 11); }
-  .#{$large}-7-11 { @include span-columns(7, 11); }
-  .#{$large}-8-11 { @include span-columns(8, 11); }
-  .#{$large}-9-11 { @include span-columns(9, 11); }
-  .#{$large}-10-11 { @include span-columns(10, 11); }
-  .#{$large}-1-12 { @include span-columns(1, 12); }
-  .#{$large}-2-12 { @include span-columns(2, 12); }
-  .#{$large}-3-12 { @include span-columns(3, 12); }
-  .#{$large}-4-12 { @include span-columns(4, 12); }
-  .#{$large}-5-12 { @include span-columns(5, 12); }
-  .#{$large}-6-12 { @include span-columns(6, 12); }
-  .#{$large}-7-12 { @include span-columns(7, 12); }
-  .#{$large}-8-12 { @include span-columns(8, 12); }
-  .#{$large}-9-12 { @include span-columns(9, 12); }
-  .#{$large}-10-12 { @include span-columns(10, 12); }
-  .#{$large}-11-12 { @include span-columns(11, 12); }
-
-  @include generate-grid(3, $large, $large-total-columns, $column-width, $gutter-width);
-
+  @include generate-grid(3, 'lg', $large-total-columns, $column-width, $gutter-width);
 }

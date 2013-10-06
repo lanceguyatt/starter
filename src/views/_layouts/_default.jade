@@ -1,6 +1,6 @@
 include ../_helpers/_mixins
 
-<!doctype html>
+<!DOCTYPE html>
 <!--[if lt IE 7]><html class="no-js ie6 lt-ie9 lt-ie8 lt-ie7" lang="#{site.lang}"><![endif]-->
 <!--[if IE 7]><html class="no-js ie7 lt-ie9 lt-ie8" lang="#{site.lang}"><![endif]-->
 <!--[if IE 8]><html class="no-js ie8 lt-ie9" lang="#{site.lang}"><![endif]-->
@@ -19,8 +19,8 @@ body
     header(class='header', role='banner')
       div(class='container')
         div(class='columns')
-          div(class='large-6')
-            h1 #{site.title}
+          div(class='lg-6 column')
+            h1(class='header__name') #{site.name}
 
     main(class='main', role='main', itemprop='mainContentofPage')
 
@@ -31,9 +31,9 @@ body
   footer(class='footer', role='contentinfo')
     div(class='container')
       div(class='columns')
-        div(class='large-6')
+        div(class='md-4 lg-6 column')
           p #{site.title}
-        div(class='large-6 large-omega large-text-right')
+        div(class='md-4 lg-6 lg-text-right column')
           p(class='copyright')
             | Copyright &#169; 
             span(itemprop='copyrightYear') #{site.copyrightYear}
@@ -48,7 +48,7 @@ body
 
     script(src='#{paths.js}/plugins.min.js')
     script(src='#{paths.js}/app.js')
-    //-
+    //
       script
         (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
         function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;

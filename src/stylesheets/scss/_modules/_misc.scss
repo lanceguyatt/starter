@@ -1,5 +1,5 @@
 .example {
-  $border-color: $black;
+  $border-color: #eee;
   $border-width: 1px;
 
   background-color: $white;
@@ -33,38 +33,58 @@
   @include delimited-list(' / ');
 }
 
-.docs .columns {
-  background-color: #dedede;
-}
+.columns {
+  @extend %pie-clearfix;
 
-.docs .column {
-  //@extend %ellipsis-no-wrap;
-  background-color: #ccc;
-  text-align: center;
-  @include padding-leader(1);
-  @include padding-trailer(1);
-}
-
-.docs .column .column {
-  background-color: #aaa;
-  //@include stretch-y;
-}
-
-.docs .column {
-  @include margin-trailer(3); // 24px
-
-  &:last-child {
-    @include margin-trailer(0);
-  }
-}
-
-@include at-breakpoint($large-media-layout) {
-
-  .docs .columns {
+  .docs & {
+    background-color: #dedede;
     @include margin-trailer(3);
   }
 
-  .docs > .column {
+  .columns {
     @include margin-trailer(0);
+  }
+}
+
+.column {
+
+  .docs & {
+    background-color: #ccc;
+    text-align: center;
+    @include margin-trailer(3);
+    @include padding-leader(1);
+    @include padding-trailer(1);
+  }
+
+  // &:last-child {
+  //   @include margin-trailer(0);
+  // }
+}
+
+.columns .columns {
+  @include margin-leader(3);
+}
+
+.docs .columns .column:last-child {
+  //background: blue !important;
+  @include margin-trailer(0);
+}
+
+// @include at-breakpoint($medium-media-layout) {
+// }
+
+@include at-breakpoint($large-media-layout) {
+
+  .stretch {
+    #{$opposite-direction}: 0;
+    @include stretch-y;
+  }
+
+  .docs .column {
+    @include margin-trailer(0);
+  }
+
+  .columns > div + div:last-child {
+    @include omega;
   }
 }
