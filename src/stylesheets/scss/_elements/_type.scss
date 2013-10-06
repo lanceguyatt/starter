@@ -65,12 +65,12 @@ $definition-list-header-margin-bottom: .3em !default;
 $definition-list-margin-bottom: rhythm(3) !default;
 
 // We use these to style blockquotes
-$blockquote-font-color: lighten($body-font-color, 30%) !default;
+$blockquote-font-color: lighten($base-font-color, 30%) !default;
 //$blockquote-font-color: lighten($header-font-color, 30%) !default;
 $blockquote-padding: emCalc(9px) emCalc(20px) 0 emCalc(19px) !default;
 $blockquote-border: 1px solid #ddd !default;
 $blockquote-cite-font-size: emCalc(13px) !default;
-$blockquote-cite-font-color: lighten($body-font-color, 20%) !default;
+$blockquote-cite-font-color: lighten($base-font-color, 20%) !default;
 $blockquote-cite-link-color: $blockquote-cite-font-color !default;
 
 // Acronym styles
@@ -113,20 +113,14 @@ td {
 
 /* Default Link Styles */
 a {
-  //@extend %transition-all;
   color: $link-color;
-  line-height: inherit;
+  //line-height: inherit;
   text-decoration: $anchor-text-decoration;
   //-webkit-tap-highlight-color: transparent;
-  @include single-transition(all .25s linear);
+  @include transition(color .25s linear);
 
-  &:hover,
-  &:focus {
+  #{$hover} {
     color: $link-color-hover;
-  }
-
-  img {
-    border:none;
   }
 }
 
@@ -286,7 +280,7 @@ abbr,
 acronym {
   text-transform: uppercase;
   font-size: 90%;
-  color: $body-font-color;
+  color: $base-font-color;
   border-bottom: $acronym-underline;
   cursor: $cursor-help-value;
 }

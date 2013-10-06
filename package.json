@@ -1,13 +1,17 @@
 {
   "name": "Starter",
-  "title": "Starter",
+  "title": "An HTML5 starterkit",
   "description": "An HTML5 starterkit powered by Sass, Compass, Jade, Coffeescript, Gruntjs and Bower.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "keywords": [
-    "jade",
-    "html5",
+    "bower",
+    "coffescript",
     "compass",
-    "sass"
+    "gruntjs",
+    "html5",
+    "jade",
+    "sass",
+    "susy"
   ],
   "homepage": "http://lanceguyatt.com/starter",
   "author": {
@@ -39,6 +43,7 @@
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-uglify": "~0.2.0",
     "grunt-contrib-watch": "~0.4.3",
+    "grunt-csscomb": "~0.5.0",
     "grunt-jade": "~0.4.0",
     "grunt-modernizr": "~0.3.0",
     "grunt-notify": "~0.2.3"

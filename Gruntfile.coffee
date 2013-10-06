@@ -13,37 +13,37 @@ module.exports = (grunt) ->
       banner: '/* <%= pkg.name %> v<%= pkg.version %> Copyright (c) <%= grunt.template.today("yyyy") %> by <%= pkg.author.name %> (<%= pkg.author.url %>) */'
 
     # Directory paths
-    paths:
+    directory:
       base: './'
 
-      dist: '<%= paths.base %>dist'
-      src: '<%= paths.base %>src'
+      dist: '<%= directory.base %>dist'
+      src: '<%= directory.base %>src'
 
-      bower: '<%= paths.src %>/bower'
-      routes: '<%= paths.src %>/routes'
-      views: '<%= paths.src %>/views'
+      bower: '<%= directory.src %>/bower'
+      routes: '<%= directory.src %>/routes'
+      views: '<%= directory.src %>/views'
 
-      javascripts: '<%= paths.dist %>/javascripts'
-      coffee: '<%= paths.src %>/javascripts/coffee'
-      js: '<%= paths.javascripts %>/js'
+      javascripts: '<%= directory.dist %>/javascripts'
+      coffee: '<%= directory.src %>/javascripts/coffee'
+      js: '<%= directory.javascripts %>/js'
 
-      stylesheets: '<%= paths.dist %>/stylesheets'
-      scss: '<%= paths.src %>/stylesheets/scss'
-      css: '<%= paths.stylesheets %>/css'
+      stylesheets: '<%= directory.dist %>/stylesheets'
+      scss: '<%= directory.src %>/stylesheets/scss'
+      css: '<%= directory.stylesheets %>/css'
 
-      fonts: '<%= paths.dist %>/fonts'
-      images: '<%= paths.dist %>/images'
+      fonts: '<%= directory.dist %>/fonts'
+      images: '<%= directory.dist %>/images'
 
     files:
-      css: '<%= paths.stylesheets %>/**/*.css'
-      html: '<%= paths.dist %>/**/*.html'
-      jade: '<%= paths.views %>/**/*.jade'
-      js: '<%= paths.javascripts %>/**/*.js'
+      css: '<%= directory.stylesheets %>/**/*.css'
+      html: '<%= directory.dist %>/**/*.html'
+      jade: '<%= directory.views %>/**/*.jade'
+      js: '<%= directory.javascripts %>/**/*.js'
 
     plugins: [
-      '<%= paths.js %>/plugins.js'
-      '<%= paths.bower %>/jquery/jquery.js'
-      '<%= paths.bower %>/hashgrid/hashgrid.js'
+      '<%= directory.js %>/plugins.js'
+      '<%= directory.bower %>/jquery/jquery.js'
+      '<%= directory.bower %>/hashgrid/hashgrid.js'
     ]
 
     # Clean files and folders
@@ -59,68 +59,67 @@ module.exports = (grunt) ->
 
       plugins:
         files: [
-          dest: '<%= paths.js %>/plugins.js'
+          dest: '<%= directory.js %>/plugins.js'
           src: '<%= plugins %>'
         ]
 
     # Minify files with UglifyJS.
     uglify:
-
-      dev:
-        files: [
-          expand: true
-          flatten: true
-          cwd: '<%= paths.js %>'
-          src: ['**/*.js', '!*.min.js']
-          dest: '<%= paths.js %>'
-          ext: '.min.js'
-        ]
-
+      options:
+        compress: true
+        preserveComments: false
+        except: ['jQuery']
       dist:
-        options:
-          compress: true
-          preserveComments: false
-          except: ['jQuery']
         files: [
           expand: true
           flatten: true
-          cwd: '<%= paths.js %>'
+          cwd: '<%= directory.js %>'
           src: ['**/*.js', '!*.min.js']
-          dest: '<%= paths.js %>'
+          dest: '<%= directory.js %>'
           ext: '.min.js'
         ]
 
     # Compile Jade templates
     jade:
       options:
-        basePath: '<%= paths.views %>'
+        basePath: '<%= directory.views %>'
         client: false
         compileDebug: false
-        locals: grunt.file.readJSON './src/routes/index.json'
+        pretty: true
+        locals:
+          site:
+            name: '<%= pkg.name %>'
+            title: '<%= pkg.title %>'
+            description: '<%= pkg.description %>'
+            keywords: '<%= pkg.keywords %>'
+            email: '<%= pkg.author.email %>'
+            url: '<%= pkg.homepage %>'
+            image: '<%= pkg.homepage %>/logo.png'
+            lang: 'en'
+            locale: 'en_GB'
+            dir: 'ltr'
+            type: 'website'
+            copyrightYear: '<%= grunt.template.today("yyyy") %>'
 
-      dev:
-        options:
-          pretty: true
-        src: [
-          '<%= paths.views %>/**/*.jade'
-          '!<%= paths.views %>/helpers/*.jade'
-          '!<%= paths.views %>/includes/*.jade'
-          '!<%= paths.views %>/layouts/*.jade'
-          '!<%= paths.views %>/page/*.jade'
-        ]
-        dest: '<%= paths.dist %>'
+          author:
+            name: '<%= pkg.author.name %>'
+            email: '<%= pkg.author.email %>'
+            url: '<%= pkg.author.url %>'
+            twitter: '@lanceguyatt'
+
+          paths:
+            images: 'images'
+            css: "stylesheets/css"
+            js: "javascripts/js"
 
       dist:
-        options:
-          pretty: false
         src: [
-          '<%= paths.views %>/**/*.jade'
-          '!<%= paths.views %>/helpers/*.jade'
-          '!<%= paths.views %>/includes/*.jade'
-          '!<%= paths.views %>/layouts/*.jade'
-          '!<%= paths.views %>/page/*.jade'
+          '<%= directory.views %>/*.jade'
+          '<%= directory.views %>/**/*.jade'
+          '!<%= directory.views %>/_*.jade'
+          '!<%= directory.views %>/**/_*.jade'
         ]
-        dest: '<%= paths.dist %>'
+        dest: '<%= directory.dist %>'
 
     # Compile CoffeeScript files into JavaScript
     coffee:
@@ -131,24 +130,23 @@ module.exports = (grunt) ->
         files: [
           expand: true
           flatten: true
-          cwd: '<%= paths.coffee %>'
+          cwd: '<%= directory.coffee %>'
           src: ['**/*.coffee']
-          dest: '<%= paths.js %>'
+          dest: '<%= directory.js %>'
           ext: '.js'
         ]
 
     # Compile Sass to CSS using Compass
     compass:
       options:
-        basePath: '<%= paths.base %>'
-        cssDir: '<%= paths.css %>'
-        sassDir: '<%= paths.scss %>'
-        javascriptsDir: '<%= paths.js %>'
-        imagesDir: '<%= paths.images %>'
-        fontsDir: '<%= paths.fonts %>'
+        basePath: '<%= directory.base %>'
+        cssDir: '<%= directory.css %>'
+        sassDir: '<%= directory.scss %>'
+        javascriptsDir: '<%= directory.js %>'
+        imagesDir: '<%= directory.images %>'
+        fontsDir: '<%= directory.fonts %>'
         relativeAssets: true
         require: [
-          'breakpoint'
           'susy'
         ]
 
@@ -156,7 +154,7 @@ module.exports = (grunt) ->
         options:
           debugInfo: false
           environment: 'development'
-          noLineComments: false
+          noLineComments: true
           outputStyle: 'expanded'
 
       dist:
@@ -173,62 +171,48 @@ module.exports = (grunt) ->
         nospawn: true
 
       jade:
-        files: '<%= paths.views %>/*{,**/}*.jade'
-        tasks: ['jade:dev', 'notify:jade']
+        files: '<%= directory.views %>/*{,**/}*.jade'
+        tasks: ['jade', 'notify:jade']
         options:
           livereload: true
 
       coffee:
-        files: '<%= paths.coffee %>/{,**/}*.coffee'
+        files: '<%= directory.coffee %>/{,**/}*.coffee'
         tasks: ['coffee', 'notify:coffee']
 
       compass:
-        files: '<%= paths.scss %>/{,**/}*.{scss,sass}'
+        files: '<%= directory.scss %>/{,**/}*.{scss,sass}'
         tasks: ['compass:dev', 'notify:compass']
         options:
           livereload: true
 
       grunt:
-        files: '<%= paths.base %>Gruntfile.coffee'
+        files: '<%= directory.base %>Gruntfile.coffee'
         tasks: ['default']
 
-      json:
-        files: [
-          '<%= paths.src %>/package.json'
-          '<%= paths.routes %>/index.json'
-        ]
-        tasks: ['default']
+      #json:
+      #  files: [
+      #    '<%= directory.src %>/package.json'
+      #    '<%= directory.routes %>/index.json'
+      #  ]
+      #  tasks: ['default']
 
     # Build out a lean, mean Modernizr machine
     modernizr:
-      devFile: '<%= paths.bower %>/modernizr/modernizr.js'
-      outputFile: '<%= paths.js %>/modernizr.min.js'
-      extra:
-        shiv: true
-        printshiv: false
-        load: false
-        mq: false
-        cssclasses: true
-        extensibility:
-          addtest: false
-          prefix: false
-          teststyles: false
-          testprops: false
-          testallprops: false
-          hasevents: false
-          prefixes: false
-          domprefixes: false
-        uglify: true
-        parseFiles: false
-        matchCommunityTests: false
-        customTests: []
+      devFile: '<%= directory.bower %>/modernizr/modernizr.js'
+      outputFile: '<%= directory.js %>/modernizr.min.js'
+      files: [
+        '<%= files.css %>'
+        '<%= files.js %>'
+      ]
+      uglify: true
 
     # Validate files with JSHint
     #jshint:
     #  options:
-    #    jshintrc: '<%= paths.base %>.jshintrc'
+    #    jshintrc: '<%= directory.base %>.jshintrc'
     #  dev: [
-    #    '<%= paths.js %>/app.js'
+    #    '<%= directory.js %>/app.js'
     #  ]
 
     # Validate html files
@@ -240,7 +224,7 @@ module.exports = (grunt) ->
     # Lint CSS files with csslint
     #csslint:
     #  options:
-    #    csslintrc: '<%= paths.base %>.csslintrc'
+    #    csslintrc: '<%= directory.base %>.csslintrc'
     #    absoluteFilePathsForFormatters: true
     #    import: 2
     #
@@ -248,6 +232,13 @@ module.exports = (grunt) ->
     #    src: [
     #      '<%= file.css %>'
     #    ]
+
+    csscomb:
+      options:
+        sortOrder: '<%= directory.base %>/.csscomb.json'
+      dist:
+        files:
+          'dist/stylesheets/css/style.max.css': ['dist/stylesheets/css/style.css']
 
     # Adds a simple banner to files
     usebanner:
@@ -301,6 +292,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
+  grunt.loadNpmTasks 'grunt-csscomb'
   grunt.loadNpmTasks 'grunt-jade'
   grunt.loadNpmTasks 'grunt-modernizr'
   grunt.loadNpmTasks 'grunt-notify'
@@ -313,6 +305,7 @@ module.exports = (grunt) ->
   # Compile for distribution
   grunt.registerTask 'dist', 'Distribution build', ->
     grunt.task.run 'clean'
+    #grunt.task.run 'csscomb'
     grunt.task.run 'notify:clean'
     grunt.task.run 'compass:dist'
     grunt.task.run 'notify:compass'
@@ -320,8 +313,8 @@ module.exports = (grunt) ->
     grunt.task.run 'notify:coffee'
     grunt.task.run 'concat'
     grunt.task.run 'notify:concat'
-    grunt.task.run 'uglify'
-    grunt.task.run 'notify:uglify'
+    #grunt.task.run 'uglify'
+    #grunt.task.run 'notify:uglify'
     grunt.task.run 'jade:dist'
     grunt.task.run 'notify:jade'
     grunt.task.run 'modernizr'

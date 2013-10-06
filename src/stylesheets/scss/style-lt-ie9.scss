@@ -1,16 +1,16 @@
-$ie6: false;
-$ie7: false;
-$ie8: false;
+$ie6: true;
+$ie7: true;
+$ie8: true;
 $legacy-support-for-ie6: $ie6;
 $legacy-support-for-ie7: $ie7;
 $legacy-support-for-ie8: $ie8;
 $legacy-ie: $ie6 or $ie7 or $ie8;
 $legacy-support-for-ie: $legacy-ie;
 
-$legacy-mozilla: true;
+$legacy-mozilla: false;
 $legacy-support-for-mozilla: $legacy-mozilla;
 
-$mozilla: true;
+$mozilla: false;
 $webkit: true;
 $opera: false;
 $microsoft: false;

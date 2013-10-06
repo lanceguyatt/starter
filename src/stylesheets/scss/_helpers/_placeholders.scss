@@ -1,22 +1,26 @@
-%antialiased {
-  @if $font-smoothing {
-    -webkit-font-smoothing: $font-smoothing;
-    //@include experimental('font-smoothing', $font-smoothing);
-  }
+%no-bullet {
+  @include no-bullet;
 }
 
 %unstyled {
   list-style: none;
-  margin-left: 0;
+  margin-#{$default-float}: 0;
 }
 
 %box-sizing-border-box {
   @include box-sizing(border-box);
 }
-
+/* @group =clearfix */
 %clearfix {
   @include clearfix;
 }
+/* @end */
+
+/* @group =pie-clearfix */
+%pie-clearfix {
+  @include pie-clearfix;
+}
+/* @end */
 
 %hide-text {
   @include hide-text();
@@ -26,17 +30,42 @@
   @include inline-block;
 }
 
-%ellipsis-no-wrap {
-  @include ellipsis(no-wrap);
+%hide-text {
+  @include hide-text;
 }
 
-@mixin text-rendering($value) {
-  @include experimental('text-rendering', $value);
+%ellipsis {
+  @include ellipsis;
 }
 
-@mixin font-feature-settings($value) {
-  @include experimental('font-feature-settings', $value);
+%float-left {
+  @include float($default-float);
 }
+
+%background-size-cover {
+  @include background-size(cover);
+}
+
+%backface-visibility-hidden {
+  @include backface-visibility(hidden);
+}
+
+%stretch {
+  @include stretch;
+}
+
+%border-radius-half {
+  @include border-radius(50%);
+}
+
+
+// @mixin text-rendering($value) {
+//   @include experimental('text-rendering', $value);
+// }
+
+// @mixin font-feature-settings($value) {
+//   @include experimental('font-feature-settings', $value);
+// }
 
 //  Sharpen an image if it has become blurry due to upscaling or downscaling
 //  @see https://developer.mozilla.org/en/CSS/image-rendering
@@ -64,15 +93,15 @@
 
 $default-transition-property: all;
 $default-transition-duration: .25s;
-$default-transition-function: ease;
+$default-transition-function: linear;
 $default-transition-delay: .25s;
 
 %transition-all {
-  @include single-transition(all, $default-transition-duration, $default-transition-function, 0);
+  @include transition(all $default-transition-duration $default-transition-function);
 }
 
 %transition-background-color {
-  @include single-transition(background-color, $default-transition-duration, $default-transition-function, 0);
+  @include transition(background-color $default-transition-duration $default-transition-function);
 }
 
 %transition-background-color-color {
@@ -83,13 +112,13 @@ $default-transition-delay: .25s;
 }
 
 %transition-border-color {
-  @include single-transition(border-color, $default-transition-duration, $default-transition-function, 0);
+  @include transition(border-color $default-transition-duration $default-transition-function);
 }
 
 %transition-color {
-  @include single-transition(color, $default-transition-duration, $default-transition-function, 0);
+  @include transition(color $default-transition-duration $default-transition-function);
 }
 
 %transition-opacity {
-  @include single-transition(opacity, $default-transition-duration, $default-transition-function, 0);
+  @include transition(opacity $default-transition-duration $default-transition-function);
 }

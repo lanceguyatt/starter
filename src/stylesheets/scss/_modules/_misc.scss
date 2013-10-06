@@ -1,16 +1,17 @@
 .example {
   $border-color: $black;
   $border-width: 1px;
-  @include margin-trailer(3);
-  @include rhythm-borders($border-width, 3);
+
   background-color: $white;
   border-color: $border-color;
   padding-top: rhythm(5);
   position: relative;
+
+  @include margin-trailer(3);
+  @include rhythm-borders($border-width, 3);
+
   &:after {
     $font-size: 12px;
-    @include adjust-font-size-to($font-size);
-    @include rhythm-borders($border-width, .6, $font-size);
     background-color: #f5f5f5;
     border-color: $border-color;
     color: #9da0a4;
@@ -19,7 +20,10 @@
     left: -$border-width;
     position: absolute;
     top: -$border-width;
+    @include adjust-font-size-to($font-size);
+    @include rhythm-borders($border-width, .6, $font-size);
   }
+
   p:last-child {
     margin-bottom: 0;
   }
@@ -46,21 +50,21 @@
   //@include stretch-y;
 }
 
-@include respond-to($small) {
-  .docs .column {
-    @include margin-trailer(2); // 16px
-    &:last-child {
-      @include margin-trailer(0);
-    }
+.docs .column {
+  @include margin-trailer(3); // 24px
+
+  &:last-child {
+    @include margin-trailer(0);
   }
 }
 
-@include respond-to($large) {
+@include at-breakpoint($large-media-layout) {
+
   .docs .columns {
-    @include margin-trailer(2);
+    @include margin-trailer(3);
   }
 
-  .docs .column {
+  .docs > .column {
     @include margin-trailer(0);
   }
 }

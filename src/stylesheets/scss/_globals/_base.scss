@@ -1,0 +1,132 @@
+// Vertical rhythm
+$base-font-size: 16px; // The base font size.
+$base-line-height: 8px; // The base line height determines the basic unit of vertical rhythm.
+$rhythm-unit: 'rem';
+$rem-with-px-fallback: false;
+
+// Typography
+$times-new-roman: "Times New Roman", Times, Georgia, "DejaVu Serif", serif !default;
+$times: Times, "Times New Roman", Georgia, "DejaVu Serif", serif !default;
+$georgia: Georgia, "Times New Roman", "DejaVu Serif", serif !default;
+$verdana: Verdana, Tahoma, "DejaVu Sans", sans-serif !default;
+$tahoma: Tahoma, Verdana, "DejaVu Sans", sans-serif !default;
+$helvetica: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !default;
+$arial: Arial, Helvetica, "Nimbus Sans L", sans-serif !default;
+$courier: "Courier New", "DejaVu Sans Mono", monospace, sans-serif !default;
+$menlo: Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$consolas: Consolas, "Liberation Mono", Courier, monospace !default;
+
+// Assign font stacks
+$sans-font-family: $helvetica;
+$serif-font-family: $georgia;
+$mono-font-family: $consolas;
+$alt-font-family: $serif-font-family;
+$base-font-family: $sans-font-family; // The font family set on the html element.
+
+// font smoothing
+
+// We use this to control font-smoothing
+$font-smoothing: antialiased !default;
+
+// Text direction
+$text-direction: ltr !default;
+$default-float: left !default;
+$opposite-direction: right !default;
+@if $text-direction == ltr {
+  $default-float: left;
+  $opposite-direction: right;
+} @else {
+  $default-float: right;
+  $opposite-direction: left;
+}
+
+// Grays
+$black:                 #000;
+$gray-darker:           #222;
+$gray-dark:             #333;
+$gray:                  #555;
+$gray-light:            #999;
+$gray-lighter:          #eee;
+$white:                 #fff;
+
+// Accent colors
+$blue:                  #049cdb;
+$blue-dark:             #0064cd;
+$green:                 #46a546;
+$red:                   #9d261d;
+$yellow:                #ffc40d;
+$orange:                #f89406;
+$pink:                  #c3325f;
+$purple:                #7a43b6;
+
+$primary-color:         #2ba6cb;
+$secondary-color:       #e9e9e9;
+$alert-color:           #c60f13;
+$success-color:         #5da423;
+
+// Scaffolding
+$base-background: $white !default;
+$base-font-color: $black !default;
+$base-font-family: $helvetica;
+$base-font-style: normal !default;
+$base-font-weight: normal !default;
+
+// Links
+
+$link-color:            #08c !default;
+$link-color-hover:      darken($link-color, 15%) !default;
+
+// Variables
+
+$link:                  '&:link, &:visited';
+$hover:                 '&:focus, &:hover, &:active';
+
+// Cursors
+
+// Custom use example -> $cursor-default-value: url(http://cursors-site.net/path/to/custom/cursor/default.cur),progress;
+
+$cursor-crosshair-value: "crosshair";
+$cursor-default-value: "default";
+$cursor-pointer-value: "pointer";
+$cursor-help-value: "help";
+
+// Grid variables
+$column-width: 3.75rem; // 60px
+$gutter-width: 1.25rem; // 20px
+$grid-padding: 0em; // 0px
+
+$small-total-columns: 4;
+$small-grid-padding: 1.25rem; // 10px
+
+$medium-total-columns: 8;
+$medium-grid-padding: 1.25rem; // 20px
+
+$large-total-columns: 16;
+$large-grid-padding: $medium-grid-padding;
+
+$xlarge-total-columns: 24;
+$xlarge-grid-padding: $medium-grid-padding;
+
+// Media layouts
+$small-media-layout: $small-total-columns; // (4 * 60px) + (3* 20px) + (2*10px) = 320px
+$small-only-media-layout: $small-total-columns 569px; // max-width: 569px
+$medium-media-layout: 569px $medium-total-columns; // (8 * 60px) + (9 * 20px) = 660px // min-width: 561px
+$large-media-layout: 900px $large-total-columns; // min-width 1024px (16 * 60) + (17 * 20) = 1300px min-width: 769px
+$xlarge-media-layout: $xlarge-total-columns; // min-width 1024px (16 * 60) + (17 * 20) = 1300px
+
+$from-direction: $default-float;
+$omega-float: opposite-position($from-direction);
+
+@import 'compass/css3';
+@import 'compass/layout';
+@import 'compass/support';
+@import 'compass/typography';
+@import 'compass/utilities/general';
+// @import 'compass/typography/links';
+// @import 'compass/typography/lists';
+// @import 'compass/typography/text';
+// @import "compass/typography/vertical_rhythm";
+//@import 'helpers/_fonts';
+@import '_helpers/_mixins';
+//@import '_helpers/_hashgrid';
+@import 'susy';

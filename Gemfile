@@ -4,6 +4,6 @@ source 'https://rubygems.org'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'breakpoint'
+  gem 'compass', '~> 0.13.alpha.0'
   gem 'susy'
 end
