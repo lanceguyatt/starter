@@ -1,4 +1,5 @@
 # Pull gems from RubyGems
+ruby '2.0.0'
 source 'https://rubygems.org'
 
 # Gems used only for assets and not required
