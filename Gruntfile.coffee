@@ -261,7 +261,7 @@ module.exports = (grunt) ->
   # http://chrisawren.com/posts/Advanced-Grunt-tooling
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask 'heroku', 'Heroku Distribution buildpack', ->
+  grunt.registerTask 'heroku:production', 'Heroku Distribution buildpack', ->
     grunt.task.run 'clean'
     grunt.task.run 'notify:clean'
     grunt.task.run 'compass:dist'
