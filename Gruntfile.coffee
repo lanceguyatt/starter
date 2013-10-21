@@ -35,10 +35,12 @@ module.exports = (grunt) ->
       images: '<%= directory.dist %>/images'
 
     files:
-      css: '<%= directory.stylesheets %>/**/*.css'
-      html: '<%= directory.dist %>/**/*.html'
-      jade: '<%= directory.views %>/**/*.jade'
-      js: '<%= directory.javascripts %>/**/*.js'
+      coffee: '<%= directory.src %>/javascripts/coffee/{,**/}*.coffee'
+      css: '<%= directory.stylesheets %>/*.css'
+      html: '<%= directory.dist %>{,**/}*.html'
+      jade: '<%= directory.views %>{,**/}*.jade'
+      js: '<%= directory.javascripts %>/*.js'
+      scss: '<%= directory.scss %>/{,**/}*.scss'
 
     plugins: [
       '<%= directory.js %>/plugins.js'
@@ -86,38 +88,12 @@ module.exports = (grunt) ->
         client: false
         compileDebug: false
         pretty: true
-        locals:
-          site:
-            name: '<%= pkg.name %>'
-            title: '<%= pkg.title %>'
-            description: '<%= pkg.description %>'
-            keywords: '<%= pkg.keywords %>'
-            email: '<%= pkg.author.email %>'
-            url: '<%= pkg.homepage %>'
-            image: '<%= pkg.homepage %>/logo.png'
-            lang: 'en'
-            locale: 'en_GB'
-            dir: 'ltr'
-            type: 'website'
-            copyrightYear: '<%= grunt.template.today("yyyy") %>'
-
-          author:
-            name: '<%= pkg.author.name %>'
-            email: '<%= pkg.author.email %>'
-            url: '<%= pkg.author.url %>'
-            twitter: '@lanceguyatt'
-
-          paths:
-            images: 'images'
-            css: "stylesheets/css"
-            js: "javascripts/js"
+        locals: grunt.file.readJSON './src/routes/globals.json'
 
       dist:
         src: [
           '<%= directory.views %>/*.jade'
-          '<%= directory.views %>/**/*.jade'
           '!<%= directory.views %>/_*.jade'
-          '!<%= directory.views %>/**/_*.jade'
         ]
         dest: '<%= directory.dist %>'
 
@@ -167,41 +143,39 @@ module.exports = (grunt) ->
 
     # Run predefined tasks whenever watched files change
     watch:
-      options:
-        nospawn: true
+      #options:
+      #  nospawn: true
 
-      jade:
-        files: '<%= directory.views %>/*{,**/}*.jade'
-        tasks: ['jade', 'notify:jade']
+      coffee:
+        files: '<%= files.coffee %>'
+        tasks: ['coffee', 'notify:coffee']
         options:
           livereload: true
 
-      coffee:
-        files: '<%= directory.coffee %>/{,**/}*.coffee'
-        tasks: ['coffee', 'notify:coffee']
-
       compass:
-        files: '<%= directory.scss %>/{,**/}*.{scss,sass}'
+        files: '<%= files.scss %>'
         tasks: ['compass:dev', 'notify:compass']
+        options:
+          livereload: true
+
+      jade:
+        files: '<%= files.jade %>'
+        tasks: ['jade', 'notify:jade']
         options:
           livereload: true
 
       grunt:
         files: '<%= directory.base %>Gruntfile.coffee'
         tasks: ['default']
-
-      #json:
-      #  files: [
-      #    '<%= directory.src %>/package.json'
-      #    '<%= directory.routes %>/index.json'
-      #  ]
-      #  tasks: ['default']
+        options:
+          livereload: true
 
     # Build out a lean, mean Modernizr machine
     modernizr:
       devFile: '<%= directory.bower %>/modernizr/modernizr.js'
       outputFile: '<%= directory.js %>/modernizr.min.js'
       files: [
+        '<%= files.html %>'
         '<%= files.css %>'
         '<%= files.js %>'
       ]
@@ -284,18 +258,8 @@ module.exports = (grunt) ->
         options:
           message: 'Distribution complete'
 
-  # Dependencies
-  grunt.loadNpmTasks 'grunt-banner'
-  grunt.loadNpmTasks 'grunt-contrib-clean'
-  grunt.loadNpmTasks 'grunt-contrib-coffee'
-  grunt.loadNpmTasks 'grunt-contrib-compass'
-  grunt.loadNpmTasks 'grunt-contrib-concat'
-  grunt.loadNpmTasks 'grunt-contrib-watch'
-  grunt.loadNpmTasks 'grunt-contrib-uglify'
-  grunt.loadNpmTasks 'grunt-csscomb'
-  grunt.loadNpmTasks 'grunt-jade'
-  grunt.loadNpmTasks 'grunt-modernizr'
-  grunt.loadNpmTasks 'grunt-notify'
+  # http://chrisawren.com/posts/Advanced-Grunt-tooling
+  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   # Run in development mode
   grunt.registerTask 'default', 'Development mode', ->
