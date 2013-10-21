@@ -261,6 +261,26 @@ module.exports = (grunt) ->
   # http://chrisawren.com/posts/Advanced-Grunt-tooling
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+  grunt.registerTask 'heroku:production', 'Heroku Distribution buildpack', ->
+    grunt.task.run 'clean'
+    grunt.task.run 'notify:clean'
+    grunt.task.run 'compass:dist'
+    grunt.task.run 'notify:compass'
+    grunt.task.run 'coffee'
+    grunt.task.run 'notify:coffee'
+    grunt.task.run 'concat'
+    grunt.task.run 'notify:concat'
+    grunt.task.run 'uglify'
+    grunt.task.run 'notify:uglify'
+    grunt.task.run 'jade:dist'
+    grunt.task.run 'notify:jade'
+    grunt.task.run 'modernizr'
+    grunt.task.run 'notify:modernizr'
+    grunt.task.run 'usebanner'
+    grunt.task.run 'notify:usebanner'
+    grunt.task.run 'csscomb'
+    grunt.task.run 'notify:dist'
+
   # Run in development mode
   grunt.registerTask 'default', 'Development mode', ->
     grunt.task.run 'watch'
