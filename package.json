@@ -35,7 +35,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "grunt": "0.4.x",
+    "grunt": "~0.4.1",
     "grunt-banner": "~0.1.4",
     "grunt-contrib-clean": "~0.4.1",
     "grunt-contrib-coffee": "~0.7.0",
@@ -47,6 +47,7 @@
     "grunt-jade": "~0.4.0",
     "grunt-modernizr": "~0.3.0",
     "grunt-notify": "~0.2.3",
-    "matchdep": "~0.3.0"
+    "matchdep": "~0.3.0",
+    "grunt-browser-sync": "~0.2.6"
   }
 }

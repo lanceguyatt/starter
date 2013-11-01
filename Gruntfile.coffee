@@ -112,6 +112,35 @@ module.exports = (grunt) ->
           ext: '.js'
         ]
 
+    # Run predefined tasks whenever watched files change
+    watch:
+      #options:
+      #  nospawn: true
+
+      coffee:
+        files: '<%= files.coffee %>'
+        tasks: ['coffee', 'notify:coffee']
+        #options:
+        #  livereload: true
+
+      compass:
+        files: '<%= files.scss %>'
+        tasks: ['compass:dev', 'notify:compass']
+        options:
+          livereload: true
+
+      jade:
+        files: '<%= files.jade %>'
+        tasks: ['jade', 'notify:jade']
+        #options:
+        # livereload: true
+
+      grunt:
+        files: '<%= directory.base %>Gruntfile.coffee'
+        tasks: ['default']
+        #options:
+        #  livereload: true
+
     # Compile Sass to CSS using Compass
     compass:
       options:
@@ -125,6 +154,7 @@ module.exports = (grunt) ->
         require: [
           'susy'
         ]
+        raw: 'Sass::Script::Number.precision = 8'
 
       dev:
         options:
@@ -141,34 +171,21 @@ module.exports = (grunt) ->
           noLineComments: true
           outputStyle: 'compressed'
 
-    # Run predefined tasks whenever watched files change
-    watch:
-      #options:
-      #  nospawn: true
-
-      coffee:
-        files: '<%= files.coffee %>'
-        tasks: ['coffee', 'notify:coffee']
-        options:
-          livereload: true
-
-      compass:
-        files: '<%= files.scss %>'
-        tasks: ['compass:dev', 'notify:compass']
-        options:
-          livereload: true
-
-      jade:
-        files: '<%= files.jade %>'
-        tasks: ['jade', 'notify:jade']
-        options:
-          livereload: true
-
-      grunt:
-        files: '<%= directory.base %>Gruntfile.coffee'
-        tasks: ['default']
-        options:
-          livereload: true
+    browser_sync:
+      files:
+        src: [
+          'dist/stylesheets/css/*.css'
+          'dist/*.html'
+        ]
+      options:
+        server:
+          baseDir: 'dist'
+        ghostMode:
+          scroll: true
+          links: true
+          forms: true
+        watchTask: true
+        debugInfo: true
 
     # Build out a lean, mean Modernizr machine
     modernizr:
@@ -283,6 +300,7 @@ module.exports = (grunt) ->
 
   # Run in development mode
   grunt.registerTask 'default', 'Development mode', ->
+    grunt.task.run 'browser_sync'
     grunt.task.run 'watch'
     grunt.task.run 'notify:dev'
 
