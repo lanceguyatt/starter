@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "starter",
   "version": "0.0.0",
   "dependencies": {
     "hashgrid": "https://github.com/dotjay/hashgrid.git",
