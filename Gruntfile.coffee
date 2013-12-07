@@ -15,55 +15,67 @@ module.exports = (grunt) ->
     # Directory paths
     directory:
       base: './'
-
       dist: '<%= directory.base %>dist'
       src: '<%= directory.base %>src'
-
       bower: '<%= directory.src %>/bower'
-      routes: '<%= directory.src %>/routes'
+      #routes: '<%= directory.src %>/routes'
       views: '<%= directory.src %>/views'
-
-      javascripts: '<%= directory.dist %>/javascripts'
       coffee: '<%= directory.src %>/javascripts/coffee'
-      js: '<%= directory.javascripts %>/js'
-
-      stylesheets: '<%= directory.dist %>/stylesheets'
+      js: '<%= directory.dist %>/javascripts/js'
       scss: '<%= directory.src %>/stylesheets/scss'
-      css: '<%= directory.stylesheets %>/css'
-
+      css: '<%= directory.dist %>/stylesheets/css'
       fonts: '<%= directory.dist %>/fonts'
       images: '<%= directory.dist %>/images'
+      plugins: '<%= directory.js %>/plugins'
 
     files:
-      coffee: '<%= directory.src %>/javascripts/coffee/{,**/}*.coffee'
-      css: '<%= directory.stylesheets %>/*.css'
-      html: '<%= directory.dist %>{,**/}*.html'
-      jade: '<%= directory.views %>{,**/}*.jade'
-      js: '<%= directory.javascripts %>/*.js'
-      scss: '<%= directory.scss %>/{,**/}*.scss'
-
-    plugins: [
-      '<%= directory.js %>/plugins.js'
-      '<%= directory.bower %>/jquery/jquery.js'
-      '<%= directory.bower %>/hashgrid/hashgrid.js'
-    ]
+      coffee: '<%= directory.coffee %>/{,*/}*.coffee'
+      js: '<%= directory.js %>/{,*/}*.js'
+      scss: '<%= directory.scss %>/{,*/}*.scss'
+      css: '<%= directory.css %>/{,*/}*.css'
+      jade: '<%= directory.views %>/{,*/}*.jade'
+      html: '<%= directory.dist %>/{,*/}*.html'
+      plugins: [
+        '<%= directory.js %>/plugins.js'
+        '<%= directory.bower %>/jquery/jquery.js'
+        '<%= directory.bower %>/hashgrid/hashgrid.js'
+      ]
 
     # Clean files and folders
     clean:
       html: '<%= files.html %>'
-      javascripts: '<%= files.js %>'
-      stylesheets: '<%= files.css %>'
+      js: '<%= directory.js %>'
+      css: '<%= directory.css %>'
+
+    # Compile CoffeeScript files into JavaScript
+    coffee:
+      options:
+        bare: true
+      all:
+        files: [
+          expand: true
+          flatten: true
+          cwd: '<%= directory.coffee %>'
+          src: ['**/*.coffee']
+          dest: '<%= directory.js %>'
+          ext: '.js'
+        ]
 
     # Concatenate files
     concat:
-      options:
-        stripBanners: true
-
       plugins:
         files: [
-          dest: '<%= directory.js %>/plugins.js'
-          src: '<%= plugins %>'
+          src: '<%= files.plugins %>'
+          dest: '<%= directory.plugins %>/plugins.js'
         ]
+
+    # Validate files with JSHint
+    jshint:
+      options:
+        jshintrc: '<%= directory.base %>.jshintrc'
+      all: [
+        '<%= directory.js %>/**/*.js'
+      ]
 
     # Minify files with UglifyJS.
     uglify:
@@ -71,7 +83,7 @@ module.exports = (grunt) ->
         compress: true
         preserveComments: false
         except: ['jQuery']
-      dist:
+      all:
         files: [
           expand: true
           flatten: true
@@ -89,57 +101,34 @@ module.exports = (grunt) ->
         compileDebug: false
         pretty: true
         locals: grunt.file.readJSON './src/routes/globals.json'
-
-      dist:
+      all:
         src: [
           '<%= directory.views %>/*.jade'
           '!<%= directory.views %>/_*.jade'
         ]
         dest: '<%= directory.dist %>'
 
-    # Compile CoffeeScript files into JavaScript
-    coffee:
+    # Validate html files
+    htmllint:
+      all: [
+        '<%= files.html %>'
+      ]
+
+    htmlmin:
       options:
-        bare: true
-
+        removeComments: true
+        removeCommentsFromCDATA: true
+        removeCDATASectionsFromCDATA: true
+        collapseWhitespace: true
+        collapseBooleanAttributes: true
+        removeAttributeQuotes: true
+        removeRedundantAttributes: true
+        useShortDoctype: true
+        removeOptionalTags: true
+        removeEmptyAttributes: true
       all:
-        files: [
-          expand: true
-          flatten: true
-          cwd: '<%= directory.coffee %>'
-          src: ['**/*.coffee']
-          dest: '<%= directory.js %>'
-          ext: '.js'
-        ]
-
-    # Run predefined tasks whenever watched files change
-    watch:
-      #options:
-      #  nospawn: true
-
-      coffee:
-        files: '<%= files.coffee %>'
-        tasks: ['coffee', 'notify:coffee']
-        #options:
-        #  livereload: true
-
-      compass:
-        files: '<%= files.scss %>'
-        tasks: ['compass:dev', 'notify:compass']
-        options:
-          livereload: true
-
-      jade:
-        files: '<%= files.jade %>'
-        tasks: ['jade', 'notify:jade']
-        #options:
-        # livereload: true
-
-      grunt:
-        files: '<%= directory.base %>Gruntfile.coffee'
-        tasks: ['default']
-        #options:
-        #  livereload: true
+        files:
+          '<%= directory.dist %>/index.html': '<%= directory.dist %>/index.html'
 
     # Compile Sass to CSS using Compass
     compass:
@@ -150,36 +139,87 @@ module.exports = (grunt) ->
         javascriptsDir: '<%= directory.js %>'
         imagesDir: '<%= directory.images %>'
         fontsDir: '<%= directory.fonts %>'
+        quiet: true
+        trace: true
+        force: true
         relativeAssets: true
         require: [
           'susy'
         ]
         raw: 'Sass::Script::Number.precision = 8'
-
-      dev:
-        options:
-          debugInfo: false
-          environment: 'development'
-          noLineComments: true
-          outputStyle: 'expanded'
-
       dist:
+        debugInfo: false
+        environment: 'production'
+        noLineComments: true
+        outputStyle: 'expanded'
+
+    autoprefixer:
+      modern:
         options:
-          debugInfo: false
-          environment: 'production'
-          force: true
-          noLineComments: true
-          outputStyle: 'compressed'
+          browsers: ['> 1%', 'last 2 versions', 'ff 17', 'ie 10', 'ie 11']
+        files:
+          '<%= directory.css %>/style.css': ['<%= directory.css %>/style.css']
+
+      legacy:
+        options:
+          browsers: ['ie 8']
+        files:
+          '<%= directory.css %>/style-lt-ie9.css': ['<%= directory.css %>/style-lt-ie9.css']
+
+    # Lint CSS files with csslint
+    csslint:
+      options:
+        csslintrc: '<%= directory.base %>.csslintrc'
+        absoluteFilePathsForFormatters: true
+        import: 2
+      all:
+        src: [
+          '<%= file.css %>'
+        ]
+
+    csscomb:
+      options:
+        sortOrder: '.csscomb.json'
+      dist:
+        files: [
+          expand: true
+          #flatten: true
+          cwd: '<%= directory.css %>'
+          src: ['*.css']
+          dest: '<%= directory.css %>'
+          ext: '.css'
+        ]
+
+    csso:
+      options:
+        report: 'gzip'
+      all:
+        files:
+          '<%= directory.css %>/style.min.css': ['<%= directory.css %>/style.css']
+          '<%= directory.css %>/style-lt-ie9.min.css': ['<%= directory.css %>/style-lt-ie9.css']
+
+    # Adds a simple banner to files
+    usebanner:
+      options:
+        position: 'top'
+        banner: '<%= meta.banner %>'
+      files:
+        src: [
+          '<%= files.css %>'
+          #'<%= files.html %>'
+          '<%= files.js %>'
+        ]
 
     browser_sync:
       files:
         src: [
-          'dist/stylesheets/css/*.css'
-          'dist/*.html'
+          '<%= files.css %>'
+          '<%= files.html %>'
+          '<%= files.js %>'
         ]
       options:
         server:
-          baseDir: 'dist'
+          baseDir: '<%= directory.dist %>'
         ghostMode:
           scroll: true
           links: true
@@ -190,84 +230,53 @@ module.exports = (grunt) ->
     # Build out a lean, mean Modernizr machine
     modernizr:
       devFile: '<%= directory.bower %>/modernizr/modernizr.js'
-      outputFile: '<%= directory.js %>/modernizr.min.js'
+      outputFile: '<%= directory.plugins %>/modernizr.min.js'
       files: [
-        '<%= files.html %>'
         '<%= files.css %>'
+        '<%= files.html %>'
         '<%= files.js %>'
       ]
       uglify: true
-
-    # Validate files with JSHint
-    #jshint:
-    #  options:
-    #    jshintrc: '<%= directory.base %>.jshintrc'
-    #  dev: [
-    #    '<%= directory.js %>/app.js'
-    #  ]
-
-    # Validate html files
-    #htmllint:
-    #  dev: [
-    #    '<%= files.html %>'
-    #  ]
-
-    # Lint CSS files with csslint
-    #csslint:
-    #  options:
-    #    csslintrc: '<%= directory.base %>.csslintrc'
-    #    absoluteFilePathsForFormatters: true
-    #    import: 2
-    #
-    #  dev:
-    #    src: [
-    #      '<%= file.css %>'
-    #    ]
-
-    csscomb:
-      options:
-        sortOrder: '.csscomb.json'
-      dist:
-        files:
-          'dist/stylesheets/css/style.max.css': ['dist/stylesheets/css/style.css']
-
-    # Adds a simple banner to files
-    usebanner:
-      options:
-        position: 'top'
-        banner: '<%= meta.banner %>'
-      files:
-        src: [
-          '<%= files.css %>'
-          '<%= files.js %>'
-        ]
 
     # Task complete messages
     notify:
       clean:
         options:
           message: 'Folders and files cleaned'
-      coffee:
-        options:
-          message: 'Coffee compiled'
       compass:
         options:
           message: 'Compass compiled'
+      autoprefixer:
+        options:
+          message: 'CSS prefixed'
+      csscomb:
+        options:
+          message: 'CSS reordered'
+      csso:
+        options:
+          title: 'CSSO'
+          message: 'CSS minified'
+      coffee:
+        options:
+          message: 'Coffeescript compiled'
       concat:
         options:
-          message: 'Concatenation complete'
+          message: 'Javascript concatenated'
       uglify:
         options:
           message: 'Uglification complete'
       jade:
         options:
           message: 'Jade compiled'
-      modernizr:
+      htmlmin:
         options:
-          message: 'Modernizr compiled'
+          message: 'HTML minified'
       usebanner:
         options:
           message: 'Banners added'
+      modernizr:
+        options:
+          message: 'Modernizr compiled'
       dev:
         options:
           message: 'Development running'
@@ -275,52 +284,86 @@ module.exports = (grunt) ->
         options:
           message: 'Distribution complete'
 
-  # http://chrisawren.com/posts/Advanced-Grunt-tooling
-  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+    # Run predefined tasks whenever watched files change
+    watch:
+      #options:
+      #  interrupt: true
+      coffee:
+        files: '<%= files.coffee %>'
+        tasks: ['coffee', 'notify:coffee']
 
-  grunt.registerTask 'heroku:production', 'Heroku Distribution buildpack', ->
-    grunt.task.run 'clean'
-    grunt.task.run 'notify:clean'
-    grunt.task.run 'compass:dist'
-    grunt.task.run 'notify:compass'
-    grunt.task.run 'coffee'
-    grunt.task.run 'notify:coffee'
-    grunt.task.run 'concat'
-    grunt.task.run 'notify:concat'
-    grunt.task.run 'uglify'
-    grunt.task.run 'notify:uglify'
-    grunt.task.run 'jade:dist'
-    grunt.task.run 'notify:jade'
-    grunt.task.run 'modernizr'
-    grunt.task.run 'notify:modernizr'
-    grunt.task.run 'usebanner'
-    grunt.task.run 'notify:usebanner'
-    grunt.task.run 'csscomb'
-    grunt.task.run 'notify:dist'
+      compass:
+        files: '<%= files.scss %>'
+        tasks: ['compass', 'notify:compass', 'autoprefixer']
+
+      jade:
+        files: '<%= files.jade %>'
+        tasks: ['jade', 'notify:jade']
+
+      grunt:
+        files: '<%= directory.base %>Gruntfile.coffee'
+        tasks: ['default']
+
+    notify_hooks:
+      options:
+        enabled: true
+        max_jshint_notifications: 10 #maximum number of notifications from jshint output
+        #title: "Project Name" #defaults to the name in package.json, or uses project's directory name, you can change to the name of your project
+
+    preprocess:
+      dev:
+        src: ['src/views/layouts/_default.jade']
+        options:
+          inline: true
+          context:
+            production: false
+
+      dist:
+        src: ['src/views/layouts/_default.jade']
+        options:
+          inline: true
+          context:
+            production: true
+
+  # http://chrisawren.com/posts/Advanced-Grunt-tooling
+  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks)
 
   # Run in development mode
   grunt.registerTask 'default', 'Development mode', ->
+    grunt.task.run 'notify_hooks'
+    #grunt.task.run 'preprocess:dev'
     grunt.task.run 'browser_sync'
+    grunt.task.run 'notify:browser_sync'
     grunt.task.run 'watch'
     grunt.task.run 'notify:dev'
 
   # Compile for distribution
   grunt.registerTask 'dist', 'Distribution build', ->
+    grunt.task.run 'notify_hooks'
+    #grunt.task.run 'preprocess:dist'
     grunt.task.run 'clean'
     grunt.task.run 'notify:clean'
-    grunt.task.run 'compass:dist'
+    grunt.task.run 'compass'
     grunt.task.run 'notify:compass'
+    grunt.task.run 'autoprefixer'
+    grunt.task.run 'notify:autoprefixer'
+    grunt.task.run 'csscomb'
+    grunt.task.run 'notify:csscomb'
+    grunt.task.run 'csso'
+    grunt.task.run 'notify:csso'
     grunt.task.run 'coffee'
     grunt.task.run 'notify:coffee'
     grunt.task.run 'concat'
     grunt.task.run 'notify:concat'
     grunt.task.run 'uglify'
     grunt.task.run 'notify:uglify'
-    grunt.task.run 'jade:dist'
+    grunt.task.run 'jade'
     grunt.task.run 'notify:jade'
-    grunt.task.run 'modernizr'
-    grunt.task.run 'notify:modernizr'
+    grunt.task.run 'htmlmin'
+    grunt.task.run 'notify:htmlmin'
     grunt.task.run 'usebanner'
     grunt.task.run 'notify:usebanner'
-    grunt.task.run 'csscomb'
+    grunt.task.run 'modernizr'
+    grunt.task.run 'notify:modernizr'
     grunt.task.run 'notify:dist'
+    grunt.task.run 'default'

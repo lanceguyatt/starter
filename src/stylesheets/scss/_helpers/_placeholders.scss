@@ -1,3 +1,47 @@
+%backface-visibility-hidden {
+  @include backface-visibility(hidden);
+  //backface-visibility: hidden;
+}
+
+%disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+%base-border-radius {
+  //@include border-radius(rhythm(1)); // 6px
+  border-radius: rhythm(1); // 6px
+}
+
+%border-radius-none {
+  //@include border-radius(0);
+  border-radius: 0;
+}
+
+%base-border-top-radius {
+  border-top-right-radius: rhythm(1); // 6px
+  border-top-left-radius: rhythm(1); // 6px
+}
+
+%base-border-left-radius {
+  @include border-left-radius(rhythm(1)); // 6px
+}
+
+%base-border-right-radius {
+  border-top-right-radius: rhythm(1); // 6px
+  border-bottom-right-radius: rhythm(1); // 6px
+}
+
+%border-radius {
+  border-radius: rhythm(1); // 6px
+}
+
+%border-radius-half {
+  //@include border-radius(50%);
+  border-radius: 50%;
+}
+
 %no-bullet {
   @include no-bullet;
 }
@@ -8,11 +52,25 @@
 }
 
 %box-sizing-border-box {
-  @include box-sizing(border-box);
+  //@include box-sizing(border-box);
+  box-sizing: border-box;
 }
+
+%box-shadow-default {
+  @include box-shadow(rhythm(.5) rhythm(.5) rhythm(.5) rgba(#000, .5));
+}
+
+%box-shadow-active {
+  @include box-shadow(rhythm(1) rhythm(1) rhythm(1) rgba(#000, .5));
+}
+
 /* @group =clearfix */
 %clearfix {
   @include clearfix;
+}
+
+.clearfix {
+  @extend %clearfix;
 }
 /* @end */
 
@@ -22,42 +80,51 @@
 }
 /* @end */
 
-%hide-text {
-  @include hide-text();
+/* @group =default-float */
+%default-float {
+  @include float($default-float);
 }
+/* @end */
 
+/* @group =inline-block */
 %inline-block {
-  @include inline-block;
+  @include inline-block(middle);
 }
+/* @end */
+
+/* @group =inline-block-middle */
+%inline-block-middle {
+  @include inline-block(middle);
+}
+/* @end */
+
+/* @group =inline-block-top */
+%inline-block-top {
+  @include inline-block(top);
+}
+/* @end */
 
 %hide-text {
   @include hide-text;
 }
 
 %ellipsis {
-  @include ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-%float-left {
-  @include float($default-float);
+%remove-ellipsis {
+  max-width: none;
+  text-overflow: clip;
 }
 
-%background-size-cover {
-  @include background-size(cover);
+/* @group =user-select-none */
+%user-select-none {
+  //@include user-select(none);
+  user-select: none;
 }
-
-%backface-visibility-hidden {
-  @include backface-visibility(hidden);
-}
-
-%stretch {
-  @include stretch;
-}
-
-%border-radius-half {
-  @include border-radius(50%);
-}
-
+/* @end */
 
 // @mixin text-rendering($value) {
 //   @include experimental('text-rendering', $value);
@@ -86,39 +153,51 @@
 
 //  Optimizes the rendering on images so they
 //  appear faster, but at a lower quality. Useful for <video>
-
 %low-quality-image {
   image-rendering: optimizeSpeed;
 }
 
+%grayscale {
+  filter: grayscale(1);
+}
+
 $default-transition-property: all;
 $default-transition-duration: .25s;
-$default-transition-function: linear;
+$default-transition-function: ease;
 $default-transition-delay: .25s;
 
 %transition-all {
-  @include transition(all $default-transition-duration $default-transition-function);
+  transition: all $default-transition-duration $default-transition-function;
+}
+
+%transition-box-shadow {
+  transition: box-shadow $default-transition-duration $default-transition-function;
 }
 
 %transition-background-color {
-  @include transition(background-color $default-transition-duration $default-transition-function);
+  transition: background-color $default-transition-duration $default-transition-function;
+}
+
+%transition-background-border-color {
+  transition-duration: $default-transition-duration;
+  transition-property: background-color, border-color, color;
+  transition-timing-function: $default-transition-function;
 }
 
 %transition-background-color-color {
-  @include transition-delay(0);
-  @include transition-duration($default-transition-duration);
-  @include transition-property(background-color, color);
-  @include transition-timing-function($default-transition-function);
+ transition-duration: $default-transition-duration;
+ transition-property: background-color, color;
+ transition-timing-function: $default-transition-function;
 }
 
 %transition-border-color {
-  @include transition(border-color $default-transition-duration $default-transition-function);
+  transition: border-color $default-transition-duration $default-transition-function;
 }
 
 %transition-color {
-  @include transition(color $default-transition-duration $default-transition-function);
+  transition: color $default-transition-duration $default-transition-function;
 }
 
 %transition-opacity {
-  @include transition(opacity $default-transition-duration $default-transition-function);
+  transition: opacity $default-transition-duration $default-transition-function;
 }
