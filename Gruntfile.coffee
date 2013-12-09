@@ -18,7 +18,7 @@ module.exports = (grunt) ->
       dist: '<%= directory.base %>dist'
       src: '<%= directory.base %>src'
       bower: '<%= directory.src %>/bower'
-      #routes: '<%= directory.src %>/routes'
+      routes: '<%= directory.src %>/routes'
       views: '<%= directory.src %>/views'
       coffee: '<%= directory.src %>/javascripts/coffee'
       js: '<%= directory.dist %>/javascripts/js'
@@ -28,13 +28,14 @@ module.exports = (grunt) ->
       images: '<%= directory.dist %>/images'
       plugins: '<%= directory.js %>/plugins'
 
+    # File paths
     files:
       coffee: '<%= directory.coffee %>/{,*/}*.coffee'
       js: '<%= directory.js %>/{,*/}*.js'
       scss: '<%= directory.scss %>/{,*/}*.scss'
       css: '<%= directory.css %>/{,*/}*.css'
       jade: '<%= directory.views %>/{,*/}*.jade'
-      html: '<%= directory.dist %>/{,*/}*.html'
+      html: '<%= directory.dist %>{,*/}*.html'
       plugins: [
         '<%= directory.js %>/plugins.js'
         '<%= directory.bower %>/jquery/jquery.js'
@@ -51,12 +52,12 @@ module.exports = (grunt) ->
     coffee:
       options:
         bare: true
-      all:
+      dist:
         files: [
           expand: true
           flatten: true
           cwd: '<%= directory.coffee %>'
-          src: ['**/*.coffee']
+          src: '*.coffee'
           dest: '<%= directory.js %>'
           ext: '.js'
         ]
@@ -73,7 +74,7 @@ module.exports = (grunt) ->
     jshint:
       options:
         jshintrc: '<%= directory.base %>.jshintrc'
-      all: [
+      dist: [
         '<%= directory.js %>/**/*.js'
       ]
 
@@ -83,7 +84,7 @@ module.exports = (grunt) ->
         compress: true
         preserveComments: false
         except: ['jQuery']
-      all:
+      dist:
         files: [
           expand: true
           flatten: true
@@ -101,7 +102,7 @@ module.exports = (grunt) ->
         compileDebug: false
         pretty: true
         locals: grunt.file.readJSON './src/routes/globals.json'
-      all:
+      dist:
         src: [
           '<%= directory.views %>/*.jade'
           '!<%= directory.views %>/_*.jade'
@@ -110,7 +111,7 @@ module.exports = (grunt) ->
 
     # Validate html files
     htmllint:
-      all: [
+      dist: [
         '<%= files.html %>'
       ]
 
@@ -126,9 +127,15 @@ module.exports = (grunt) ->
         useShortDoctype: true
         removeOptionalTags: true
         removeEmptyAttributes: true
-      all:
-        files:
-          '<%= directory.dist %>/index.html': '<%= directory.dist %>/index.html'
+      dist:
+        files: [
+          expand: true
+          flatten: true
+          cwd: '<%= directory.dist %>'
+          src: '{,*/}*.html'
+          dest: '<%= directory.dist %>'
+          ext: '.html'
+        ]
 
     # Compile Sass to CSS using Compass
     compass:
@@ -149,7 +156,7 @@ module.exports = (grunt) ->
         raw: 'Sass::Script::Number.precision = 8'
       dist:
         debugInfo: false
-        environment: 'production'
+        environment: 'development'
         noLineComments: true
         outputStyle: 'expanded'
 
@@ -183,9 +190,9 @@ module.exports = (grunt) ->
       dist:
         files: [
           expand: true
-          #flatten: true
+          flatten: true
           cwd: '<%= directory.css %>'
-          src: ['*.css']
+          src: '{,*/}*.css'
           dest: '<%= directory.css %>'
           ext: '.css'
         ]
@@ -193,10 +200,15 @@ module.exports = (grunt) ->
     csso:
       options:
         report: 'gzip'
-      all:
-        files:
-          '<%= directory.css %>/style.min.css': ['<%= directory.css %>/style.css']
-          '<%= directory.css %>/style-lt-ie9.min.css': ['<%= directory.css %>/style-lt-ie9.css']
+      dist:
+        files: [
+          expand: true
+          flatten: true
+          cwd: '<%= directory.css %>'
+          src: '{,*/}*.css'
+          dest: '<%= directory.css %>'
+          ext: '.min.css'
+        ]
 
     # Adds a simple banner to files
     usebanner:
@@ -206,7 +218,6 @@ module.exports = (grunt) ->
       files:
         src: [
           '<%= files.css %>'
-          #'<%= files.html %>'
           '<%= files.js %>'
         ]
 
@@ -254,7 +265,6 @@ module.exports = (grunt) ->
           message: 'CSS reordered'
       csso:
         options:
-          title: 'CSSO'
           message: 'CSS minified'
       coffee:
         options:
@@ -264,7 +274,7 @@ module.exports = (grunt) ->
           message: 'Javascript concatenated'
       uglify:
         options:
-          message: 'Uglification complete'
+          message: 'Javascript minified'
       jade:
         options:
           message: 'Jade compiled'
@@ -273,10 +283,13 @@ module.exports = (grunt) ->
           message: 'HTML minified'
       usebanner:
         options:
-          message: 'Banners added'
+          message: 'Banners added to JS and CSS'
       modernizr:
         options:
           message: 'Modernizr compiled'
+      browser_sync:
+        options:
+          message: 'Brower sync running'
       dev:
         options:
           message: 'Development running'
@@ -304,34 +317,12 @@ module.exports = (grunt) ->
         files: '<%= directory.base %>Gruntfile.coffee'
         tasks: ['default']
 
-    notify_hooks:
-      options:
-        enabled: true
-        max_jshint_notifications: 10 #maximum number of notifications from jshint output
-        #title: "Project Name" #defaults to the name in package.json, or uses project's directory name, you can change to the name of your project
-
-    preprocess:
-      dev:
-        src: ['src/views/layouts/_default.jade']
-        options:
-          inline: true
-          context:
-            production: false
-
-      dist:
-        src: ['src/views/layouts/_default.jade']
-        options:
-          inline: true
-          context:
-            production: true
-
   # http://chrisawren.com/posts/Advanced-Grunt-tooling
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks)
 
   # Run in development mode
   grunt.registerTask 'default', 'Development mode', ->
     grunt.task.run 'notify_hooks'
-    #grunt.task.run 'preprocess:dev'
     grunt.task.run 'browser_sync'
     grunt.task.run 'notify:browser_sync'
     grunt.task.run 'watch'
@@ -340,7 +331,6 @@ module.exports = (grunt) ->
   # Compile for distribution
   grunt.registerTask 'dist', 'Distribution build', ->
     grunt.task.run 'notify_hooks'
-    #grunt.task.run 'preprocess:dist'
     grunt.task.run 'clean'
     grunt.task.run 'notify:clean'
     grunt.task.run 'compass'
