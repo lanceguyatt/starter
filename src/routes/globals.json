@@ -22,8 +22,7 @@
   },
   "paths": {
     "images": "images/",
-    "css": "stylesheets/css",
-    "js": "javascripts/js",
-    "plugins": "javascripts/js/plugins"
+    "css": "css",
+    "js": "js"
   }
 }

@@ -34,8 +34,8 @@ nbproject
 .CVS
 .idea
 node_modules
-dist/stylesheets
-dist/javascripts
+dist/css
+dist/js
 dist/*.html
 tests/*
 tmp

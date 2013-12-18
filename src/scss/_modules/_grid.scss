@@ -2,17 +2,17 @@
 // Grid placeholders
 //
 #grid {
-  left: 50%;
-  position: absolute;
+  @include stretch-x(50%, false);
 }
 
 .vert {
+  @extend %box-sizing-border-box;
   background-color: rgba(#3cfeff, 0.25);
-  @include box-sizing(border-box);
 }
 
 .horiz {
   height: $base-line-height;
+
   &:nth-child(odd) {
     background-color: rgba(#609, 0.25);
   }
@@ -96,7 +96,7 @@
   //   text-align: center !important;
   // }
 
-  @include generate-hashgrid($grid-id, $total-columns, $column-width, $gutter-width, $grid-padding);
+  //@include generate-hashgrid($grid-id, $total-columns, $column-width, $gutter-width, $grid-padding);
 
 }
 
@@ -199,5 +199,5 @@
   .lg-10-12 { @include span-columns(10, 12); }
   .lg-11-12 { @include span-columns(11, 12); }
 
-  @include generate-grid(3, 'lg', $large-total-columns, $column-width, $gutter-width);
+  //@include generate-grid(3, 'lg', $large-total-columns, $column-width, $gutter-width);
 }

@@ -15,18 +15,21 @@ module.exports = (grunt) ->
     # Directory paths
     directory:
       base: './'
-      dist: '<%= directory.base %>dist'
+
       src: '<%= directory.base %>src'
+
       bower: '<%= directory.src %>/bower'
       routes: '<%= directory.src %>/routes'
       views: '<%= directory.src %>/views'
-      coffee: '<%= directory.src %>/javascripts/coffee'
-      js: '<%= directory.dist %>/javascripts/js'
-      scss: '<%= directory.src %>/stylesheets/scss'
-      css: '<%= directory.dist %>/stylesheets/css'
+      coffee: '<%= directory.src %>/coffee'
+      scss: '<%= directory.src %>/scss'
+
+      dist: '<%= directory.base %>dist'
+
+      js: '<%= directory.dist %>/js'
+      css: '<%= directory.dist %>/css'
       fonts: '<%= directory.dist %>/fonts'
       images: '<%= directory.dist %>/images'
-      plugins: '<%= directory.js %>/plugins'
 
     # File paths
     files:
@@ -67,7 +70,7 @@ module.exports = (grunt) ->
       plugins:
         files: [
           src: '<%= files.plugins %>'
-          dest: '<%= directory.plugins %>/plugins.js'
+          dest: '<%= directory.js %>/plugins.js'
         ]
 
     # Validate files with JSHint
@@ -89,9 +92,9 @@ module.exports = (grunt) ->
           expand: true
           flatten: true
           cwd: '<%= directory.js %>'
-          src: ['**/*.js', '!*.min.js']
+          src: ['**/*.js']
           dest: '<%= directory.js %>'
-          ext: '.min.js'
+          ext: '.js'
         ]
 
     # Compile Jade templates
@@ -207,7 +210,7 @@ module.exports = (grunt) ->
           cwd: '<%= directory.css %>'
           src: '{,*/}*.css'
           dest: '<%= directory.css %>'
-          ext: '.min.css'
+          ext: '.css'
         ]
 
     # Adds a simple banner to files
@@ -241,13 +244,13 @@ module.exports = (grunt) ->
     # Build out a lean, mean Modernizr machine
     modernizr:
       devFile: '<%= directory.bower %>/modernizr/modernizr.js'
-      outputFile: '<%= directory.plugins %>/modernizr.min.js'
+      outputFile: '<%= directory.js %>/modernizr.js'
+      uglify: true
       files: [
         '<%= files.css %>'
         '<%= files.html %>'
         '<%= files.js %>'
       ]
-      uglify: true
 
     # Task complete messages
     notify:

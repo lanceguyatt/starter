@@ -91,9 +91,9 @@ $cursor-pointer-value: "pointer";
 $cursor-help-value: "help";
 
 // Grid variables
-$column-width: 3.75rem; // 60px
-$gutter-width: 1.25rem; // 20px
-$grid-padding: 1.25rem; // 20px
+$column-width: 3.75em; // 60px
+$gutter-width: 1.25em; // 20px
+$grid-padding: 1.25em; // 20px
 
 $small-total-columns: 4;
 $medium-total-columns: 8;
@@ -101,9 +101,9 @@ $large-total-columns: 12;
 
 // Media layouts
 $small-media-layout: $small-total-columns; // (4 * 60px) + (3* 20px) + (2*10px) = 320px
-$small-only-media-layout: $small-total-columns 35.5625rem; // max-width: 569px
-$medium-media-layout: 35.5625rem $medium-total-columns; // (8 * 60px) + (9 * 20px) = 660px // min-width: 561px
-$large-media-layout: 56.25rem $large-total-columns; // min-width 1024px (16 * 60) + (17 * 20) = 1300px min-width: 769px
+$small-only-media-layout: $small-total-columns 35.5625em; // max-width: 569px
+$medium-media-layout: 35.5625em $medium-total-columns; // (8 * 60px) + (9 * 20px) = 660px // min-width: 561px
+$large-media-layout: 56.25em $large-total-columns; // min-width 1024px (16 * 60) + (17 * 20) = 1300px min-width: 769px
 
 $from-direction: $default-float;
 $omega-float: opposite-position($from-direction);

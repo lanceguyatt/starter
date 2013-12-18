@@ -60,7 +60,7 @@ meta(name='viewport', content='user-scalable=no, width=device-width, initial-sca
 block stylesheets
 
   <!--[if lte IE 9]><link rel="stylesheet" href="#{paths.css}/style-lt-ie9.min.css" media="all"><![endif]-->
-  <!--[if gte IE 9]><!--><link rel="stylesheet" href="#{paths.css}/style.min.css" media="all"><!--<![endif]-->
+  <!--[if gte IE 9]><!--><link rel="stylesheet" href="#{paths.css}/style.css" media="all"><!--<![endif]-->
 
 //- Place favicon.ico and apple-touch-icon.png in the root directory 
 //-
@@ -77,4 +77,4 @@ block stylesheets
   link(rel='publisher', href='#{author.google}')
 link(rel='author', href='humans.txt')
 
-script(src='#{paths.plugins}/modernizr.min.js')
+script(src='#{paths.js}/modernizr.js')

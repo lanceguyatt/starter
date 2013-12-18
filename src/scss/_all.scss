@@ -6,6 +6,7 @@
 //@import '_helpers/_fonts';
 @import '_elements/_scaffolding';
 @import '_elements/_type';
+//@import '_modules/_flexbox';
 @import '_modules/_grid';
 @import '_page/_header';
 @import '_page/_main';
@@ -26,8 +27,6 @@
     margin-left: auto;
     margin-right: auto;
   }
-
-  //@include generate-grid(2, $medium-total-columns, $column-width, $gutter-width);
 }
 
 @include at-breakpoint($large-media-layout) {
@@ -35,8 +34,6 @@
   .container {
     @include set-container-width;
   }
-
-  //@include generate-grid(3, $large-total-columns, $column-width, $gutter-width);
 }
 
 .columns {
@@ -44,6 +41,4 @@
   position: relative;
 }
 
-.column {
-  //position: relative;
-}
+//.column {}
