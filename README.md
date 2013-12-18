@@ -1,7 +1,6 @@
 # Starter
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/lanceguyatt/starter/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-[![NPM](https://nodei.co/npm/starter.png?downloads=true&stars=true)](https://nodei.co/npm/starter/)
 
 > A Sass/Compass/Jade/Coffeescript powered, Grunt and Bower based HTML5 starter kit
 
@@ -90,5 +89,3 @@ Directory structure
         package.json
         README.md
         src
-
-
