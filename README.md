@@ -1,6 +1,4 @@
-# Starter
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/lanceguyatt/starter/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+# Starter [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/lanceguyatt/starter/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 > A Sass/Compass/Jade/Coffeescript powered, Grunt and Bower based HTML5 starter kit
 
